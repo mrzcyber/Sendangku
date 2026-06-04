@@ -1,9 +1,40 @@
 @import 'tailwindcss';
 
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-poppins: 'Poppins', sans-serif;
+    --font-playfair: 'Playfair Display', 'serif';
+    --font-dm: 'DM Sans', 'sans-serif';
 }
+
+
+    /* Decorative circles on card header — tidak bisa pure Tailwind */
+    .ticket-header-deco::before {
+        content: '';
+        position: absolute;
+        top: -20px; right: -20px;
+        width: 100px; height: 100px;
+        background: rgba(255,255,255,0.08);
+        border-radius: 50%;
+    }
+    .ticket-header-deco::after {
+        content: '';
+        position: absolute;
+        bottom: -30px; right: 40px;
+        width: 80px; height: 80px;
+        background: rgba(255,255,255,0.06);
+        border-radius: 50%;
+    }
+ 
+    /* Tear line dashed — Tailwind tidak punya border-dashed dengan warna kustom per-kasus */
+    .tear-dashes-amber { border-top: 2px dashed #FCD34D; }
+    .tear-dashes-gray  { border-top: 2px dashed #E5E7EB; }
+ 
+    /* Hover lift pada CTA button */
+    .cta-lift:hover  { opacity: 0.88; transform: translateY(-2px); }
+    .cta-lift:active { transform: scale(0.98); }
