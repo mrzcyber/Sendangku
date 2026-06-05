@@ -10,6 +10,13 @@
     --font-poppins: 'Poppins', sans-serif;
     --font-playfair: 'Playfair Display', 'serif';
     --font-dm: 'DM Sans', 'sans-serif';
+
+    --animate-marquee: marquee 18s linear infinite;
+
+    @keyframes marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
 }
 
 

@@ -83,7 +83,7 @@
 </section>
 
 
-<section class="w-full relative py-36 flex items-center justify-center flex-row  ">
+<section class="w-full relative py-40 flex items-center justify-center flex-row  ">
     <div class="absolute  inset-0">
         <img src="img/sendang.png" alt="Background Image" class="w-full h-full object-cover bg-center bg-no-repeat">
          <div class="absolute inset-0 bg-amber-500 opacity-40"></div>
@@ -99,7 +99,7 @@
 
     </div>
 
-    <div class=" lg:max-w-3xl xl:max-w-4xl w-full z-10 relative flex flex-row gap-5 2xl:gap-10 pr-5 justify-end ">
+    <div class=" lg:max-w-3xl xl:max-w-4xl w-full z-10 relative flex flex-row gap-5 2xl:gap-10 pl-10 pr-5">
         <div class="w-[200px] 2xl:w-[250px] h-[300px] 2xl:h-[350px] rounded-2xl overflow-hidden shadow-md scale-[115%] ">
                 <img src="img/sendang.png" alt="Icon 1" class="w-full h-full object-cover bg-center bg-no-repeat ">
         </div>
@@ -110,7 +110,7 @@
                 <img src="img/sendang.png" alt="Icon 1" class="w-full h-full object-cover bg-center bg-no-repeat">
         </div>
 
-        <div class="absolute -bottom-24 pl-16 2xl:pl-36 w-full flex flex-row gap-4">
+        <div class="absolute -bottom-24 left-20   flex flex-row gap-4">
             <p class="w-5 h-5 px-5 py-5 border border-amber-500 flex justify-center items-center flex-row text-amber-500 font-semibold rounded-full"><</p>
             <p class="w-5 h-5 px-5 py-5 border border-amber-500 flex justify-center items-center flex-row text-amber-500 font-semibold rounded-full">></p>
 
@@ -443,10 +443,104 @@
 
     </div>
 
-    </div>
+</section>
+
+<section class="w-full relative flex flex-col bg-gray-700 items-center py-16">
+    {{-- <div class="absolute  inset-0">
+        <img src="img/sendang.png" alt="Background Image" class="w-full h-full object-cover bg-center bg-no-repeat">
+         <div class="absolute inset-0 bg-amber-500 opacity-40"></div>
+        <div class="absolute inset-0 bg-black opacity-85"></div>
+    </div> --}}
+
+            <div class="absolute opacity-40 inset-0">
+        <img src="img/icon-bg.png" alt="Background Image" class="w-full h-full object-cover bg-center bg-no-repeat">
+         <div class="absolute inset-0 bg-black opacity-15"></div>
+        {{-- <div class="absolute bottom-0 py-28 bg-gradient-to-t  w-full from-amber-500/80  to-transparent  -mb-28 "></div> --}}
+
+    </div >
+    
+
+    <h1 class="z-10 text-4xl text-amber-500 font-poppins font-semibold mb-1">Acara Sendang Kun Gerit</h1>
+        <p class="text-lg font-medium font-md  text-white capitalize z-10 ">Kami menyajikan berbagai hidangan kuliner yang lezat dan menarik di resto kami</p>
+
+        <div class="flex flex-row justify-center items-center gap-10 z-10">
+                <div class="text-3xl text-white font-bold bg-amber-500 px-7 py-5 rounded-full"><</div>
+            <div class="py px-5 bg-white/90 shadow-md shadow-black py-5 rounded-3xl z-10 mt-10 ">
+                
+                <div class="w-2xl h-[400px] rounded-3xl overflow-hidden shadow-md shadow-white z-10">
+                    <img src="img/sendang.png" alt="event" class="w-full h-full object-cover object-center">
+                </div>
+            </div>
+             <div class="text-3xl text-white font-bold bg-amber-500 px-7 py-5 rounded-full">></div>
+        </div>
+
+                      <a href="/tiket" class="shadow-md z-10  font-dm text-[14px] mt-5  font-medium tracking-[0.07em] uppercase border border-amber-500/70 text-white px-4 py-2.5 bg-amber-600 hover:border-amber-600 hover:bg-amber-700 hover:text-white transition-all duration-200">
+                Info Selengkapnya
+            </a>
 
 
 </section>
+
+<section class="w-full h-screen">
+
+</section>
+
+<section class="w-full flex flex-row bg-gray-700 py-5 px-16 xl:px-28">
+
+  {{-- Label kiri --}}
+  <div class="text-4xl flex-shrink-0 flex items-center flex-col pl-8 font-bold text-white border-r-2 border-white/30 py-6 pr-6">
+    <h1>Our</h1>
+    <h1>Partners</h1>
+  </div>
+
+  {{-- Marquee wrapper --}}
+  <div class="flex-1 overflow-hidden relative flex items-center min-w-0">
+
+    {{-- Fade kiri & kanan --}}
+    <div class="absolute left-0 top-0 bottom-0 w-12 z-10 pointer-events-none"
+         style="background: linear-gradient(to right, #374151, transparent);"></div>
+    <div class="absolute right-0 top-0 bottom-0 w-12 z-10 pointer-events-none"
+         style="background: linear-gradient(to left, #374151, transparent);"></div>
+
+    {{-- Track: duplikat logo untuk efek seamless --}}
+    <div class="flex items-center gap-16 w-max animate-marquee hover:[animation-play-state:paused]">
+
+      {{-- Set pertama --}}
+      <div class="w-25 h-14 shrink-0 flex items-center justify-center">
+        <img src="img/logo.png" alt="Partner 1" class="max-w-full max-h-full object-contain">
+      </div>
+      <div class="w-25 h-14 shrink-0 flex items-center justify-center">
+        <img src="img/logo.png" alt="Partner 2" class="max-w-full max-h-full object-contain">
+      </div>
+      <div class="w-25 h-14 shrink-0 flex items-center justify-center">
+        <img src="img/logo.png" alt="Partner 2" class="max-w-full max-h-full object-contain">
+      </div>
+      <div class="w-25 h-14 shrink-0 flex items-center justify-center">
+        <img src="img/logo.png" alt="Partner 2" class="max-w-full max-h-full object-contain">
+      </div>
+      {{-- ... logo lainnya ... --}}
+
+      {{-- Set kedua (duplikat persis) --}}
+      <div class="w-25 h-14 shrink-0 flex items-center justify-center">
+        <img src="img/logo.png" alt="Partner 1" class="max-w-full max-h-full object-contain">
+      </div>
+      <div class="w-25 h-14 shrink-0 flex items-center justify-center">
+        <img src="img/logo.png" alt="Partner 2" class="max-w-full max-h-full object-contain">
+      </div>
+      <div class="w-25 h-14 shrink-0 flex items-center justify-center">
+        <img src="img/logo.png" alt="Partner 2" class="max-w-full max-h-full object-contain">
+      </div>
+      <div class="w-25 h-14 shrink-0 flex items-center justify-center">
+        <img src="img/logo.png" alt="Partner 2" class="max-w-full max-h-full object-contain">
+      </div>
+      {{-- ... duplikat logo lainnya ... --}}
+
+    </div>
+  </div>
+
+</section>
+
+
 
 
 @endsection
