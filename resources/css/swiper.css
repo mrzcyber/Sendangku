@@ -1,0 +1,138 @@
+   .event-swiper-wrap {
+        width: 100%;
+        padding: 20px 0 0px;
+        overflow: hidden;
+    }
+
+    /* Container swiper */
+    .swiper-event {
+        width: 100%;
+        padding-bottom: 50px !important;
+        height: 400px;
+    }
+
+    /* Tiap slide */
+    .swiper-event .swiper-slide {
+        width: 60%;
+        border-radius: 0px;
+        overflow: hidden;
+        aspect-ratio: 16 / 9;
+        transition: transform 0.5s ease, filter 0.5s ease, opacity 0.5s ease;
+        filter: brightness(0.45) blur(1.5px);
+        opacity: 0.6;
+        cursor: grab;
+    }
+
+    .swiper-event .swiper-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+        pointer-events: none;
+        user-select: none;
+    }
+
+    /* Slide aktif tengah */
+    .swiper-event .swiper-slide-active {
+        filter: brightness(1) blur(0px);
+        opacity: 1;
+        transform: scale(1.04);
+        z-index: 2;
+        cursor: grab;
+    }
+
+    /* Slide prev & next langsung */
+    .swiper-event .swiper-slide-prev,
+    .swiper-event .swiper-slide-next {
+        filter: brightness(0.55) blur(0.8px);
+        opacity: 0.75;
+        transform: scale(0.96);
+      
+    }
+
+    /* Pagination bullets */
+    .swiper-event .swiper-pagination-bullet {
+        width: 8px;
+        height: 8px;
+        background: #D97706;
+        opacity: 0.4;
+        transition: all 0.3s;
+    }
+
+    .swiper-event .swiper-pagination-bullet-active {
+        width: 24px;
+        border-radius: 4px;
+        opacity: 1;
+        background: #F59E0B;
+    }
+
+
+
+    /* Wrapper tidak clip — biar slide tetap 3 tapi visual meluber */
+    .swiper-layanan {
+        overflow: visible !important;
+    }
+ 
+    /* Base semua slide */
+    .swiper-layanan .swiper-slide {
+        border-radius: 16px;
+        overflow: hidden;
+        height: 300px;
+ 
+        /* Animasi transform + filter sekaligus */
+        transition:
+            transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+            filter     0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+            opacity    0.5s ease;
+ 
+        transform: scale(0.88);
+        filter: brightness(0.45);
+        opacity: 0.7;
+        cursor: pointer;
+    }
+ 
+    @media (min-width: 1536px) {
+        .swiper-layanan .swiper-slide {
+            height: 350px;
+        }
+    }
+ 
+    .swiper-layanan .swiper-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+        pointer-events: none;
+        user-select: none;
+ 
+        /* Zoom in saat slide masuk */
+        transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        transform: scale(1.05);
+    }
+ 
+    /* Slide aktif — tengah */
+    .swiper-layanan .swiper-slide-active {
+        transform: scale(1.08);
+        filter: brightness(1);
+        opacity: 1;
+        z-index: 2;
+    }
+ 
+    .swiper-layanan .swiper-slide-active img {
+        transform: scale(1);
+    }
+ 
+    /* Slide prev & next — samping langsung */
+    .swiper-layanan .swiper-slide-prev,
+    .swiper-layanan .swiper-slide-next {
+        transform: scale(0.94);
+        filter: brightness(0.6);
+        opacity: 0.85;
+    }
+ 
+    .swiper-layanan .swiper-slide-prev img,
+    .swiper-layanan .swiper-slide-next img {
+        transform: scale(1.02);
+    }
