@@ -3,7 +3,7 @@
 @section('title', 'Sendangku')
 
 @section('content')
-<section class=" relative h-[800px] flex items-end ">
+<section class=" relative xl:h-[800px] h-[800px] md:h-screen w-full flex xl:items-end items-center justify-center xl:justify-start  ">
     <div class="absolute  inset-0">
         <img src="img/sendang.png" alt="Background Image" class="w-full h-full object-cover bg-center bg-no-repeat">
          <div class="absolute inset-0 bg-black opacity-30"></div>
@@ -14,18 +14,18 @@
    
 
 
-    <div class=" mx-30 z-10 text-white mb-36">
-        <h2 class="text-2xl font-md font-semibold  text-amber-600 ">Selamat Datang </h2>
-        <h1 class="text-[38px] font-semibold font-poppins mb-4 leading-none">Wisata Sendang Kun Gerit</h1>
-        <p class="text-lg font-dm w-[650px] mb-10 text-white/95 ">kelezatan kuliner dan kesegaran pemandian dalam satu destinasi wisata yang nyaman Perpaduan sempurna antara cita rasa istimewa dan pengalaman pemandian yang menyegarkan.</p>
-                <a href="/tiket" class="font-dm text-[14px]  font-medium tracking-[0.07em] uppercase border border-amber-500/70 text-white px-4 py-2.5 bg-amber-600 hover:border-amber-600 hover:bg-amber-700 hover:text-white transition-all duration-200">
+    <div class=" xl:px-30 w-full md:px-8 px-4 z-10 text-white xl:mb-36 mb-8 flex flex-col xl:items-start xl:justify-start items-center justify-center">
+        <h2 class="md:text-2xl text-xl font-md font-semibold  text-amber-600 ">Selamat Datang </h2>
+        <h1 class="md:text-[38px] text-[20px] font-semibold font-poppins md:mb-4 mb-2 leading-none">Wisata Sendang Kun Gerit</h1>
+        <p class="md:text-lg text-sm font-dm xl:w-[650px] xl:mb-10 text-white/95 mb-3 text-center xl:text-start ">kelezatan kuliner dan kesegaran pemandian dalam satu destinasi wisata yang nyaman <span class="md:inline hidden ">Perpaduan sempurna antara cita rasa istimewa dan pengalaman pemandian yang menyegarkan.</span> </p>
+                <a href="/tiket" class="font-dm md:text-[14px]  text-[10px] scale-[80%] md:scale-100 font-medium tracking-[0.07em] uppercase border border-amber-500/70 text-white px-4 py-2.5 bg-amber-600 hover:border-amber-600 hover:bg-amber-700 hover:text-white transition-all duration-200">
                 Beli Tiket Sekarang
             </a>
     </div>
 
 </section>
 
-<section class="w-full pb-36  relative flex pt-40 justify-center bg-[#FFF8E1]">
+<section class="w-full md:pb-36 pb-10 pt-10  relative flex md:pt-40 justify-center bg-[#FFF8E1]">
 
         <div class="absolute opacity-40 inset-0">
         <img src="img/icon-bg.png" alt="Background Image" class="w-full h-full object-cover bg-center bg-no-repeat">
@@ -38,7 +38,7 @@
 <div class="w-full justify-center flex flex-row gap-16 2xl:gap-20  z-10 ">
 
 
-<div class="w-[520px] 2xl:w-[600px]  ml-20 relative ">
+<div class="w-[520px] 2xl:w-[600px]  ml-20 relative hidden md:block">
 <div class="w-full h-[430px] rotate-[4deg] border-[10px] shadow-md shadow-black border-white ">
     <img src="img/sendang.png" alt="Icon 1" class="w-full h-full object-cover bg-center bg-no-repeat">
 </div>
@@ -54,19 +54,19 @@
 </div>
 
 
-<div class=" flex flex-col justify-start pt-16   ">
-<h2 class="text-xl font-normal font-poppins text-amber-500">Tentang </h2>
-<h1 class="text-3xl font-normal font-poppins mb-4 leading-none">Wisata Sendang Kun Gerit</h1>
-<p class="text-lg font-poppins max-w-xl mb-2">Wisata Sendang Kun Gerit adalah destinasi wisata yang menawarkan keindahan alam, kuliner lezat, dan pengalaman pemandian yang menyegarkan. Terletak di tengah pesona alam bumdes yang memukau, tempat ini menjadi pilihan ideal untuk bersantai, menikmati hidangan pilihan, dan merasakan kesegaran pemandian alami. <a href="/tentang" class="font-dm hover:text-black/80 text-xl text-gray-500 transition-colors">
+<div class=" flex flex-col justify-start xl:pt-16 md:items-start items-center px-3 md:px-1  ">
+<h2 class="text-xl md:font-normal font-semibold font-poppins text-amber-500 ">Tentang </h2>
+<h1 class="xl:text-3xl md:text-2xl text-xl md:font-normal font-semibold font-poppins mb-3 leading-none">Wisata Sendang Kun Gerit</h1>
+<p class="xl:text-lg md:text-md text-sm font-poppins max-w-xl mb-2 md:text-start text-center ">Wisata Sendang Kun Gerit adalah destinasi wisata yang menawarkan keindahan alam, kuliner lezat, dan pengalaman pemandian yang menyegarkan. <span class="hidden md:inline">Terletak di tengah pesona alam bumdes yang memukau,</span>  tempat ini menjadi pilihan ideal untuk bersantai, menikmati hidangan pilihan, dan merasakan kesegaran pemandian alami.  <a href="/tentang" class="font-dm hover:text-black/80 md:text-xl text-md text-gray-500 transition-colors">
                 Selengkapnya Tentang Sendang Kun Gerit...
 </a> </p>
 
-<div class=" w-full mt-5 border-t border-gray-300  py-5  ">
+<div class=" w-full mt-5 xl:border-t border-t-2 border-gray-300  py-5  ">
     {{-- <h3 class="text-3xl font-medium font-poppins semibold mb-5">Kami Memiliki</h3> --}}
     <ul class="flex flex-row gap-5 list-none ">
-    <li class="flex flex-col justify-center items-center text-amber-500"> <h3 class="text-3xl font-extrabold ">1000+</h3> <p class="text-lg font-medium text-gray-500  font-poppins"> Pengunjung Setiap Minggu </p> </li>
-    <li class="flex flex-col justify-center items-center text-amber-500"> <h3 class="text-3xl font-extrabold ">7+</h3> <p class="text-lg font-medium text-gray-500  font-poppins"> Layanan Menarik </p> </li>
-    <li class="flex flex-col justify-center items-center text-amber-500"> <h3 class="text-3xl font-extrabold ">5+</h3> <p class="text-lg font-medium text-gray-500  font-poppins"> Paket Wisata </p> </li>
+    <li class="flex flex-col justify-center items-center text-amber-500"> <h3 class="md:text-3xl text-xl font-extrabold ">1000+</h3> <p class="md:text-lg font-medium text-gray-500  font-poppins text-center "> Pengunjung Setiap Minggu </p> </li>
+    <li class="flex flex-col justify-center items-center text-amber-500"> <h3 class="md:text-3xl text-xl font-extrabold ">7+</h3> <p class="md:text-lg font-medium text-gray-500  font-poppins text-center"> Layanan Menarik </p> </li>
+    <li class="flex flex-col justify-center items-center text-amber-500"> <h3 class="md:text-3xl text-xl font-extrabold ">5+</h3> <p class="md:text-lg font-medium text-gray-500  font-poppins text-center"> Paket Wisata </p> </li>
     </ul>
 
 </div>
@@ -82,79 +82,93 @@
 
 </section>
 
+{{-- section layanan --}}
 
+<section
+    class="w-full relative py-40 flex items-center justify-center flex-row overflow-hidden gap-5"
+    x-data="layananSection"
+>
 
-<section class="w-full relative py-40 flex items-center justify-center flex-row overflow-hidden gap-5">
- 
     {{-- Background --}}
     <div class="absolute inset-0">
         <img src="img/sendang.png" alt="Background" class="w-full h-full object-cover object-center">
         <div class="absolute inset-0 bg-amber-500 opacity-40"></div>
         <div class="absolute inset-0 bg-black opacity-75"></div>
     </div>
- 
-    {{-- Teks kiri --}}
-    <div class="z-10 max-w-2xl text-white pl-20 shrink-0">
-        <h1 class="text-3xl font-semibold font-poppins text-amber-600 mb-1 uppercase">Layanan Berkuda</h1>
-        <div class="border-b-2 border-amber-500 w-64 mb-4"></div>
-        <p class="text-lg font-normal mb-7 leading-relaxed">
-            Latihan berkuda bermanfaat meningkatkan kekuatan otot, keseimbangan, membantu memperbaiki postur tubuh dan mengurangi stress.
-        </p>
-        <a href="/layanan/berkuda"
-           class="font-dm text-[16px] font-semibold shadow-md shadow-black uppercase
-                  border border-amber-500/70 text-white px-4 py-2.5 bg-amber-600
-                  hover:bg-amber-700 hover:border-amber-700 transition-all duration-200">
-            Selengkapnya
-        </a>
+
+    {{-- ── Teks kiri ── --}}
+    <div class="z-10 w-full max-w-sm xl:max-w-md text-white pl-16 xl:pl-20 shrink-0" style="min-height:220px; position:relative;">
+
+        <template x-for="(item, i) in layanan" :key="i">
+            <div
+                x-show="active === i"
+                x-transition:enter="transition ease-out duration-500"
+                x-transition:enter-start="opacity-0 translate-y-6 blur-sm"
+                x-transition:enter-end="opacity-100 translate-y-0 blur-none"
+                x-transition:leave="transition ease-in duration-300"
+                x-transition:leave-start="opacity-100 translate-y-0 blur-none"
+                x-transition:leave-end="opacity-0 -translate-y-5 blur-sm"
+                style="position:absolute; inset:0; display:none;"
+                class="flex flex-col justify-center"
+            >
+                <h1 class="text-3xl font-semibold font-poppins text-amber-500 mb-1 uppercase" x-text="item.title"></h1>
+                <div class="border-b-2 border-amber-500 w-48 mb-4"></div>
+                <p class="text-base font-normal mb-7 leading-relaxed text-gray-200" x-text="item.description"></p>
+                <a
+                    :href="item.href"
+                    class="inline-block w-fit font-dm text-[14px] font-semibold shadow-md shadow-black uppercase
+                           border border-amber-500/70 text-white px-4 py-2.5 bg-amber-600
+                           hover:bg-amber-700 hover:border-amber-700 transition-all duration-200"
+                >
+                    Selengkapnya
+                </a>
+            </div>
+        </template>
+
     </div>
- 
-    {{-- Swiper kanan --}}
-    <div class="lg:max-w-3xl xl:max-w-4xl w-full z-10  px-5 flex flex-col gap-8 overflow-x-hidden  pt-5">
- 
-        <div class="swiper swiper-layanan w-full">
+
+    {{-- ── Swiper kanan ── --}}
+    <div class="lg:max-w-3xl xl:max-w-4xl w-full z-10 px-5 flex flex-col gap-8 overflow-x-hidden pt-5">
+
+        <div class="swiper swiper-layanan w-full" x-ref="swiperLayanan">
             <div class="swiper-wrapper items-center">
- 
-                <div class="swiper-slide">
-                    <img src="img/sendang.png" alt="Layanan 1" draggable="false">
-                </div>
-                <div class="swiper-slide">
-                    <img src="img/sendang.png" alt="Layanan 2" draggable="false">
-                </div>
-                <div class="swiper-slide">
-                    <img src="img/sendang.png" alt="Layanan 3" draggable="false">
-                </div>
-                <div class="swiper-slide">
-                    <img src="img/sendang.png" alt="Layanan 4" draggable="false">
-                </div>
-                <div class="swiper-slide">
-                    <img src="img/sendang.png" alt="Layanan 5" draggable="false">
-                </div>
- 
+
+                <template x-for="(item, i) in layanan" :key="i">
+                    <div
+                        class="swiper-slide cursor-pointer"
+                        @click="goTo(i)"
+                    >
+                        <img :src="item.image" :alt="item.title" draggable="false">
+                    </div>
+                </template>
+
             </div>
         </div>
- 
+
         {{-- Nav buttons --}}
         <div class="flex flex-row gap-4 pl-2">
-            <button class="swiper-layanan-prev w-10 h-10 border border-amber-500 rounded-full
-                           flex items-center justify-center text-amber-500
-                           hover:bg-amber-500 hover:text-white transition-all duration-200
-                           active:scale-90">
+            <button
+                x-ref="btnPrev"
+                class="w-10 h-10 border border-amber-500 rounded-full flex items-center justify-center
+                       text-amber-500 hover:bg-amber-500 hover:text-white transition-all duration-200 active:scale-90"
+            >
                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/>
                 </svg>
             </button>
-            <button class="swiper-layanan-next w-10 h-10 border border-amber-500 rounded-full
-                           flex items-center justify-center text-amber-500
-                           hover:bg-amber-500 hover:text-white transition-all duration-200
-                           active:scale-90">
+            <button
+                x-ref="btnNext"
+                class="w-10 h-10 border border-amber-500 rounded-full flex items-center justify-center
+                       text-amber-500 hover:bg-amber-500 hover:text-white transition-all duration-200 active:scale-90"
+            >
                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/>
                 </svg>
             </button>
         </div>
- 
+
     </div>
- 
+
 </section>
 
 <section class="w-full  flex flex-col py-24 items-center relative bg-[#FFF8E1]">
@@ -497,44 +511,13 @@
         <div class="border-b-2 border-amber-500 w-64 z-10 mb-10"></div>
 
 
-<div class="event-swiper-wrap z-10">
-    <div class="swiper swiper-event">
-        <div class="swiper-wrapper">
 
-            {{-- Slide 1 --}}
-            <div class="swiper-slide">
-                <img src="img/sendang.png" alt="Event 1" draggable="false">
-            </div>
-
-            {{-- Slide 2 --}}
-            <div class="swiper-slide">
-                <img src="img/sendang.png" alt="Event 2" draggable="false">
-            </div>
-
-            {{-- Slide 3 --}}
-            <div class="swiper-slide">
-                <img src="img/sendang.png" alt="Event 3" draggable="false">
-            </div>
-
-            {{-- Slide 4 --}}
-            <div class="swiper-slide">
-                <img src="img/sendang.png" alt="Event 4" draggable="false">
-            </div>
-
-            {{-- Slide 5 --}}
-            <div class="swiper-slide">
-                <img src="img/sendang.png" alt="Event 5" draggable="false">
-            </div>
-
-        </div>
-
-        {{-- Pagination dots --}}
-        <div class="swiper-pagination"></div>
-    </div>
-</div>
 
 
 </section>
+
+
+{{-- berita --}}
 
 <section class="w-full  flex flex-col py-10 items-center bg-[#FFF8E1]/80 relative">
 
@@ -581,7 +564,7 @@
 @push('scripts')
 {{-- ── Swiper JS ── --}}
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
- @vite('resources/js/swiper.js')
+ {{-- @vite('resources/js/swiper.js') --}}
     
 @endpush
 
