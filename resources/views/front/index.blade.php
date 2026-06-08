@@ -35,7 +35,7 @@
     </div >
 
 
-<div class="w-full justify-center flex flex-row gap-16 2xl:gap-20  z-10 ">
+<div class="w-full justify-center flex flex-row gap-12 xl:gap-20  z-10 ">
 
 
 <div class="w-[520px] 2xl:w-[600px]  ml-20 relative hidden md:block">
@@ -43,11 +43,11 @@
     <img src="img/sendang.png" alt="Icon 1" class="w-full h-full object-cover bg-center bg-no-repeat">
 </div>
 
-<div class="w-64 -rotate-[4deg] h-44  absolute -top-16 -right-10 overflow-hidden border-8 border-white shadow-md shadow-black ">
+<div class="xl:w-64 w-44 -rotate-[4deg] h-44  absolute -top-16 -right-10 overflow-hidden border-8 border-white shadow-md shadow-black ">
  <img src="img/sendang.png" alt="Icon 1" class="w-full h-full object-cover bg-center bg-no-repeat">
 </div>    
 
-<div class="w-64 -rotate-[4deg] h-44  absolute -bottom-16 -left-16 overflow-hidden border-8 border-white shadow-md shadow-black ">
+<div class="xl:w-64 w-44 -rotate-[4deg] h-44  absolute -bottom-16 -left-16 overflow-hidden border-8 border-white shadow-md shadow-black ">
  <img src="img/sendang.png" alt="Icon 1" class="w-full h-full object-cover bg-center bg-no-repeat">
 </div>    
 
@@ -58,7 +58,7 @@
 <h2 class="text-xl md:font-normal font-semibold font-poppins text-amber-500 ">Tentang </h2>
 <h1 class="xl:text-3xl md:text-2xl text-xl md:font-normal font-semibold font-poppins mb-3 leading-none">Wisata Sendang Kun Gerit</h1>
 <p class="xl:text-lg md:text-md text-sm font-poppins max-w-xl mb-2 md:text-start text-center ">Wisata Sendang Kun Gerit adalah destinasi wisata yang menawarkan keindahan alam, kuliner lezat, dan pengalaman pemandian yang menyegarkan. <span class="hidden md:inline">Terletak di tengah pesona alam bumdes yang memukau,</span>  tempat ini menjadi pilihan ideal untuk bersantai, menikmati hidangan pilihan, dan merasakan kesegaran pemandian alami.  <a href="/tentang" class="font-dm hover:text-black/80 md:text-xl text-md text-gray-500 transition-colors">
-                Selengkapnya Tentang Sendang Kun Gerit...
+                Selengkapnya...
 </a> </p>
 
 <div class=" w-full mt-5 xl:border-t border-t-2 border-gray-300  py-5  ">
@@ -85,7 +85,7 @@
 {{-- section layanan --}}
 
 <section
-    class="w-full relative py-40 flex items-center justify-center flex-row overflow-hidden gap-5"
+    class="w-full relative py-40 flex  items-center justify-center flex-row overflow-hidden gap-5"
     x-data="layananSection"
 >
 
@@ -97,7 +97,7 @@
     </div>
 
     {{-- ── Teks kiri ── --}}
-    <div class="z-10 w-full max-w-sm xl:max-w-md text-white pl-16 xl:pl-20 shrink-0" style="min-height:220px; position:relative;">
+    <div class="z-10 w-full max-w-sm xl:max-w-lg  text-white ml-3 xl:pl-20 shrink-0" style="min-height:220px; position:relative;">
 
         <template x-for="(item, i) in layanan" :key="i">
             <div
@@ -111,7 +111,7 @@
                 style="position:absolute; inset:0; display:none;"
                 class="flex flex-col justify-center"
             >
-                <h1 class="text-3xl font-semibold font-poppins text-amber-500 mb-1 uppercase" x-text="item.title"></h1>
+                <h1 class="xl:text-3xl text-2xl font-semibold font-poppins text-amber-500 mb-1 uppercase" x-text="item.title"></h1>
                 <div class="border-b-2 border-amber-500 w-48 mb-4"></div>
                 <p class="text-base font-normal mb-7 leading-relaxed text-gray-200" x-text="item.description"></p>
                 <a
@@ -128,7 +128,7 @@
     </div>
 
     {{-- ── Swiper kanan ── --}}
-    <div class="lg:max-w-3xl xl:max-w-4xl w-full z-10 px-5 flex flex-col gap-8 overflow-x-hidden pt-5">
+    <div class="lg:max-w-2xl  xl:max-w-3xl  w-full z-10 px-5 flex flex-col gap-8 overflow-x-hidden pt-5">
 
         <div class="swiper swiper-layanan w-full" x-ref="swiperLayanan">
             <div class="swiper-wrapper items-center">
@@ -136,7 +136,7 @@
                 <template x-for="(item, i) in layanan" :key="i">
                     <div
                         class="swiper-slide cursor-pointer"
-                        @click="goTo(i)"
+                        :data-index="i"
                     >
                         <img :src="item.image" :alt="item.title" draggable="false">
                     </div>
@@ -173,10 +173,12 @@
 
 <section class="w-full  flex flex-col py-24 items-center relative bg-[#FFF8E1]">
 
-        <div class="absolute opacity-40 inset-0">
-            <div class="absolute inset-0 bg-black opacity-15"></div>
-            <img src="img/overlay-food.png" alt="Background Image" class="w-full h-full opacity-50 object-cover bg-center bg-no-repeat">
-        </div >
+             <div class="absolute opacity-40 inset-0">
+        <img src="img/icon-bg.png" alt="Background Image" class="w-full h-full object-cover bg-center bg-no-repeat">
+         <div class="absolute inset-0 bg-black opacity-15"></div>
+        {{-- <div class="absolute bottom-0 py-28 bg-gradient-to-t  w-full from-amber-500/80  to-transparent  -mb-28 "></div> --}}
+
+    </div >
 
     <h1 class="text-3xl font-semibold font-md  text-amber-600 mb-1 uppercase z-10">Menu Resto Sendang Kun Gerit</h1>
     <p class="text-lg font-medium font-md  text-gray-500 capitalize z-10 mb-2">Kami menyajikan berbagai hidangan kuliner yang lezat dan menarik di resto kami</p>
@@ -216,7 +218,7 @@
 
 </section>
 
-<section class="w-full  flex flex-col bg-[#FFF8E1]/80 items-center relative px-20 py-16 ">
+<section class="w-full  flex flex-col bg-[#FFF8E1]/80 items-center relative xl:px-20 px-4 py-16 ">
         <div class="absolute opacity-40 inset-0">
             <div class="absolute inset-0 "></div>
             
@@ -497,7 +499,7 @@
 
 </section>
 
-<section class="w-full relative flex flex-col items-center py-16 px-30">
+<section class="w-full relative flex flex-col items-center py-16 xl:px-20 px-10">
 
     <div class="absolute  inset-0">
         <img src="img/sendang.png" alt="Background Image" class="w-full h-full object-cover bg-center bg-no-repeat">
@@ -510,7 +512,42 @@
         <p class="text-lg font-medium font-md  text-white capitalize z-10 mb-2  ">Kami memiliki berbagai macam acara dan promo yang menarik dan menyenangkan</p>
         <div class="border-b-2 border-amber-500 w-64 z-10 mb-10"></div>
 
-
+        <div class="event-swiper-wrap">
+    <div class="swiper swiper-event">
+        <div class="swiper-wrapper">
+ 
+            {{-- Slide 1 --}}
+            <div class="swiper-slide">
+                <img src="img/sendang.png" alt="Event 1" draggable="false">
+            </div>
+ 
+            {{-- Slide 2 --}}
+            <div class="swiper-slide">
+                <img src="img/sendang.png" alt="Event 2" draggable="false">
+            </div>
+ 
+            {{-- Slide 3 --}}
+            <div class="swiper-slide">
+                <img src="img/sendang.png" alt="Event 3" draggable="false">
+            </div>
+ 
+            {{-- Slide 4 --}}
+            <div class="swiper-slide">
+                <img src="img/sendang.png" alt="Event 4" draggable="false">
+            </div>
+ 
+            {{-- Slide 5 --}}
+            <div class="swiper-slide">
+                <img src="img/sendang.png" alt="Event 5" draggable="false">
+            </div>
+ 
+        </div>
+ 
+        {{-- Pagination dots --}}
+        <div class="swiper-pagination"></div>
+    </div>
+</div>
+ 
 
 
 
@@ -519,7 +556,7 @@
 
 {{-- berita --}}
 
-<section class="w-full  flex flex-col py-10 items-center bg-[#FFF8E1]/80 relative">
+<section class="w-full  flex flex-col py-10 items-center bg-[#FFF8E1]/80 relative px-3">
 
         <div class="absolute opacity-40 inset-0">
             <div class="absolute inset-0 "></div>
@@ -531,7 +568,7 @@
         <p class="text-lg font-medium font-md  text-gray-500 capitalize z-10 mb-3">Kami memiliki berbagai macam acara dan promo yang menarik dan menyenangkan</p>
                <div class="border-b-2 border-amber-500 w-64 z-10 mb-10"></div>
 <div class="w-full flex justify-center gap-10 flex-row items-center ">
-    <div class="flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm w-80  pb-3">
+    <div class="flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm xl:w-80 w-72  pb-3">
         <div class="w-full h-48 overflow-hidden"><img src="img/sendang.png" alt="berita1" class="w-full h-full object-cover object-center "></div>
         <h2 class="capitaliize text-md mt-2 font-semibold font-poppins px-2 uppercase">Sendang hits</h2>
         <p class="font-md text-sm text-gray-500 leading-tinny font-medium px-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, beatae aspernatur! Quaerat voluptate labore enim recusandae odio </p>
@@ -539,7 +576,7 @@
                 Selengkapnya
             </a>
     </div>
-    <div class="flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm w-80  pb-3">
+    <div class="flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm xl:w-80 w-72  pb-3">
         <div class="w-full h-48 overflow-hidden"><img src="img/sendang.png" alt="berita1" class="w-full h-full object-cover object-center "></div>
         <h2 class="capitaliize text-md mt-2 font-semibold font-poppins px-2 uppercase">Sendang hits</h2>
         <p class="font-md text-sm text-gray-500 leading-tinny font-medium px-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, beatae aspernatur! Quaerat voluptate labore enim recusandae odio </p>
@@ -547,7 +584,7 @@
                 Selengkapnya
             </a>
     </div>
-    <div class="flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm w-80  pb-3">
+    <div class="flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm xl:w-80 w-72 pb-3">
         <div class="w-full h-48 overflow-hidden"><img src="img/sendang.png" alt="berita1" class="w-full h-full object-cover object-center "></div>
         <h2 class="capitaliize text-md mt-2 font-semibold font-poppins px-2 uppercase ">Sendang hits</h2>
         <p class="font-md text-sm text-gray-500 leading-tinny font-medium px-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, beatae aspernatur! Quaerat voluptate labore enim recusandae odio </p>
