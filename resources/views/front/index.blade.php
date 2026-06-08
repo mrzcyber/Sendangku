@@ -56,7 +56,8 @@
 
 <div class=" flex flex-col justify-start xl:pt-16 md:items-start items-center px-3 md:px-1  ">
 <h2 class="text-xl md:font-normal font-semibold font-poppins text-amber-500 ">Tentang </h2>
-<h1 class="xl:text-3xl md:text-2xl text-xl md:font-normal font-semibold font-poppins mb-3 leading-none">Wisata Sendang Kun Gerit</h1>
+<h1 class="xl:text-3xl md:text-2xl text-xl md:font-normal font-semibold font-poppins md:mb-3 leading-none">Wisata Sendang Kun Gerit</h1>
+<div class="border-b-2 border-amber-500 w-52 mx-auto md:hidden mb-6 mt-2"></div>
 <p class="xl:text-lg md:text-md text-sm font-poppins max-w-xl mb-2 md:text-start text-center ">Wisata Sendang Kun Gerit adalah destinasi wisata yang menawarkan keindahan alam, kuliner lezat, dan pengalaman pemandian yang menyegarkan. <span class="hidden md:inline">Terletak di tengah pesona alam bumdes yang memukau,</span>  tempat ini menjadi pilihan ideal untuk bersantai, menikmati hidangan pilihan, dan merasakan kesegaran pemandian alami.  <a href="/tentang" class="font-dm hover:text-black/80 md:text-xl text-md text-gray-500 transition-colors">
                 Selengkapnya...
 </a> </p>
@@ -85,7 +86,7 @@
 {{-- section layanan --}}
 
 <section
-    class="w-full relative py-40 flex  items-center justify-center flex-row overflow-hidden gap-5"
+    class="w-full relative py-12 sm:py-30 flex flex-col sm:flex-row items-center justify-center overflow-hidden gap-4 sm:gap-5"
     x-data="layananSection"
 >
 
@@ -96,8 +97,15 @@
         <div class="absolute inset-0 bg-black opacity-75"></div>
     </div>
 
-    {{-- ── Teks kiri ── --}}
-    <div class="z-10 w-full max-w-sm xl:max-w-lg  text-white ml-3 xl:pl-20 shrink-0" style="min-height:220px; position:relative;">
+    {{-- ── Mobile: Title di atas gambar ── --}}
+    <div class="sm:hidden z-10 w-full px-6 text-center order-1 mb-6">
+        <h1 class="text-xl font-semibold font-poppins text-amber-500 mb-1 uppercase transition-all duration-300"
+            x-text="layanan[active].title"></h1>
+        <div class="border-b-2 border-amber-500 w-32 mx-auto"></div>
+    </div>
+
+    {{-- ── Desktop: Teks kiri (hidden di mobile) ── --}}
+    <div class="hidden sm:block z-10 w-full max-w-sm xl:max-w-lg text-white sm:ml-3  lg:ml-8 shrink-0 sm:order-1" style="min-height:220px; position:relative;">
 
         <template x-for="(item, i) in layanan" :key="i">
             <div
@@ -109,7 +117,7 @@
                 x-transition:leave-start="opacity-100 translate-y-0 blur-none"
                 x-transition:leave-end="opacity-0 -translate-y-5 blur-sm"
                 style="position:absolute; inset:0; display:none;"
-                class="flex flex-col justify-center"
+                class="flex flex-col justify-center items-start"
             >
                 <h1 class="xl:text-3xl text-2xl font-semibold font-poppins text-amber-500 mb-1 uppercase" x-text="item.title"></h1>
                 <div class="border-b-2 border-amber-500 w-48 mb-4"></div>
@@ -127,26 +135,54 @@
 
     </div>
 
-    {{-- ── Swiper kanan ── --}}
-    <div class="lg:max-w-2xl  xl:max-w-3xl  w-full z-10 px-5 flex flex-col gap-8 overflow-x-hidden pt-5">
+    {{-- ── Swiper ── --}}
+    <div class="lg:max-w-2xl xl:max-w-3xl w-full z-10 px-2 sm:px-5 flex flex-col gap-4 sm:gap-8 overflow-x-hidden pt-2 sm:pt-5 order-2 sm:order-2">
 
-        <div class="swiper swiper-layanan w-full" x-ref="swiperLayanan">
-            <div class="swiper-wrapper items-center">
+        <div class="relative">
+            {{-- Mobile: Prev button (overlay kiri) --}}
+            <button
+                class="sm:hidden absolute left-1 top-1/2 -translate-y-1/2 z-20
+                       w-8 h-8 rounded-full bg-black/40 backdrop-blur-sm
+                       flex items-center justify-center text-white
+                       active:scale-90 transition-all duration-200"
+                @click="swiper?.slidePrev()"
+            >
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/>
+                </svg>
+            </button>
 
-                <template x-for="(item, i) in layanan" :key="i">
-                    <div
-                        class="swiper-slide cursor-pointer"
-                        :data-index="i"
-                    >
-                        <img :src="item.image" :alt="item.title" draggable="false">
-                    </div>
-                </template>
+            <div class="swiper swiper-layanan w-full" x-ref="swiperLayanan">
+                <div class="swiper-wrapper items-center">
 
+                    <template x-for="(item, i) in layanan" :key="i">
+                        <div
+                            class="swiper-slide cursor-pointer"
+                            :data-index="i"
+                        >
+                            <img :src="item.image" :alt="item.title" draggable="false">
+                        </div>
+                    </template>
+
+                </div>
             </div>
+
+            {{-- Mobile: Next button (overlay kanan) --}}
+            <button
+                class="sm:hidden absolute right-1 top-1/2 -translate-y-1/2 z-20
+                       w-8 h-8 rounded-full bg-black/40 backdrop-blur-sm
+                       flex items-center justify-center text-white
+                       active:scale-90 transition-all duration-200"
+                @click="swiper?.slideNext()"
+            >
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/>
+                </svg>
+            </button>
         </div>
 
-        {{-- Nav buttons --}}
-        <div class="flex flex-row gap-4 pl-2">
+        {{-- Desktop: Nav buttons (hidden di mobile) --}}
+        <div class="hidden sm:flex flex-row gap-4 pl-2">
             <button
                 x-ref="btnPrev"
                 class="w-10 h-10 border border-amber-500 rounded-full flex items-center justify-center
@@ -169,9 +205,24 @@
 
     </div>
 
+    {{-- ── Mobile: Description & CTA di bawah gambar ── --}}
+    <div class="sm:hidden z-10 w-full px-6 text-center order-3">
+        <p class="text-sm font-normal mb-4 leading-relaxed text-gray-200 transition-all duration-300"
+           x-text="layanan[active].description"></p>
+        <a :href="layanan[active].href"
+           class="inline-block w-fit font-dm text-[13px] font-semibold shadow-md shadow-black uppercase
+                  border border-amber-500/70 text-white px-4 py-2.5 bg-amber-600
+                  hover:bg-amber-700 hover:border-amber-700 transition-all duration-200">
+            Selengkapnya
+        </a>
+    </div>
+
 </section>
 
-<section class="w-full  flex flex-col py-24 items-center relative bg-[#FFF8E1]">
+
+{{-- section resto --}}
+
+<section class="w-full  flex flex-col py-12 md:py-24 items-center relative bg-[#FFF8E1] px-2">
 
              <div class="absolute opacity-40 inset-0">
         <img src="img/icon-bg.png" alt="Background Image" class="w-full h-full object-cover bg-center bg-no-repeat">
@@ -180,11 +231,12 @@
 
     </div >
 
-    <h1 class="text-3xl font-semibold font-md  text-amber-600 mb-1 uppercase z-10">Menu Resto Sendang Kun Gerit</h1>
-    <p class="text-lg font-medium font-md  text-gray-500 capitalize z-10 mb-2">Kami menyajikan berbagai hidangan kuliner yang lezat dan menarik di resto kami</p>
+    <h1 class="text-lg md:text-3xl font-semibold font-md  text-amber-600 mb-1 uppercase leading-none z-10">Menu Resto Sendang Kun Gerit</h1>
+    <p class="text-[13px] md:text-lg text-center font-medium font-md  text-gray-500 capitalize z-10 mb-4">Kami menyajikan berbagai hidangan kuliner yang lezat dan menarik <span class="md:inline hidden"> di resto kami</span></p>
            <div class="border-b-2 border-amber-500 w-64 z-10 mb-10"></div>
 
-    <div class="w-full flex flex-row gap-10 justify-center mt-16 z-10">
+    {{-- Desktop/iPad: Static grid --}}
+    <div class="w-full hidden sm:flex flex-row gap-10 justify-center mt-16 z-10">
         <div class="flex flex-col justify-center items-center">
             <div class="w-64  ">
                 <img src="img/food2.png" alt="Menu 1" class="w-full h-full object-cover object-center bg-no-repeat">
@@ -212,28 +264,71 @@
 
     </div>
 
-    <a href="/" class="mt-16 z-10 bg-amber-500 shadow-md  hover:bg-amber-600 text-white font-bold py-2 px-4 font-poppins rounded-full">
+    {{-- Mobile: Menu slider --}}
+    <div class="w-full sm:hidden z-10 mt-4 overflow-hidden">
+        <div class="swiper swiper-resto-menu w-full">
+            <div class="swiper-wrapper items-center">
+
+                <div class="swiper-slide flex justify-center">
+                    <div class="flex flex-col justify-center items-center">
+                        <div class="w-64  ">
+                            <img src="img/food2.png" alt="Menu 1" class="w-full h-full object-cover object-center bg-no-repeat">
+                        </div>
+                        <h3 class="text-lg font-semibold font-poppins ">Ayam Goreng </h3>
+                        <p class="text-gray-500 font-medium font-poppins text-sm w-56 text-center">Ayam goreng dengan bumbu rahasia yang gurih dan renyah.</p>
+                    </div>
+                </div>
+
+                <div class="swiper-slide flex justify-center">
+                    <div class="flex flex-col justify-center items-center">
+                        <div class="w-64  ">
+                            <img src="img/food2.png" alt="Menu 1" class="w-full h-full object-cover object-center bg-no-repeat">
+                        </div>
+                        <h3 class="text-lg font-semibold font-poppins ">Ayam Goreng </h3>
+                        <p class="text-gray-500 font-medium font-poppins text-sm w-56 text-center">Ayam goreng dengan bumbu rahasia yang gurih dan renyah.</p>
+                    </div>
+                </div>
+
+                <div class="swiper-slide flex justify-center">
+                    <div class="flex flex-col justify-center items-center">
+                        <div class="w-64  ">
+                            <img src="img/food2.png" alt="Menu 1" class="w-full h-full object-cover object-center bg-no-repeat">
+                        </div>
+                        <h3 class="text-lg font-semibold font-poppins ">Ayam Goreng </h3>
+                        <p class="text-gray-500 font-medium font-poppins text-sm w-56 text-center">Ayam goreng dengan bumbu rahasia yang gurih dan renyah.</p>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Pagination Bullets -->
+            <div class="swiper-pagination "></div>
+        </div>
+    </div>
+
+    <a href="/" class="mt-10 md:mt-16 z-10 bg-amber-500 shadow-md  hover:bg-amber-600 text-white font-bold py-2 px-4 font-poppins rounded-full">
         Lihat Menu Lainnya
     </a>
 
 </section>
 
-<section class="w-full  flex flex-col bg-[#FFF8E1]/80 items-center relative xl:px-20 px-4 py-16 ">
+<section class="w-full  flex flex-col bg-[#FFF8E1]/80 items-center relative xl:px-20 px-4 py-8 md:py-16 ">
         <div class="absolute opacity-40 inset-0">
             <div class="absolute inset-0 "></div>
             
                 <div class="absolute inset-0 bg-black opacity-25"></div>
         </div >
 
-    <h1 class="text-3xl font-semibold font-poppins  text-amber-600 mb-1 z-10 uppercase">Ayo Pilih Tiketmu </h1>
-    <p class="text-lg font-medium font-md  text-gray-500 capitalize z-10 mb-2"> kami memiliki 2 opsi tiket yang menarik dengan harga yang terjangkau  </p>
+    <h1 class="text-lg md:text-3xl font-semibold font-poppins  text-amber-600 mb-1 z-10 uppercase">Ayo Pilih Tiketmu </h1>
+    <p class="text-[13px] md:text-lg text-center  font-medium font-md  text-gray-500 capitalize z-10 mb-2"> kami memiliki 2 opsi tiket yang menarik dengan harga yang terjangkau</p>
            <div class="border-b-2 border-amber-500 w-64 z-10 "></div>
-    <div class="w-full flex flex-row gap-10 justify-center z-10">
+
+
+    <div class="w-full flex flex-col md:flex-row gap-4 lg:gap-10 justify-center z-10">
         
-<div class="w-full max-w-lg flex flex-col  mt-24 z-10">
+<div class="w-full max-w-lg flex flex-col mt-14 md:mt-24 z-10">
 
     {{-- ── Jam Operasional ── --}}
-    <h2 class="text-3xl font-semibold text-amber-500 mb-4">Jam Operasional Kami</h2>
+    <h2 class="text-xl md:text-3xl font-semibold text-amber-500 mb-4">Jam Operasional Kami</h2>
 
     <div class="flex flex-col gap-2">
 
@@ -251,7 +346,7 @@
                 </svg>
             </span>
             <div>
-                <p class="font-semibold text-xl text-black leading-none">Pemandian &amp; Waterboom</p>
+                <p class="font-semibold text-md md:text-xl text-black leading-none">Pemandian &amp; Waterboom</p>
                 <p class="text-gray-500 text-sm font-medium">08:00 – 17:00 WIB</p>
             </div>
         </div>
@@ -268,7 +363,7 @@
                 </svg>
             </span>
             <div>
-                <p class="font-semibold text-xl text-black leading-none">
+                <p class="font-semibold text-md md:text-xl text-black leading-none">
                     Resto &amp; Angkringan
                     <span class="text-sm font-medium text-amber-600 ml-1">(Free Tiket)</span>
                 </p>
@@ -287,7 +382,7 @@
                 </svg>
             </span>
             <div>
-                <p class="font-semibold text-xl text-black leading-none">Libur Operasional</p>
+                <p class="font-semibold text-md md:text-xl text-black leading-none">Libur Operasional</p>
                 <p class="text-gray-500 text-sm font-medium">Setiap Jumat Pahing</p>
             </div>
         </div>
@@ -297,7 +392,7 @@
     {{-- ── Fasilitas Umum ── --}}
     <div class="w-full flex flex-col mt-3 border-t border-gray-300 pt-3 gap-2">
 
-        <h2 class="text-3xl font-semibold text-amber-500 mb-1">Fasilitas Umum</h2>
+        <h2 class="text-xl md:text-3xl font-semibold text-amber-500 mb-1">Fasilitas Umum</h2>
 
         {{-- Kamar Mandi --}}
         <div class="flex items-start gap-3">
@@ -311,7 +406,7 @@
                 </svg>
             </span>
             <div>
-                <h3 class="font-semibold text-xl text-black leading-none">Kamar Mandi</h3>
+                <h3 class="font-semibold text-md md:text-xl text-black leading-none">Kamar Mandi</h3>
                 <p class="font-medium text-gray-500 text-sm">
                     Kamar mandi umum menyediakan fasilitas bersih dan nyaman 
                 </p>
@@ -328,7 +423,7 @@
                 </svg>
             </span>
             <div>
-                <h3 class="font-semibold text-xl text-black leading-none">Mushola</h3>
+                <h3 class="font-semibold text-md md:text-xl text-black leading-none">Mushola</h3>
                 <p class="font-medium text-gray-500 text-sm">
                     Mushola menyediakan fasilitas ibadah bagi masyarakat,
                 </p>
@@ -345,7 +440,7 @@
                 </svg>
             </span>
             <div>
-                <h3 class="font-semibold text-xl text-black leading-none">Karaoke</h3>
+                <h3 class="font-semibold text-md md:text-xl text-black leading-none">Karaoke</h3>
                 <p class="font-medium text-gray-500 text-sm">
                     Nikmati pengalaman bernyanyi yang seru di fasilitas karaoke kami.
                 </p>
@@ -357,13 +452,13 @@
 </div>
 
 
-    <div class="w-full max-w-xl justify-center  gap-5 flex flex-row mt-20 z-10">
+    <div class="w-full max-w-xl justify-center md:gap-2 lg:gap-5 flex flex-col md:flex-row  md:mt-20 z-10">
 
 
                 {{-- ────────────────────────────────────────────
              TIKET NORMAL
         ──────────────────────────────────────────── --}}
-        <div class="rounded-[20px] overflow-hidden border border-gray-300 bg-gray-50 relative">
+        <div class="rounded-[20px] overflow-hidden border border-gray-300 bg-gray-50 relative scale-90 md:scale-100" >
  
             {{-- Header --}}
             <div class="ticket-header-deco relative overflow-hidden px-7 pt-7 pb-6
@@ -421,7 +516,7 @@
         {{-- ────────────────────────────────────────────
              TIKET TERUSAN
         ──────────────────────────────────────────── --}}
-        <div class="rounded-[20px] overflow-hidden border-2 border-amber-500
+        <div class="rounded-[20px] overflow-hidden border-2 border-amber-500 scale-90 md:scale-100
                     bg-[#FFF8E1] relative ring-4 ring-amber-500/20">
  
             {{-- Badge --}}
@@ -499,7 +594,9 @@
 
 </section>
 
-<section class="w-full relative flex flex-col items-center py-16 xl:px-20 px-10">
+{{-- section event --}}
+
+<section class="w-full relative flex flex-col items-center py-8 md:py-16 xl:px-20 md:px-10 px-3">
 
     <div class="absolute  inset-0">
         <img src="img/sendang.png" alt="Background Image" class="w-full h-full object-cover bg-center bg-no-repeat">
@@ -508,9 +605,9 @@
     </div>
     
 
-    <h1 class="z-10 text-3xl text-amber-600 font-poppins font-semibold mb-1 uppercase">Acara Sendang Kun Gerit</h1>
-        <p class="text-lg font-medium font-md  text-white capitalize z-10 mb-2  ">Kami memiliki berbagai macam acara dan promo yang menarik dan menyenangkan</p>
-        <div class="border-b-2 border-amber-500 w-64 z-10 mb-10"></div>
+    <h1 class="z-10 text-xl md:text-3xl text-amber-600 font-poppins font-semibold mb-1 uppercase">Acara Sendang Kun Gerit</h1>
+        <p class="text-[13px] text-center md:text-lg font-medium font-md  text-white capitalize z-10 mb-3  ">Kami memiliki berbagai macam acara dan promo yang menarik dan menyenangkan</p>
+        <div class="border-b-2 border-amber-500 w-64 z-10 mb-8 md:mb-10"></div>
 
         <div class="event-swiper-wrap">
     <div class="swiper swiper-event">
@@ -556,19 +653,20 @@
 
 {{-- berita --}}
 
-<section class="w-full  flex flex-col py-10 items-center bg-[#FFF8E1]/80 relative px-3">
+<section class="w-full  flex flex-col py-10 items-center bg-[#FFF8E1]/80 relative px-3 lg:px-20">
 
         <div class="absolute opacity-40 inset-0">
-            <div class="absolute inset-0 "></div>
-            
-                <div class="absolute inset-0 bg-black opacity-25"></div>
-        </div >
+        <img src="img/icon-bg.png" alt="Background Image" class="w-full h-full object-cover bg-center bg-no-repeat">
+         <div class="absolute inset-0 bg-black opacity-15"></div>
+        <div class="absolute bottom-0 py-28 bg-gradient-to-t  w-full from-amber-500/80  to-transparent  -mb-28 "></div>
 
-<h1 class="text-2xl font-poppins font-semibold text-amber-600 uppercase z-10 ">Berita Dan Informasi</h1>
-        <p class="text-lg font-medium font-md  text-gray-500 capitalize z-10 mb-3">Kami memiliki berbagai macam acara dan promo yang menarik dan menyenangkan</p>
+    </div >
+
+<h1 class="text-xl md:text-2xl font-poppins font-semibold text-amber-600 uppercase z-10 ">Berita Dan Informasi</h1>
+        <p class="text-[13px] text-center md:text-lg font-medium font-md  text-gray-500 capitalize z-10 mb-3">Kami memiliki berbagai macam acara dan promo yang menarik dan menyenangkan</p>
                <div class="border-b-2 border-amber-500 w-64 z-10 mb-10"></div>
-<div class="w-full flex justify-center gap-10 flex-row items-center ">
-    <div class="flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm xl:w-80 w-72  pb-3">
+<div class="w-full grid z-10 justify-center lg:gap-10 gap-5 grid-rows-1 md:grid-cols-3 items-center ">
+    <div class="flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm lg:w-80 w-80 md:w-64 shrink-0  pb-3">
         <div class="w-full h-48 overflow-hidden"><img src="img/sendang.png" alt="berita1" class="w-full h-full object-cover object-center "></div>
         <h2 class="capitaliize text-md mt-2 font-semibold font-poppins px-2 uppercase">Sendang hits</h2>
         <p class="font-md text-sm text-gray-500 leading-tinny font-medium px-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, beatae aspernatur! Quaerat voluptate labore enim recusandae odio </p>
@@ -576,7 +674,7 @@
                 Selengkapnya
             </a>
     </div>
-    <div class="flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm xl:w-80 w-72  pb-3">
+    <div class="flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm lg:w-80 w-80 md:w-64 shrink-0  pb-3">
         <div class="w-full h-48 overflow-hidden"><img src="img/sendang.png" alt="berita1" class="w-full h-full object-cover object-center "></div>
         <h2 class="capitaliize text-md mt-2 font-semibold font-poppins px-2 uppercase">Sendang hits</h2>
         <p class="font-md text-sm text-gray-500 leading-tinny font-medium px-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, beatae aspernatur! Quaerat voluptate labore enim recusandae odio </p>
@@ -584,7 +682,7 @@
                 Selengkapnya
             </a>
     </div>
-    <div class="flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm xl:w-80 w-72 pb-3">
+    <div class="flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm lg:w-80 w-80 md:w-64 pb-3 shrink-0 ">
         <div class="w-full h-48 overflow-hidden"><img src="img/sendang.png" alt="berita1" class="w-full h-full object-cover object-center "></div>
         <h2 class="capitaliize text-md mt-2 font-semibold font-poppins px-2 uppercase ">Sendang hits</h2>
         <p class="font-md text-sm text-gray-500 leading-tinny font-medium px-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, beatae aspernatur! Quaerat voluptate labore enim recusandae odio </p>

@@ -75,9 +75,9 @@ document.addEventListener('alpine:init', () => {
                     prevEl: this.$refs.btnPrev,
                 },
                 breakpoints: {
-                    0:    { slidesPerView: 1.4, spaceBetween: 14, centeredSlides: false },
+                    0:    { slidesPerView: 1, spaceBetween: 0, centeredSlides: true },
                     640:  { slidesPerView: 2, spaceBetween: 21, centeredSlides: false },
-                    1024: { slidesPerView: 3,   spaceBetween: 20, centeredSlides: false },
+                    1024: { slidesPerView: 3,   spaceBetween: 21, centeredSlides: false },
                     1536: { slidesPerView: 3,   spaceBetween: 28, centeredSlides: false },
                 },
             });
@@ -127,19 +127,27 @@ document.addEventListener('alpine:init', () => {
         },
  
         breakpoints: {
-            0: {
-                spaceBetween: 14,
-            },
-            768: {
-                spaceBetween: 24,
-            },
-            1024: {
-                spaceBetween: 28,
-            },
+                     0:    { slidesPerView: 1, spaceBetween: 0, centeredSlides: true },
+                    640:  { slidesPerView: 1.4, spaceBetween: 21, centeredSlides: true },
+                    1024: { slidesPerView: 1.4,   spaceBetween: 28, centeredSlides: true },
+
         },
     });
 
 
+    // resto menu swiper (mobile only)
+    const swiperRestoMenu = new Swiper('.swiper-resto-menu', {
+        loop: true,
+        slidesPerView: 1,
+        spaceBetween: 16,
+        // centeredSlides: true,
+        grabCursor: true,
+        speed: 1000,
+        pagination: {
+            el: '.swiper-resto-menu .swiper-pagination',
+            clickable: true,
+        },
+    });
 
 
 });

@@ -47,6 +47,23 @@
         filter: brightness(0.8);
     }
 
+    /* ── Mobile: single slide view ── */
+    @media (max-width: 639px) {
+        .swiper-layanan {
+            overflow: hidden !important;
+        }
+        .swiper-layanan .swiper-slide {
+            height: 200px;
+            border-radius: 12px;
+            transform: scale(1);
+            filter: brightness(1);
+        }
+        .swiper-layanan .swiper-slide-active {
+            transform: scale(1);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        }
+    }
+
 
 
 
@@ -102,6 +119,8 @@
         opacity: 0.75;
         transform: scale(0.96);
     }
+
+
  
     /* Pagination bullets */
     .swiper-event .swiper-pagination-bullet {
@@ -113,6 +132,30 @@
     }
  
     .swiper-event .swiper-pagination-bullet-active {
+        width: 24px;
+        border-radius: 4px;
+        opacity: 1;
+        background: #F59E0B;
+    }
+
+    
+
+    /* Resto menu swiper pagination (Mobile Only) */
+    .swiper-resto-menu {
+        padding-bottom: 35px !important;
+        
+    
+    }
+
+    .swiper-resto-menu .swiper-pagination-bullet {
+        width: 8px;
+        height: 8px;
+        background: #D97706;
+        opacity: 0.4;
+        transition: all 0.3s;
+    }
+
+    .swiper-resto-menu .swiper-pagination-bullet-active {
         width: 24px;
         border-radius: 4px;
         opacity: 1;
