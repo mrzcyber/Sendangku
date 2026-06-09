@@ -1,4 +1,8 @@
 <nav
+data-aos="fade-down"
+     data-aos-easing="ease-in-out"
+     data-aos-duration="1300"
+     data-aos-delay="1000"
     class="fixed top-0 w-full z-50 flex items-center justify-between xl:px-14 px-4 xl:pl-28 py-[22px]
            transition-all duration-300"
     x-data="{

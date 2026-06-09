@@ -11,10 +11,17 @@
     <div class="absolute left-0 top-0 w-full opacity-35 -ml-80  h-full bg-gradient-to-r    from-amber-600 to-transparent justify-end flex pt-28  "></div>
     </div>
 
+        <div class="w-full h-full absolute flash"></div>
    
 
 
-    <div class=" xl:px-30 w-full md:px-8 px-4 z-10 text-white xl:mb-36 mb-8 flex flex-col xl:items-start xl:justify-start items-center justify-center">
+    <div
+   data-aos="fade-zoom-in"
+     data-aos-easing="linear"
+     data-aos-delay="500"
+     data-aos-duration="1000"
+     data-aos-offset="0"
+    class=" xl:px-30 w-full md:px-8 px-4 z-10 text-white xl:mb-36 mb-8 flex flex-col xl:items-start xl:justify-start items-center justify-center">
         <h2 class="md:text-2xl text-xl font-md font-semibold  text-amber-600 ">Selamat Datang </h2>
         <h1 class="md:text-[38px] text-[20px] font-semibold font-poppins md:mb-4 mb-2 leading-none">Wisata Sendang Kun Gerit</h1>
         <p class="md:text-lg text-sm font-dm xl:w-[650px] xl:mb-10 text-white/95 mb-3 text-center xl:text-start ">kelezatan kuliner dan kesegaran pemandian dalam satu destinasi wisata yang nyaman <span class="md:inline hidden ">Perpaduan sempurna antara cita rasa istimewa dan pengalaman pemandian yang menyegarkan.</span> </p>
@@ -38,23 +45,47 @@
 <div class="w-full justify-center flex flex-row gap-12 xl:gap-20  z-10 ">
 
 
-<div class="w-[520px] 2xl:w-[600px]  ml-20 relative hidden md:block">
+<div
+   data-aos="fade-zoom-in"
+     data-aos-easing="ease-in-out"
+     data-aos-delay="200"
+     data-aos-duration="1000"
+     data-aos-offset="0"
+class="w-[520px] 2xl:w-[600px]  ml-20 relative hidden md:block">
 <div class="w-full h-[430px] rotate-[4deg] border-[10px] shadow-md shadow-black border-white ">
     <img src="img/sendang.png" alt="Icon 1" class="w-full h-full object-cover bg-center bg-no-repeat">
 </div>
 
-<div class="xl:w-64 w-44 -rotate-[4deg] h-44  absolute -top-16 -right-10 overflow-hidden border-8 border-white shadow-md shadow-black ">
+<div 
+   data-aos="fade-zoom-in"
+     data-aos-easing="ease-in-out"
+     data-aos-delay="1000"
+     data-aos-duration="1500"
+     data-aos-offset="0"
+class="xl:w-64 w-44 -rotate-[4deg] h-44  absolute -top-16 -right-10 overflow-hidden border-8 border-white shadow-md shadow-black ">
  <img src="img/sendang.png" alt="Icon 1" class="w-full h-full object-cover bg-center bg-no-repeat">
 </div>    
 
-<div class="xl:w-64 w-44 -rotate-[4deg] h-44  absolute -bottom-16 -left-16 overflow-hidden border-8 border-white shadow-md shadow-black ">
+<div
+   data-aos="fade-zoom-in"
+     data-aos-easing="ease-in-out"
+     data-aos-delay="1000"
+     data-aos-duration="1500"
+     data-aos-offset="0"
+class="xl:w-64 w-44 -rotate-[4deg] h-44  absolute -bottom-16 -left-16 overflow-hidden border-8 border-white shadow-md shadow-black ">
  <img src="img/sendang.png" alt="Icon 1" class="w-full h-full object-cover bg-center bg-no-repeat">
 </div>    
 
 </div>
 
 
-<div class=" flex flex-col justify-start xl:pt-16 md:items-start items-center px-3 md:px-1  ">
+<div 
+   data-aos="fade-zoom-in"
+     data-aos-easing="ease-in-out"
+     data-aos-delay="1000"
+     data-aos-duration="1500"
+     data-aos-offset="0"
+class=" flex flex-col justify-start xl:pt-16 md:items-start items-center px-3 md:px-1  ">
 <h2 class="text-xl md:font-normal font-semibold font-poppins text-amber-500 ">Tentang </h2>
 <h1 class="xl:text-3xl md:text-2xl text-xl md:font-normal font-semibold font-poppins md:mb-3 leading-none">Wisata Sendang Kun Gerit</h1>
 <div class="border-b-2 border-amber-500 w-52 mx-auto md:hidden mb-6 mt-2"></div>
@@ -89,6 +120,7 @@
     class="w-full relative py-12 sm:py-30 flex flex-col sm:flex-row items-center justify-center overflow-hidden gap-4 sm:gap-5"
     x-data="layananSection"
 >
+       
 
     {{-- Background --}}
     <div class="absolute inset-0">
@@ -98,14 +130,22 @@
     </div>
 
     {{-- ── Mobile: Title di atas gambar ── --}}
-    <div class="sm:hidden z-10 w-full px-6 text-center order-1 mb-6">
+    <div
+    data-aos="fade-up"
+    data-aos-easing="ease-in-out"
+     data-aos-duration="1000"
+    class="sm:hidden z-10 w-full px-6 text-center order-1 mb-6">
         <h1 class="text-xl font-semibold font-poppins text-amber-500 mb-1 uppercase transition-all duration-300"
             x-text="layanan[active].title"></h1>
         <div class="border-b-2 border-amber-500 w-32 mx-auto"></div>
     </div>
 
     {{-- ── Desktop: Teks kiri (hidden di mobile) ── --}}
-    <div class="hidden sm:block z-10 w-full max-w-sm xl:max-w-lg text-white sm:ml-3  lg:ml-8 shrink-0 sm:order-1" style="min-height:220px; position:relative;">
+    <div 
+    data-aos="fade-up"
+    data-aos-easing="ease-in-out"
+     data-aos-duration="1000"
+    class="hidden sm:block z-10 w-full max-w-sm xl:max-w-lg text-white sm:ml-3  lg:ml-8 shrink-0 sm:order-1" style="min-height:220px; position:relative;">
 
         <template x-for="(item, i) in layanan" :key="i">
             <div
@@ -136,7 +176,12 @@
     </div>
 
     {{-- ── Swiper ── --}}
-    <div class="lg:max-w-2xl xl:max-w-3xl w-full z-10 px-2 sm:px-5 flex flex-col gap-4 sm:gap-8 overflow-x-hidden pt-2 sm:pt-5 order-2 sm:order-2">
+    <div 
+        data-aos="fade-up"
+    data-aos-easing="ease-in-out"
+    data-aos-delay="300"
+     data-aos-duration="1000"
+    class="lg:max-w-2xl xl:max-w-3xl w-full z-10 px-2 sm:px-5 flex flex-col gap-4 sm:gap-8 overflow-x-hidden pt-2 sm:pt-5 order-2 sm:order-2">
 
         <div class="relative">
             {{-- Mobile: Prev button (overlay kiri) --}}
@@ -206,7 +251,12 @@
     </div>
 
     {{-- ── Mobile: Description & CTA di bawah gambar ── --}}
-    <div class="sm:hidden z-10 w-full px-6 text-center order-3">
+    <div 
+            data-aos="fade-up"
+    data-aos-easing="ease-in-out"
+    data-aos-delay="600"
+     data-aos-duration="1000"
+    class="sm:hidden z-10 w-full px-6 text-center order-3">
         <p class="text-sm font-normal mb-4 leading-relaxed text-gray-200 transition-all duration-300"
            x-text="layanan[active].description"></p>
         <a :href="layanan[active].href"
@@ -230,14 +280,28 @@
         {{-- <div class="absolute bottom-0 py-28 bg-gradient-to-t  w-full from-amber-500/80  to-transparent  -mb-28 "></div> --}}
 
     </div >
+    <div class="flex flex-col items-center"
+               data-aos="fade-zoom-in"
+     data-aos-easing="linear"
+     data-aos-duration="700"
+     data-aos-offset="0"
+    >
 
-    <h1 class="text-lg md:text-3xl font-semibold font-md  text-amber-600 mb-1 uppercase leading-none z-10">Menu Resto Sendang Kun Gerit</h1>
-    <p class="text-[13px] md:text-lg text-center font-medium font-md  text-gray-500 capitalize z-10 mb-4">Kami menyajikan berbagai hidangan kuliner yang lezat dan menarik <span class="md:inline hidden"> di resto kami</span></p>
-           <div class="border-b-2 border-amber-500 w-64 z-10 mb-10"></div>
+        <h1 class="text-lg md:text-3xl font-semibold font-md  text-amber-600 mb-1 uppercase leading-none z-10">Menu Resto Sendang Kun Gerit</h1>
+        <p class="text-[13px] md:text-lg text-center font-medium font-md  text-gray-500 capitalize z-10 mb-4">Kami menyajikan berbagai hidangan kuliner yang lezat dan menarik <span class="md:inline hidden"> di resto kami</span></p>
+        <div class="border-b-2 border-amber-500 w-64 z-10 mb-10"></div>
+    </div>
 
     {{-- Desktop/iPad: Static grid --}}
-    <div class="w-full hidden sm:flex flex-row gap-10 justify-center mt-16 z-10">
-        <div class="flex flex-col justify-center items-center">
+    <div 
+    class="w-full hidden sm:flex flex-row gap-10 justify-center mt-16 z-10">
+        <div 
+               data-aos="fade-zoom-in"
+     data-aos-easing="linear"
+     data-aos-delay="0"
+     data-aos-duration="1000"
+     data-aos-offset="0"
+        class="flex flex-col justify-center items-center">
             <div class="w-64  ">
                 <img src="img/food2.png" alt="Menu 1" class="w-full h-full object-cover object-center bg-no-repeat">
             </div>
@@ -245,7 +309,13 @@
             <p class="text-gray-500 font-medium font-poppins text-sm w-56 text-center">Ayam goreng dengan bumbu rahasia yang gurih dan renyah.</p>
 
         </div>
-        <div class="flex flex-col justify-center items-center">
+        <div
+               data-aos="fade-zoom-in"
+     data-aos-easing="linear"
+     data-aos-delay="500"
+     data-aos-duration="1000"
+     data-aos-offset="0"
+        class="flex flex-col justify-center items-center">
             <div class="w-64  ">
                 <img src="img/food2.png" alt="Menu 1" class="w-full h-full object-cover object-center bg-no-repeat">
             </div>
@@ -253,7 +323,13 @@
             <p class="text-gray-500 font-medium font-poppins text-sm w-56 text-center">Ayam goreng dengan bumbu rahasia yang gurih dan renyah.</p>
 
         </div>
-        <div class="flex flex-col justify-center items-center">
+        <div
+               data-aos="fade-zoom-in"
+     data-aos-easing="linear"
+     data-aos-delay="1000"
+     data-aos-duration="1000"
+     data-aos-offset="0"
+        class="flex flex-col justify-center items-center">
             <div class="w-64  ">
                 <img src="img/food2.png" alt="Menu 1" class="w-full h-full object-cover object-center bg-no-repeat">
             </div>
@@ -265,7 +341,13 @@
     </div>
 
     {{-- Mobile: Menu slider --}}
-    <div class="w-full sm:hidden z-10 mt-4 overflow-hidden">
+    <div
+       data-aos="fade-zoom-in"
+     data-aos-easing="linear"
+     data-aos-delay="500"
+     data-aos-duration="1000"
+     data-aos-offset="0"
+    class="w-full sm:hidden z-10 mt-4 overflow-hidden">
         <div class="swiper swiper-resto-menu w-full">
             <div class="swiper-wrapper items-center">
 
@@ -305,7 +387,13 @@
         </div>
     </div>
 
-    <a href="/" class="mt-10 md:mt-16 z-10 bg-amber-500 shadow-md  hover:bg-amber-600 text-white font-bold py-2 px-4 font-poppins rounded-full">
+    <a 
+    data-aos="fade-zoom-in"
+     data-aos-easing="linear"
+     data-aos-delay="500"
+     data-aos-duration="1000"
+     data-aos-offset="0"
+    href="/" class="mt-10 md:mt-16 z-10 bg-amber-500 shadow-md  hover:bg-amber-600 text-white font-bold py-2 px-4 font-poppins rounded-full">
         Lihat Menu Lainnya
     </a>
 
@@ -317,15 +405,28 @@
             
                 <div class="absolute inset-0 bg-black opacity-25"></div>
         </div >
+        <div
+    data-aos="fade-zoom-in"
+     data-aos-easing="linear"
+     data-aos-duration="700"
+     data-aos-offset="0"
+        class="flex flex-col items-center">
 
-    <h1 class="text-lg md:text-3xl font-semibold font-poppins  text-amber-600 mb-1 z-10 uppercase">Ayo Pilih Tiketmu </h1>
-    <p class="text-[13px] md:text-lg text-center  font-medium font-md  text-gray-500 capitalize z-10 mb-2"> kami memiliki 2 opsi tiket yang menarik dengan harga yang terjangkau</p>
-           <div class="border-b-2 border-amber-500 w-64 z-10 "></div>
+            <h1 class="text-lg md:text-3xl font-semibold font-poppins  text-amber-600 mb-1 z-10 uppercase">Ayo Pilih Tiketmu </h1>
+            <p class="text-[13px] md:text-lg text-center  font-medium font-md  text-gray-500 capitalize z-10 mb-2"> kami memiliki 2 opsi tiket yang menarik dengan harga yang terjangkau</p>
+            <div class="border-b-2 border-amber-500 w-64 z-10 "></div>
+        </div>
 
 
     <div class="w-full flex flex-col md:flex-row gap-4 lg:gap-10 justify-center z-10">
         
-<div class="w-full max-w-lg flex flex-col mt-14 md:mt-24 z-10">
+<div
+    data-aos="fade-zoom-in"
+     data-aos-easing="linear"
+     data-aos-delay="0"
+     data-aos-duration="1000"
+     data-aos-offset="0"
+class="w-full max-w-lg flex flex-col mt-14 md:mt-24 z-10">
 
     {{-- ── Jam Operasional ── --}}
     <h2 class="text-xl md:text-3xl font-semibold text-amber-500 mb-4">Jam Operasional Kami</h2>
@@ -452,7 +553,13 @@
 </div>
 
 
-    <div class="w-full max-w-xl justify-center md:gap-2 lg:gap-5 flex flex-col md:flex-row  md:mt-20 z-10">
+    <div
+    data-aos="fade-zoom-in"
+     data-aos-easing="linear"
+     data-aos-delay="500"
+     data-aos-duration="1000"
+     data-aos-offset="0"
+    class="w-full max-w-xl justify-center md:gap-2 lg:gap-5 flex flex-col md:flex-row  md:mt-20 z-10">
 
 
                 {{-- ────────────────────────────────────────────
@@ -604,12 +711,24 @@
         <div class="absolute inset-0 bg-black opacity-85"></div>
     </div>
     
-
-    <h1 class="z-10 text-xl md:text-3xl text-amber-600 font-poppins font-semibold mb-1 uppercase">Acara Sendang Kun Gerit</h1>
+    <div 
+    data-aos="fade-zoom-in"
+     data-aos-easing="linear"
+     data-aos-duration="1000"
+     data-aos-offset="0"
+    class="flex flex-col items-center" >
+        <h1 class="z-10 text-xl md:text-3xl text-amber-600 font-poppins font-semibold mb-1 uppercase">Acara Sendang Kun Gerit</h1>
         <p class="text-[13px] text-center md:text-lg font-medium font-md  text-white capitalize z-10 mb-3  ">Kami memiliki berbagai macam acara dan promo yang menarik dan menyenangkan</p>
         <div class="border-b-2 border-amber-500 w-64 z-10 mb-8 md:mb-10"></div>
+    </div>
 
-        <div class="event-swiper-wrap">
+        <div
+    data-aos="fade-zoom-in"
+     data-aos-easing="linear"
+     data-aos-delay="500"
+     data-aos-duration="1000"
+     data-aos-offset="0"
+        class="event-swiper-wrap">
     <div class="swiper swiper-event">
         <div class="swiper-wrapper">
  
@@ -661,11 +780,24 @@
         <div class="absolute bottom-0 py-28 bg-gradient-to-t  w-full from-amber-500/80  to-transparent  -mb-28 "></div>
 
     </div >
+<div
+    data-aos="fade-zoom-in"
+     data-aos-easing="linear"
+     data-aos-duration="1000"
+     data-aos-offset="0"
+class="flex flex-col items-center">
+    <h1 class="text-xl md:text-2xl font-poppins font-semibold text-amber-600 uppercase z-10 ">Berita Dan Informasi</h1>
+    <p class="text-[13px] text-center md:text-lg font-medium font-md  text-gray-500 capitalize z-10 mb-3">Kami memiliki berbagai macam acara dan promo yang menarik dan menyenangkan</p>
+    <div class="border-b-2 border-amber-500 w-64 z-10 mb-10"></div>
+</div>
 
-<h1 class="text-xl md:text-2xl font-poppins font-semibold text-amber-600 uppercase z-10 ">Berita Dan Informasi</h1>
-        <p class="text-[13px] text-center md:text-lg font-medium font-md  text-gray-500 capitalize z-10 mb-3">Kami memiliki berbagai macam acara dan promo yang menarik dan menyenangkan</p>
-               <div class="border-b-2 border-amber-500 w-64 z-10 mb-10"></div>
-<div class="w-full grid z-10 justify-center lg:gap-10 gap-5 grid-rows-1 md:grid-cols-3 items-center ">
+
+<div
+    data-aos="fade-zoom-in"
+     data-aos-easing="linear"
+     data-aos-duration="1000"
+     data-aos-offset="0"
+class="w-full grid z-10 justify-center lg:gap-10 gap-5 grid-rows-1 md:grid-cols-3 items-center ">
     <div class="flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm lg:w-80 w-80 md:w-64 shrink-0  pb-3">
         <div class="w-full h-48 overflow-hidden"><img src="img/sendang.png" alt="berita1" class="w-full h-full object-cover object-center "></div>
         <h2 class="capitaliize text-md mt-2 font-semibold font-poppins px-2 uppercase">Sendang hits</h2>
@@ -674,7 +806,13 @@
                 Selengkapnya
             </a>
     </div>
-    <div class="flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm lg:w-80 w-80 md:w-64 shrink-0  pb-3">
+    <div
+    data-aos="fade-zoom-in"
+     data-aos-easing="linear"
+     data-aos-delay="500"
+     data-aos-duration="1000"
+     data-aos-offset="0"
+     class="flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm lg:w-80 w-80 md:w-64 shrink-0  pb-3">
         <div class="w-full h-48 overflow-hidden"><img src="img/sendang.png" alt="berita1" class="w-full h-full object-cover object-center "></div>
         <h2 class="capitaliize text-md mt-2 font-semibold font-poppins px-2 uppercase">Sendang hits</h2>
         <p class="font-md text-sm text-gray-500 leading-tinny font-medium px-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, beatae aspernatur! Quaerat voluptate labore enim recusandae odio </p>
@@ -682,7 +820,13 @@
                 Selengkapnya
             </a>
     </div>
-    <div class="flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm lg:w-80 w-80 md:w-64 pb-3 shrink-0 ">
+    <div
+    data-aos="fade-zoom-in"
+     data-aos-easing="linear"
+     data-aos-delay="1000"
+     data-aos-duration="1000"
+     data-aos-offset="0"
+    class="flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm lg:w-80 w-80 md:w-64 pb-3 shrink-0 ">
         <div class="w-full h-48 overflow-hidden"><img src="img/sendang.png" alt="berita1" class="w-full h-full object-cover object-center "></div>
         <h2 class="capitaliize text-md mt-2 font-semibold font-poppins px-2 uppercase ">Sendang hits</h2>
         <p class="font-md text-sm text-gray-500 leading-tinny font-medium px-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, beatae aspernatur! Quaerat voluptate labore enim recusandae odio </p>

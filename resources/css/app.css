@@ -44,3 +44,25 @@
     /* Hover lift pada CTA button */
     .cta-lift:hover  { opacity: 0.88; transform: translateY(-2px); }
     .cta-lift:active { transform: scale(0.98); }
+
+
+
+/* animation */
+
+.flash{
+    animation:flash 1.5s linear  forwards;
+}
+
+@keyframes flash {
+    from{
+
+        background-color: white;
+        opacity: 1;
+    }
+    to{
+        opacity: 0;
+
+
+    }
+}
+
