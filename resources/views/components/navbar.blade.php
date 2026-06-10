@@ -54,16 +54,16 @@ data-aos="fade-down"
     </a>
 
     {{-- ── Desktop & iPad links ── --}}
-    <ul class="hidden md:flex items-center gap-5 xl:gap-10 list-none">
+    <ul class="hidden md:flex items-center gap-4 xl:gap-7 list-none">
 
         @foreach([
             ['/', 'Home'],
-            ['/fasilitas', 'Fasilitas'],
-            ['/paket', 'Paket'],
-            ['/event', 'Event'],
-            ['/blog', 'Blog'],
-            ['/layanan', 'Layanan'],
-            ['/resto', 'Resto'],
+            ['/#tentang', 'Tentang Kami'],
+            ['/#layanan', 'Layanan'],
+            ['/#resto', 'Resto'],
+            ['/#acara', 'Acara'],
+            ['/#berita', 'Berita'],
+            ['/#kontak', 'Kontak'],
         ] as [$href, $label])
         <li>
             <a href="{{ $href }}"
@@ -77,7 +77,7 @@ data-aos="fade-down"
         </li>
         @endforeach
 
-        <li class="w-px h-3.5 mx-1" :class="isHome ? 'bg-white/15' : 'bg-stone-200'"></li>
+        <li class="w-px h-3.5 xl:mx-1" :class="isHome ? 'bg-white/15' : 'bg-stone-200'"></li>
         <li>
             <a href="/tiket"
                class="font-dm text-[12px] font-medium tracking-[0.07em] uppercase px-5 py-2
@@ -141,13 +141,13 @@ data-aos="fade-down"
     >
         <ul class="flex flex-col list-none">
             @foreach([
-                ['/', 'Home'],
-                ['/fasilitas', 'Fasilitas'],
-                ['/paket', 'Paket'],
-                ['/event', 'Event'],
-                ['/blog', 'Blog'],
-                ['/layanan', 'Layanan'],
-                ['/resto', 'Resto'],
+            ['/', 'Home'],
+            ['/#tentang', 'Tentang Kami'],
+            ['/#layanan', 'Layanan'],
+            ['/#resto', 'Resto'],
+            ['/#acara', 'Acara'],
+            ['/#berita', 'Berita'],
+            ['/#kontak', 'Kontak'],
             ] as [$href, $label])
             <li class="border-b border-white/8">
                 <a

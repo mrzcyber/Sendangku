@@ -18,6 +18,10 @@
   }
 }
 
+*{
+    scroll-behavior: smooth;
+}
+
 
     /* Decorative circles on card header — tidak bisa pure Tailwind */
     .ticket-header-deco::before {

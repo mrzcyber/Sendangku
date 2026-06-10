@@ -1,4 +1,6 @@
-<footer class="w-full bg-stone-900 relative overflow-hidden">
+<footer
+id="kontak"
+class="w-full bg-stone-900 relative overflow-hidden">
 
     {{-- Decorative top border --}}
     <div class="w-full h-1 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600"></div>

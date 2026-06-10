@@ -3,7 +3,8 @@
 @section('title', 'Sendangku')
 
 @section('content')
-<section class=" relative xl:h-[800px] h-[800px] md:h-screen w-full flex xl:items-end items-center justify-center xl:justify-start  ">
+<section 
+class=" relative xl:h-[800px] h-[800px] md:h-screen w-full flex xl:items-end items-center justify-center xl:justify-start  ">
     <div class="absolute  inset-0">
         <img src="img/sendang.png" alt="Background Image" class="w-full h-full object-cover bg-center bg-no-repeat">
          <div class="absolute inset-0 bg-black opacity-30"></div>
@@ -32,7 +33,9 @@
 
 </section>
 
-<section class="w-full md:pb-36 pb-10 pt-10  relative flex md:pt-40 justify-center bg-[#FFF8E1]">
+<section 
+id="tentang"
+class="w-full md:pb-36 pb-10 pt-10  relative flex md:pt-40 justify-center bg-[#FFF8E1]">
 
         <div class="absolute opacity-40 inset-0">
         <img src="img/icon-bg.png" alt="Background Image" class="w-full h-full object-cover bg-center bg-no-repeat">
@@ -117,6 +120,7 @@ class=" flex flex-col justify-start xl:pt-16 md:items-start items-center px-3 md
 {{-- section layanan --}}
 
 <section
+id="layanan"
     class="w-full relative py-12 sm:py-30 flex flex-col sm:flex-row items-center justify-center overflow-hidden gap-4 sm:gap-5"
     x-data="layananSection"
 >
@@ -272,7 +276,9 @@ class=" flex flex-col justify-start xl:pt-16 md:items-start items-center px-3 md
 
 {{-- section resto --}}
 
-<section class="w-full  flex flex-col py-12 md:py-24 items-center relative bg-[#FFF8E1] px-2">
+<section
+id="resto"
+class="w-full  flex flex-col py-12 md:py-24 items-center relative bg-[#FFF8E1] px-2">
 
              <div class="absolute opacity-40 inset-0">
         <img src="img/icon-bg.png" alt="Background Image" class="w-full h-full object-cover bg-center bg-no-repeat">
@@ -399,7 +405,9 @@ class=" flex flex-col justify-start xl:pt-16 md:items-start items-center px-3 md
 
 </section>
 
-<section class="w-full  flex flex-col bg-[#FFF8E1]/80 items-center relative xl:px-20 px-4 py-8 md:py-16 ">
+<section
+id="tiket"
+class="w-full  flex flex-col bg-[#FFF8E1]/80 items-center relative xl:px-20 px-4 py-8 md:py-16 ">
         <div class="absolute opacity-40 inset-0">
             <div class="absolute inset-0 "></div>
             
@@ -703,7 +711,9 @@ class="w-full max-w-lg flex flex-col mt-14 md:mt-24 z-10">
 
 {{-- section event --}}
 
-<section class="w-full relative flex flex-col items-center py-8 md:py-16 xl:px-20 md:px-10 px-3">
+<section
+id="acara"
+class="w-full relative flex flex-col items-center py-8 md:py-16 xl:px-20 md:px-10 px-3">
 
     <div class="absolute  inset-0">
         <img src="img/sendang.png" alt="Background Image" class="w-full h-full object-cover bg-center bg-no-repeat">
@@ -772,7 +782,9 @@ class="w-full max-w-lg flex flex-col mt-14 md:mt-24 z-10">
 
 {{-- berita --}}
 
-<section class="w-full  flex flex-col py-10 items-center bg-[#FFF8E1]/80 relative px-3 lg:px-20">
+<section
+id="berita"
+class="w-full  flex flex-col py-10 items-center bg-[#FFF8E1]/80 relative px-3 lg:px-20">
 
         <div class="absolute opacity-40 inset-0">
         <img src="img/icon-bg.png" alt="Background Image" class="w-full h-full object-cover bg-center bg-no-repeat">
