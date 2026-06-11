@@ -4,34 +4,48 @@
 
 @section('content')
 <section class="w-full mt-10 relative">
-        <div class="h-96 w-full">
-        <img src="img/sendang.png" alt="Background" class="w-full h-full object-cover object-bottom mb-52">
+        <div class="h-64 md:h-96 w-full">
+        <img src="/img/sendang.png" alt="Background" class="w-full h-full object-cover object-bottom mb-52">
     </div>
-       <div class="absolute inset-0 bg-black opacity-40"></div>
+       <div class="absolute inset-0 top-0 bg-black opacity-40"></div>
+            <div class="w-full h-full top-0 absolute flash"></div>
 
-    <div class="absolute w-full h-full flex flex-col justify-center top-0 px-10 ">
-        <h1 class="text-4xl font-md font-semibold text-white uppercase text-shadow-2xs leading-relaxed">Layanan sendang kun gerit</h1>
+    <div 
+       data-aos="fade-zoom-in"
+     data-aos-easing="linear"
+     data-aos-delay="500"
+     data-aos-duration="1000"
+     data-aos-offset="0"
+    class="absolute w-full h-full flex flex-col justify-center top-0 px-5 md:px-10 ">
+        <h1 class="text-xl md:text-4xl font-md font-semibold text-white uppercase text-shadow-2xs leading-relaxed">Layanan sendang kun gerit</h1>
         <div class="flex flex-row gap-3">
-            <div class="border-b-[3px] border-amber-500 z-10 w-20 mb-3"> </div>
-            <p class="text-xl font-md text-white capitalize text-shadow-2xs ">home - layanan sendang kun gerit</p>
+            <div class="border-b-[3px] border-amber-500 z-10 w-10 md:w-20 mb-3"> </div>
+            <p class=" text-md md:text-xl font-md text-white capitalize text-shadow-2xs ">home - layanan sendang kun gerit</p>
         </div>
     </div>
-
+</section>
 
 {{-- section content --}}
-</section>
+
 <section class="w-full  pt-10 pb-20 flex justify-center items-center ">
-<div class=" xl:px-20  grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
+<div
+            data-aos="fade-zoom-in"
+                data-aos-easing="linear"
+                data-aos-delay="0"
+                data-aos-duration="1000"
+                data-aos-offset="0"
+class=" xl:px-20  grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
 
 <a href="/" class="h-[30rem] w-[22rem] overflow-hidden border-x border-b  shadow-md hover:shadow-2xl rounded-2xl border-gray-300 transition-all duration-400 hover:-translate-y-1 ">
-<div class="w-full overflow-hidden h-60">
+    <div class="w-full overflow-hidden h-60">
     <img src="/img/sendang.png" alt="thumbnail" class="w-full h-full object-center object-cover">
 </div>
 
 
 <div class="w-full h-full flex flex-col px-7 py-4  ">
 <h1 class="font-poppins font-semibold text-amber-600 text-lg capitalize ">layanan berkuda</h1>
-<div class="flex flex-row gap-2 mt-2 -ml-2">
+<div
+class="flex flex-row gap-2 mt-2 -ml-2">
     @for ($i = 0; $i < 5; $i++)
         <x-star-icon />
     @endfor
@@ -58,6 +72,7 @@
 </div>
 </div>
 </a>
+
 <a href="/" class="h-[30rem] w-[22rem] overflow-hidden border-x border-b  shadow-md hover:shadow-2xl rounded-2xl border-gray-300 transition-all duration-400 hover:-translate-y-1 ">
 <div class="w-full overflow-hidden h-60">
     <img src="/img/sendang.png" alt="thumbnail" class="w-full h-full object-center object-cover">

@@ -150,4 +150,22 @@ document.addEventListener('alpine:init', () => {
     });
 
 
+        // Detail Gallery Swiper — same pattern as event swiper
+        const swiperDetailGallery = new Swiper('.swiper-detail-gallery', {
+            loop: true,
+            centeredSlides: true,
+            slidesPerView: 'auto',
+            spaceBetween: 16,
+            grabCursor: true,
+            pagination: {
+                el: '.swiper-detail-gallery .swiper-pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                0:   { slidesPerView: 1,   spaceBetween: 0,  centeredSlides: true },
+
+            },
+        });
+
+
 });

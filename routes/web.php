@@ -8,4 +8,8 @@ Route::get('/', function () {
 Route::get('/layanan', function () {
     return view('front.service');
 });
+Route::get('/layanan/berkuda', function () {
+    return view('front.detail');
+});
+
 

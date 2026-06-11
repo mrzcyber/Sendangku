@@ -399,7 +399,7 @@ class="w-full  flex flex-col py-12 md:py-24 items-center relative bg-[#FFF8E1] p
      data-aos-delay="500"
      data-aos-duration="1000"
      data-aos-offset="0"
-    href="/" class="mt-10 md:mt-16 z-10 bg-amber-500 shadow-md  hover:bg-amber-600 text-white font-bold py-2 px-4 font-poppins rounded-full">
+    href="/" class="mt-10 md:mt-16 z-10 bg-amber-600 shadow-md  hover:bg-amber-700 text-white font-bold py-2 px-4 font-poppins rounded-full">
         Lihat Menu Lainnya
     </a>
 
@@ -555,7 +555,7 @@ class="w-full grid z-10 justify-center lg:gap-10 gap-5 grid-rows-1 md:grid-cols-
 
 @push('scripts')
 {{-- ── Swiper JS ── --}}
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
  {{-- @vite('resources/js/swiper.js') --}}
     
 @endpush
