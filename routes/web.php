@@ -11,5 +11,8 @@ Route::get('/layanan', function () {
 Route::get('/layanan/berkuda', function () {
     return view('front.detail');
 });
+Route::get('/checkout/ticket', function () {
+    return view('front.checkout-ticket');
+});
 
 

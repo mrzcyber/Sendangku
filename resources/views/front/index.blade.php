@@ -283,7 +283,7 @@ class="w-full  flex flex-col py-12 md:py-24 items-center relative bg-[#FFF8E1] p
              <div class="absolute opacity-40 inset-0">
         <img src="img/icon-bg.png" alt="Background Image" class="w-full h-full object-cover bg-center bg-no-repeat">
          <div class="absolute inset-0 bg-black opacity-15"></div>
-        {{-- <div class="absolute bottom-0 py-28 bg-gradient-to-t  w-full from-amber-500/80  to-transparent  -mb-28 "></div> --}}
+        {{-- <div class="absolute bottom-0 py-28 bg-linear-to-t  w-full from-amber-500/80  to-transparent  -mb-28 "></div> --}}
 
     </div >
     <div class="flex flex-col items-center"
@@ -490,7 +490,7 @@ class="w-full  flex flex-col py-10 items-center bg-[#FFF8E1]/80 relative px-3 lg
         <div class="absolute opacity-40 inset-0">
         <img src="img/icon-bg.png" alt="Background Image" class="w-full h-full object-cover bg-center bg-no-repeat">
          <div class="absolute inset-0 bg-black opacity-15"></div>
-        <div class="absolute bottom-0 py-28 bg-gradient-to-t  w-full from-amber-500/80  to-transparent  -mb-28 "></div>
+        <div class="absolute bottom-0 py-28 bg-linear-to-t  w-full from-amber-500/80  to-transparent  -mb-28 "></div>
 
     </div >
 <div
