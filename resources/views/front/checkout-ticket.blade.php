@@ -165,7 +165,7 @@ name="number" id="" placeholder="Nomor Telepon" required class="mx-3 sm:mx-6 tex
 </select>
 
 
-<button  type="submit" :disabled="total === 0" class="disabled:opacity-70 disabled:cursor-not-allowed mx-3 sm:mx-6 py-2.5 sm:py-2 text-center items-center bg-amber-600 hover:bg-amber-700 text-white font-semibold font-poppins text-base sm:text-lg mt-6 sm:mt-8 rounded-lg sm:rounded-none transition-all duration-300"> Beli Sekarang </button>
+<button  type="submit" :disabled="total === 0" class="disabled:opacity-50 disabled:cursor-not-allowed mx-3 sm:mx-6 py-2.5 sm:py-2 text-center items-center bg-amber-600 hover:bg-amber-700 text-white font-semibold font-poppins text-base sm:text-lg mt-6 sm:mt-8 rounded-lg sm:rounded-none transition-all duration-300"> Beli Sekarang </button>
 
 </form>
     </section>

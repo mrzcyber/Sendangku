@@ -15,7 +15,9 @@
     @stack('styles')
 </head>
 <body>
+    @if (!request()->is('checkout/ticket/succes'))
     <x-navbar />
+    @endif
     <main>
         @yield('content')
     </main>
