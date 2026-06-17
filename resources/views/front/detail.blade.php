@@ -78,21 +78,21 @@
                 data-aos-duration="1000"
                 data-aos-offset="0"
                 href="/img/sendang.png"
-                class="w-lg glightbox h-[28rem] overflow-hidden"
+                class="w-xl glightbox h-[28rem] overflow-hidden"
             >
                 <img src="/img/sendang.png" alt="galeri" class="w-full h-full object-center object-cover">
             </a>
-            <div class="flex flex-col gap-2">
-                <a
+              <div class="flex flex-col gap-2">
+                    <a
                     data-aos="fade-zoom-in"
                     data-aos-easing="linear"
                     data-aos-delay="200"
                     data-aos-duration="1000"
                     data-aos-offset="0"
                     href="/img/sendang.png"
-                    class="w-72 glightbox h-full overflow-hidden"
+                    class="w-72 xl:w-[22rem] glightbox h-full overflow-hidden"
                 >
-                    <img src="/img/sendang.png" alt="galeri" class="w-full h-full object-center object-cover">
+                <img src="/img/sendang.png" alt="galeri" class="w-full h-full object-center object-cover">
                 </a>
                 <a
                     data-aos="fade-zoom-in"
@@ -101,35 +101,36 @@
                     data-aos-duration="1000"
                     data-aos-offset="0"
                     href="/img/sendang.png"
-                    class="w-72 glightbox h-full overflow-hidden"
+                    class="w-72 xl:w-[22rem] glightbox h-full overflow-hidden"
                 >
                     <img src="/img/sendang.png" alt="galeri" class="w-full h-full object-center object-cover">
                 </a>
             </div>
             <div class="flex flex-col gap-2">
                 <a
-                    data-aos="fade-zoom-in"
-                    data-aos-easing="linear"
-                    data-aos-delay="600"
-                    data-aos-duration="1000"
-                    data-aos-offset="0"
-                    href="/img/sendang.png"
-                    class="w-72 glightbox h-full overflow-hidden"
-                >
+                data-aos="fade-zoom-in"
+                data-aos-easing="linear"
+                data-aos-delay="600"
+                data-aos-duration="1000"
+                data-aos-offset="0"
+                href="/img/sendang.png"
+                    class="w-72 xl:w-[22rem] glightbox h-full overflow-hidden"
+                    >
                     <img src="/img/sendang.png" alt="galeri" class="w-full h-full object-center object-cover">
                 </a>
                 <a
-                    data-aos="fade-zoom-in"
-                    data-aos-easing="linear"
-                    data-aos-delay="800"
-                    data-aos-duration="1000"
+                data-aos="fade-zoom-in"
+                data-aos-easing="linear"
+                data-aos-delay="800"
+                data-aos-duration="1000"
                     data-aos-offset="0"
                     href="/img/sendang.png"
-                    class="w-72 glightbox h-full overflow-hidden"
+                    class="w-72 xl:w-[22rem] glightbox h-full overflow-hidden"
                 >
                     <img src="/img/sendang.png" alt="galeri" class="w-full h-full object-center object-cover">
                 </a>
             </div>
+
         </div>
 
     </section>
@@ -210,6 +211,24 @@
                         <h3 class="font-semibold text-md md:text-xl text-black leading-none">Karaoke</h3>
                         <p class="font-medium text-gray-500 text-sm">
                             Nikmati pengalaman bernyanyi yang seru di fasilitas karaoke kami.
+                        </p>
+                    </div>
+                </div>
+                {{-- p3k --}}
+                <div class="flex items-start gap-3 mt-4">
+                    <span class="mt-0.5 shrink-0 text-amber-500">
+                        {{-- medis --}}
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M8 4h8a2 2 0 0 1 2 2v2h1a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-1v2a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-2H5a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2h1V6a2 2 0 0 1 2-2Z" />
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 8v8M8 12h8" />
+                        </svg>
+                    </span>
+                    <div>
+                        <h3 class="font-semibold text-md md:text-xl text-black leading-none">P3K</h3>
+                        <p class="font-medium text-gray-500 text-sm">
+                            Tersedia perlengkapan P3K untuk memberikan bantuan medis awal saat diperlukan.
                         </p>
                     </div>
                 </div>
