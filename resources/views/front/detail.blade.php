@@ -228,7 +228,7 @@
                     <div>
                         <h3 class="font-semibold text-md md:text-xl text-black leading-none">P3K</h3>
                         <p class="font-medium text-gray-500 text-sm">
-                            Tersedia perlengkapan P3K untuk memberikan bantuan medis awal saat diperlukan.
+                            Tersedia perlengkapan P3K untuk memberikan bantuan medis awal saat diperlukan.d
                         </p>
                     </div>
                 </div>

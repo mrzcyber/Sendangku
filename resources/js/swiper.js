@@ -114,26 +114,6 @@ document.addEventListener('alpine:init', () => {
 // event swiper
 
 
- const swiperEvent = new Swiper('.swiper-event', {
-        loop: true,
-        centeredSlides: true,
-        slidesPerView: 'auto',
-        spaceBetween: 28,
-        grabCursor: true,
- 
-        pagination: {
-            el: '.swiper-event .swiper-pagination',
-            clickable: true,
-        },
- 
-        breakpoints: {
-                     0:    { slidesPerView: 1, spaceBetween: 0, centeredSlides: true },
-                    640:  { slidesPerView: 1.4, spaceBetween: 21, centeredSlides: true },
-                    1024: { slidesPerView: 1.4,   spaceBetween: 28, centeredSlides: true },
-
-        },
-    });
-
 
     // resto menu swiper (mobile only)
     const swiperRestoMenu = new Swiper('.swiper-resto-menu', {

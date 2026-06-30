@@ -1,13 +1,13 @@
 <section
 id="tiket"
-class="w-full  flex flex-col {{request()->is('/') ? 'bg-[#FFF8E1]/80' :'bg-white' }} items-center relative xl:px-20 px-4 py-8 md:py-16 ">
+class="w-full  flex flex-col {{request()->is('/') ? 'bg-white' :'bg-white' }} items-center relative xl:px-20 px-4 py-8 md:py-16 ">
 @if (request()->is('/'))
     
-<div class="absolute opacity-40 inset-0">
+{{-- <div class="absolute opacity-40 inset-0">
     <div class="absolute inset-0 "></div>
     
     <div class="absolute inset-0 bg-black opacity-25"></div>
-</div >
+</div > --}}
 @endif
         <div
     data-aos="fade-zoom-in"
