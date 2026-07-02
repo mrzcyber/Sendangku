@@ -13,6 +13,7 @@ class RestaurantOrder extends Model
         'order_code',
         'name',
         'tables_id',
+        'note',
         'total_price',
         'status',
         'payment',

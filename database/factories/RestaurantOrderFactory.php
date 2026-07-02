@@ -22,6 +22,7 @@ class RestaurantOrderFactory extends Factory
             'order_code' => fake()->unique()->bothify('RST-########'),
             'name' => fake()->name(),
             'tables_id' => Table::factory(),
+            'note' => fake()->optional()->sentence(),
             'total_price' => fake()->numberBetween(10000, 200000),
             'status' => fake()->randomElement(['pending', 'success', 'failed']),
             'payment' => fake()->randomElement(['offline', 'online']),

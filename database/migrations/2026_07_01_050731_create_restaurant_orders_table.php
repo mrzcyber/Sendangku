@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('order_code')->unique();
             $table->string('name');
             $table->foreignId('tables_id')->nullable()->constrained('tables')->nullOnDelete();
+            $table->text('note')->nullable();
             $table->unsignedInteger('total_price');
             $table->enum('status', ['pending', 'success', 'failed'])->default('pending');
             $table->enum('payment', ['offline', 'online'])->default('online');

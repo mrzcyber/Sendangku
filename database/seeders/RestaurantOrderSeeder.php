@@ -23,6 +23,7 @@ class RestaurantOrderSeeder extends Seeder
             'order_code' => 'RST-00000001',
             'name' => 'Budi Santoso',
             'tables_id' => $table->id,
+            'note' => 'Tidak pedas.',
             'total_price' => 20000, // Sesuaikan dengan total item restoran.
             'status' => 'pending',
             'payment' => 'online',
