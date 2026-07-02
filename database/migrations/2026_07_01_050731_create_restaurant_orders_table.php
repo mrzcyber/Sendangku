@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('restaurant_orders', function (Blueprint $table) {
             $table->id();
             $table->string('order_code')->unique();
+            $table->string('name');
             $table->foreignId('tables_id')->nullable()->constrained('tables')->nullOnDelete();
             $table->unsignedInteger('total_price');
             $table->enum('status', ['pending', 'success', 'failed'])->default('pending');
