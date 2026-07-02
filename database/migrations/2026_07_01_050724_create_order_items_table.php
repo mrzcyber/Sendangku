@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedInteger('qty');
             $table->unsignedInteger('price');
             $table->unsignedInteger('subtotal');
+            $table->timestamps();
         });
     }
 
