@@ -26,6 +26,8 @@ class StoreOrderRequest extends FormRequest
             'buyer_name' => ['required', 'string', 'max:255'],
             'buyer_phone' => ['required', 'string', 'max:255'],
             'buyer_email' => ['required', 'email', 'max:255'],
+            'ticket_type_id' => ['nullable', 'integer', 'exists:ticket_types,id'],
+            'qty' => ['required', 'integer', 'min:1'],
         ];
     }
 }

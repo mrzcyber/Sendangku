@@ -24,7 +24,7 @@ class UpdateRestaurantOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'status' => ['sometimes', 'required', 'string', 'in:pending,success,failed'],
+            'status' => ['required'],
         ];
     }
 }

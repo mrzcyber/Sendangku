@@ -26,6 +26,8 @@ class StoreRestaurantOrderRequest extends FormRequest
 
             'name' => ['required', 'string', 'max:255'],
             'tables_id' => ['nullable', 'integer', 'exists:tables,id'],
+            'restaurant_menus_id' => ['nullable', 'integer'],
+            'qty' => ['required', 'integer', 'min:1'],
 
         ];
     }

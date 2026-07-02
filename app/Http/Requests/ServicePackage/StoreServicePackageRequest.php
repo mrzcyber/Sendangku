@@ -28,7 +28,7 @@ class StoreServicePackageRequest extends FormRequest
             'price' => ['required', 'integer', 'min:0'],
             'benefit' => ['required', 'string'],
             'whatsapp_message' => ['required', 'string', 'max:255'],
-            'whatsapp_number' => ['required', 'string', 'max:255'],
+            'whatsapp_number' => ['required'],
             'populer' => ['required', 'boolean'],
         ];
     }

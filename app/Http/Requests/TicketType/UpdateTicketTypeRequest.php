@@ -25,6 +25,7 @@ class UpdateTicketTypeRequest extends FormRequest
         return [
             'name' => ['sometimes', 'required', 'string', 'max:255'],
             'price' => ['sometimes', 'required', 'integer', 'min:0'],
+            'benefit' => ['sometimes', 'required', 'string']
         ];
     }
 }

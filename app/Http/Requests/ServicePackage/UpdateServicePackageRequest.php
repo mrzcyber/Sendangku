@@ -28,7 +28,7 @@ class UpdateServicePackageRequest extends FormRequest
             'price' => ['sometimes', 'required', 'integer', 'min:0'],
             'benefit' => ['sometimes', 'required', 'string'],
             'whatsapp_message' => ['sometimes', 'required', 'string', 'max:255'],
-            'whatsapp_number' => ['sometimes', 'required', 'string', 'max:255'],
+            'whatsapp_number' => ['sometimes', 'required'],
             'populer' => ['sometimes', 'required', 'boolean'],
         ];
     }
