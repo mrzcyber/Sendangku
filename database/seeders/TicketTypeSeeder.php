@@ -14,12 +14,18 @@ class TicketTypeSeeder extends Seeder
     {
         TicketType::query()->updateOrCreate(
             ['name' => 'Tiket Normal'],
-            ['price' => 10000]
+            [
+                'price' => 10000,
+                'benefit' => 'kolam pemandian',
+            ]
         );
 
         TicketType::query()->updateOrCreate(
             ['name' => 'Tiket Terusan'],
-            ['price' => 25000] // Sesuaikan harga tiket aktual.
+            [
+                'price' => 25000,
+                'benefit' => 'kolam pemandian,waterboom, dan terapi ikan',
+            ]
         );
     }
 }

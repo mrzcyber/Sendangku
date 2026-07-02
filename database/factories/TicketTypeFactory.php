@@ -20,6 +20,7 @@ class TicketTypeFactory extends Factory
         return [
             'name' => fake()->randomElement(['Tiket Normal', 'Tiket Terusan',]),
             'price' => fake()->randomElement([10000, 25000]),
+            'benefit' => fake()->randomElement(['kolam pemandian', 'kolam pemandian,waterboom, dan terapi ikan']),
         ];
     }
 }
