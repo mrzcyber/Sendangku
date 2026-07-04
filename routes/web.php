@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -17,5 +19,13 @@ Route::get('/checkout/ticket', function () {
 Route::get('/checkout/ticket/succes', function () {
     return view('front.ticket-succes');
 });
+
+
+Route::post('/login', [UserController::class, 'authenticate'])->name('login.auth');
+Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+Route::get('/login', function () {
+    return view('login');
+})->name('login');
+
 
 
