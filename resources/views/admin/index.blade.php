@@ -11,72 +11,7 @@
 
 <div class="flex h-screen max-h-screen flex-1 bg-muted overflow-hidden">
   <!-- SIDEBAR -->
-  <aside id="sidebar" class="flex flex-col w-[280px] shrink-0 h-screen fixed inset-y-0 left-0 z-50 bg-white border-r border-border transform -translate-x-full lg:translate-x-0 transition-transform duration-300 overflow-hidden">
-    <!-- Top Bar -->
-    <div class="flex items-center justify-between border-b border-border h-[90px] px-5 gap-3">
-      <div class="flex items-center gap-3">
-        <div class="w-11 h-9 bg-primary rounded-xl flex items-center justify-center">
-          <i data-lucide="bar-chart-2" class="w-5 h-5 text-white"></i>
-        </div>
-        <h1 class="font-semibold text-xl">DataView</h1>
-      </div>
-      <button onclick="toggleSidebar()" aria-label="Close sidebar" class="lg:hidden size-11 flex shrink-0 bg-white rounded-xl p-[10px] items-center justify-center ring-1 ring-border hover:ring-primary transition-all duration-300 cursor-pointer">
-        <i data-lucide="x" class="size-6 text-secondary"></i>
-      </button>
-    </div>
-
-    <!-- Navigation -->
-    <div class="flex flex-col p-5 pb-28 gap-6 overflow-y-auto flex-1">
-      <div class="flex flex-col gap-4">
-        <h3 class="font-medium text-sm text-secondary">Overview</h3>
-        <div class="flex flex-col gap-1">
-          <a href="#" class="group active cursor-pointer">
-            <div class="flex items-center rounded-xl p-4 gap-3 bg-white group-[.active]:bg-muted group-hover:bg-muted transition-all duration-300">
-              <i data-lucide="layout-dashboard" class="size-6 text-secondary group-[.active]:text-foreground group-hover:text-foreground transition-all duration-300"></i>
-              <span class="font-medium text-secondary group-[.active]:font-semibold group-[.active]:text-foreground group-hover:text-foreground transition-all duration-300">Dashboard</span>
-            </div>
-          </a>
-          <a href="#" class="group cursor-pointer">
-            <div class="flex items-center rounded-xl p-4 gap-3 bg-white group-[.active]:bg-muted group-hover:bg-muted transition-all duration-300">
-              <i data-lucide="pie-chart" class="size-6 text-secondary group-[.active]:text-foreground group-hover:text-foreground transition-all duration-300"></i>
-              <span class="font-medium text-secondary group-[.active]:font-semibold group-[.active]:text-foreground group-hover:text-foreground transition-all duration-300">Reports</span>
-            </div>
-          </a>
-          <a href="#" class="group cursor-pointer">
-            <div class="flex items-center rounded-xl p-4 gap-3 bg-white group-[.active]:bg-muted group-hover:bg-muted transition-all duration-300">
-              <i data-lucide="users" class="size-6 text-secondary group-[.active]:text-foreground group-hover:text-foreground transition-all duration-300"></i>
-              <span class="font-medium text-secondary group-[.active]:font-semibold group-[.active]:text-foreground group-hover:text-foreground transition-all duration-300">Audience</span>
-            </div>
-          </a>
-        </div>
-      </div>
-      
-      <div class="flex flex-col gap-4">
-        <h3 class="font-medium text-sm text-secondary">Settings</h3>
-        <div class="flex flex-col gap-1">
-          <a href="#" class="group cursor-pointer">
-            <div class="flex items-center rounded-xl p-4 gap-3 bg-white group-[.active]:bg-muted group-hover:bg-muted transition-all duration-300">
-              <i data-lucide="settings" class="size-6 text-secondary group-[.active]:text-foreground group-hover:text-foreground transition-all duration-300"></i>
-              <span class="font-medium text-secondary group-[.active]:font-semibold group-[.active]:text-foreground group-hover:text-foreground transition-all duration-300">Configuration</span>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Bottom Card -->
-    <div class="absolute bottom-0 left-0 w-[280px]">
-      <div class="flex items-center justify-between border-t bg-white border-border p-5 gap-3">
-        <form class="min-w-0" method="POST" action="{{ route('logout') }}">
-          @csrf
-          <button type="submit" class="cursor-pointer"><span class="text-sm text-secondary hover:text-primary hover:underline transition-all duration-300">Logout</span></button>
-        </form>
-        <div class="size-11 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
-          <i data-lucide="help-circle" class="size-6 text-primary"></i>
-        </div>
-      </div>
-    </div>
-  </aside>
+  <x-sidebar />
 
   <!-- MAIN CONTENT -->
   <main class="flex-1 lg:ml-[280px] flex flex-col bg-white min-h-screen overflow-x-hidden">

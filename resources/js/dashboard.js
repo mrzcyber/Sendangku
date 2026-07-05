@@ -5,12 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     initCharts();
 
-    document.querySelectorAll('a').forEach((link) => {
-        link.addEventListener('click', (event) => {
-            event.preventDefault();
-            document.getElementById('page-not-found-modal').classList.remove('hidden');
-        });
-    });
+    // document.querySelectorAll('a').forEach((link) => {
+    //     link.addEventListener('click', (event) => {
+    //         event.preventDefault();
+    //         document.getElementById('page-not-found-modal').classList.remove('hidden');
+    //     });
+    // });
 
     document.getElementById('search-modal').addEventListener('click', function (event) {
         if (event.target === this) {
