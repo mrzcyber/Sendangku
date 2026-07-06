@@ -17,19 +17,19 @@
       <div class="flex flex-col gap-1">
         <h3 class="font-medium text-sm text-secondary">Overview</h3>
         <div class="flex flex-col ">
-          <a href="#" class="group active cursor-pointer">
+          <a href="{{ route('admin.dashboard.index') }}" class="group {{ request()->routeIs('admin.dashboard.index') ? 'active' : '' }} cursor-pointer">
             <div class="flex items-center rounded-xl p-4 gap-3 bg-white group-[.active]:bg-muted group-hover:bg-muted transition-all duration-300">
               <i data-lucide="layout-dashboard" class="size-6 text-secondary group-[.active]:text-foreground group-hover:text-foreground transition-all duration-300"></i>
               <span class="font-medium text-secondary group-[.active]:font-semibold group-[.active]:text-foreground group-hover:text-foreground transition-all duration-300">Dashboard</span>
             </div>
           </a>
-          <a href="#" class="group cursor-pointer">
+          <a href="{{ route('admin.restaurant-order.index') }}" class="group {{ request()->routeIs('admin.restaurant-order.index') ? 'active' : '' }}  cursor-pointer">
             <div class="flex items-center rounded-xl p-4 gap-3 bg-white group-[.active]:bg-muted group-hover:bg-muted transition-all duration-300">
               <i data-lucide="pie-chart" class="size-6 text-secondary group-[.active]:text-foreground group-hover:text-foreground transition-all duration-300"></i>
               <span class="font-medium text-secondary group-[.active]:font-semibold group-[.active]:text-foreground group-hover:text-foreground transition-all duration-300">Restaurant</span>
             </div>
           </a>
-          <a href="#" class="group cursor-pointer">
+          <a href="{{ route('admin.order-ticket.index') }}" class="group  {{ request()->routeIs('admin.order-ticket.index') ? 'active' : '' }}  cursor-pointer">
             <div class="flex items-center rounded-xl p-4 gap-3 bg-white group-[.active]:bg-muted group-hover:bg-muted transition-all duration-300">
               <i data-lucide="tickets" class="size-6 text-secondary group-[.active]:text-foreground group-hover:text-foreground transition-all duration-300"></i>
               <span class="font-medium text-secondary group-[.active]:font-semibold group-[.active]:text-foreground group-hover:text-foreground transition-all duration-300">Ticket</span>
@@ -93,15 +93,25 @@
     </div>
 
     <!-- Bottom Card -->
-    <div class="absolute bottom-0 left-0 w-[280px]">
-      <div class="flex items-center justify-between border-t bg-white border-border p-5 gap-3">
-        <form class="min-w-0" method="POST" action="{{ route('logout') }}">
-          @csrf
-          <button type="submit" class="cursor-pointer"><span class="text-sm text-secondary hover:text-primary hover:underline transition-all duration-300">Logout</span></button>
-        </form>
-        <div class="size-11 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
-          <i data-lucide="help-circle" class="size-6 text-primary"></i>
+    <div class="absolute bottom-0 left-0 w-[280px] bg-white border-t border-border p-4">
+      <div class="flex items-center justify-between p-3 rounded-2xl ring-1 ring-border hover:ring-primary transition-all duration-300 bg-white">
+        <div class="flex items-center gap-3 min-w-0">
+          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" alt="Admin Profile" class="size-10 rounded-full object-cover shrink-0">
+          <div class="min-w-0">
+            <p class="font-semibold text-sm text-foreground truncate">Ahmad Fauzi</p>
+            <p class="text-xs text-secondary truncate">Head Administrator</p>
+          </div>
         </div>
+        <button onclick="showLogoutModal()" class="size-10 flex items-center justify-center rounded-xl hover:bg-error/10 text-secondary hover:text-error transition-all duration-300 cursor-pointer shrink-0" aria-label="Logout">
+          <i data-lucide="log-out" class="size-5"></i>
+        </button>
       </div>
     </div>
+
+    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+    @csrf
+</form>
+
+
+    
   </aside>

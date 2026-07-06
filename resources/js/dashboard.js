@@ -1,70 +1,93 @@
-document.addEventListener('DOMContentLoaded', () => {
+// Shared helpers for all dashboard Blade views.
+function refreshIcons() {
     if (window.lucide) {
         window.lucide.createIcons();
     }
+}
 
+function hideModal(modal) {
+    if (!modal) {
+        return;
+    }
+
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+}
+
+function showModal(modal) {
+    if (!modal) {
+        return;
+    }
+
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+}
+
+// Global dashboard bootstrapping.
+document.addEventListener('DOMContentLoaded', () => {
+    refreshIcons();
     initCharts();
 
-    // document.querySelectorAll('a').forEach((link) => {
-    //     link.addEventListener('click', (event) => {
-    //         event.preventDefault();
-    //         document.getElementById('page-not-found-modal').classList.remove('hidden');
-    //     });
-    // });
+    const notificationModal = document.getElementById('notification-modal');
 
-    document.getElementById('search-modal').addEventListener('click', function (event) {
-        if (event.target === this) {
-            this.classList.add('hidden');
-            this.classList.remove('flex');
-        }
-    });
+    if (notificationModal) {
+        notificationModal.addEventListener('click', function (event) {
+            if (event.target === this) {
+                closeNotificationModal();
+            }
+        });
+    }
 });
 
+// Shared keyboard behavior for modal components in dashboard layouts/views.
 document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
-        document.getElementById('search-modal').classList.add('hidden');
-        document.getElementById('search-modal').classList.remove('flex');
+        closeNotificationModal();
         closeDateModal();
         closeExportModal();
+        closeLogoutModal();
         closePageNotFoundModal();
     }
 });
 
+// Used by layouts/dashboard.blade.php and x-sidebar for mobile sidebar open/close.
 function toggleSidebar() {
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('sidebar-overlay');
+
+    if (!sidebar || !overlay) {
+        return;
+    }
 
     sidebar.classList.toggle('-translate-x-full');
     overlay.classList.toggle('hidden');
     document.body.classList.toggle('overflow-hidden');
 }
 
+// Used by page-not-found modal in admin/index.blade.php and admin/restaurant/index.blade.php.
 function closePageNotFoundModal() {
-    document.getElementById('page-not-found-modal').classList.add('hidden');
+    hideModal(document.getElementById('page-not-found-modal'));
 }
 
-function openSearchModal() {
-    const modal = document.getElementById('search-modal');
-
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
-    document.getElementById('search-input').focus();
+// Used by notification bell in admin/index.blade.php and admin/restaurant/index.blade.php.
+function openNotificationModal() {
+    showModal(document.getElementById('notification-modal'));
 }
 
+function closeNotificationModal() {
+    hideModal(document.getElementById('notification-modal'));
+}
+
+// Used by date range modal in admin/index.blade.php.
 function openDateModal() {
-    const modal = document.getElementById('date-modal');
-
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
+    showModal(document.getElementById('date-modal'));
 }
 
 function closeDateModal() {
-    const modal = document.getElementById('date-modal');
-
-    modal.classList.add('hidden');
-    modal.classList.remove('flex');
+    hideModal(document.getElementById('date-modal'));
 }
 
+// Used by date preset buttons in admin/index.blade.php.
 function selectDatePreset(button, text) {
     document.querySelectorAll('.date-preset').forEach((preset) => {
         preset.className = 'date-preset px-4 py-2 rounded-xl bg-white text-secondary font-medium text-sm border border-border hover:border-primary hover:text-primary transition-all cursor-pointer';
@@ -74,33 +97,29 @@ function selectDatePreset(button, text) {
     button.dataset.selected = 'true';
 }
 
+// Used by apply date range button in admin/index.blade.php.
 function applyDateRange() {
     const activePreset = document.querySelector('.date-preset[class*="bg-primary/10"]');
+    const dateRangeLabel = document.getElementById('dateRangeLabel');
 
-    if (activePreset) {
-        document.getElementById('dateRangeLabel').textContent = activePreset.textContent;
-    } else {
-        document.getElementById('dateRangeLabel').textContent = 'Custom Range';
+    if (dateRangeLabel) {
+        dateRangeLabel.textContent = activePreset ? activePreset.textContent : 'Custom Range';
     }
 
     closeDateModal();
     showToast('Date range updated', 'success');
 }
 
+// Used by export format modal in admin/index.blade.php.
 function openExportModal() {
-    const modal = document.getElementById('export-modal');
-
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
+    showModal(document.getElementById('export-modal'));
 }
 
 function closeExportModal() {
-    const modal = document.getElementById('export-modal');
-
-    modal.classList.add('hidden');
-    modal.classList.remove('flex');
+    hideModal(document.getElementById('export-modal'));
 }
 
+// Used by export format buttons in admin/index.blade.php.
 function confirmExport(type) {
     closeExportModal();
     showToast(`Exporting ${type} report...`, 'success');
@@ -110,10 +129,43 @@ function confirmExport(type) {
     }, 1500);
 }
 
+// Used by report buttons in admin/index.blade.php and export action in admin/restaurant/index.blade.php.
 function showToast(message, type = 'success') {
+    const container = document.getElementById('toast-container');
+
+    if (container) {
+        const toast = document.createElement('div');
+        const bgClass = type === 'success' ? 'bg-success text-white' : 'bg-error text-white';
+        const icon = type === 'success' ? 'check-circle' : 'alert-circle';
+
+        toast.className = `flex items-center gap-3 px-4 py-3 rounded-2xl shadow-lg transform transition-all duration-300 translate-y-10 opacity-0 ${bgClass}`;
+        toast.innerHTML = `
+            <i data-lucide="${icon}" class="size-5 shrink-0"></i>
+            <p class="font-medium text-sm">${message}</p>
+        `;
+
+        container.appendChild(toast);
+        refreshIcons();
+
+        requestAnimationFrame(() => {
+            toast.classList.remove('translate-y-10', 'opacity-0');
+        });
+
+        setTimeout(() => {
+            toast.classList.add('opacity-0', 'translate-y-2');
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
+
+        return;
+    }
+
     const toast = document.getElementById('toast');
     const messageElement = document.getElementById('toast-message');
     const iconContainer = document.getElementById('toast-icon');
+
+    if (!toast || !messageElement || !iconContainer) {
+        return;
+    }
 
     messageElement.textContent = message;
 
@@ -132,6 +184,7 @@ function showToast(message, type = 'success') {
     }, 3000);
 }
 
+// Used by chart canvases in admin/index.blade.php.
 function initCharts() {
     if (!window.Chart) {
         return;
@@ -256,9 +309,48 @@ function initCharts() {
     });
 }
 
+// Used by logout button/modal in x-sidebar and admin/restaurant/index.blade.php.
+function showLogoutModal() {
+    showModal(document.getElementById('logout-modal'));
+}
+
+function closeLogoutModal() {
+    hideModal(document.getElementById('logout-modal'));
+}
+
+function confirmLogout() {
+    document.getElementById('logout-form').submit();
+}
+
+// Used by Export Report button in admin/restaurant/index.blade.php.
+function handleExport() {
+    const button = document.getElementById('exportBtn');
+
+    if (!button) {
+        return;
+    }
+
+    const originalContent = button.innerHTML;
+
+    button.innerHTML = '<i data-lucide="loader-2" class="size-5 animate-spin"></i><span>Exporting...</span>';
+    button.disabled = true;
+    button.classList.add('opacity-80');
+    refreshIcons();
+
+    setTimeout(() => {
+        button.innerHTML = originalContent;
+        button.disabled = false;
+        button.classList.remove('opacity-80');
+        refreshIcons();
+        showToast('Financial report exported successfully', 'success');
+    }, 1500);
+}
+
+// Expose functions used by inline onclick attributes in Blade files.
 window.toggleSidebar = toggleSidebar;
 window.closePageNotFoundModal = closePageNotFoundModal;
-window.openSearchModal = openSearchModal;
+window.openNotificationModal = openNotificationModal;
+window.closeNotificationModal = closeNotificationModal;
 window.openDateModal = openDateModal;
 window.closeDateModal = closeDateModal;
 window.selectDatePreset = selectDatePreset;
@@ -267,3 +359,7 @@ window.openExportModal = openExportModal;
 window.closeExportModal = closeExportModal;
 window.confirmExport = confirmExport;
 window.showToast = showToast;
+window.showLogoutModal = showLogoutModal;
+window.closeLogoutModal = closeLogoutModal;
+window.confirmLogout = confirmLogout;
+window.handleExport = handleExport;

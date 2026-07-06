@@ -12,7 +12,7 @@ class RestaurantOrderController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.restaurant.index');
     }
 
     /**

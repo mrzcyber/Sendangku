@@ -11,10 +11,16 @@
     --card-grey: #f1f3f6;
     --success: #30b22d;
     --success-light: #dcfce7;
+    --success-dark: #166534;
     --error: #ed6b60;
     --error-light: #fee2e2;
+    --error-dark: #991b1b;
     --warning: #fed71f;
     --warning-light: #fef9c3;
+    --warning-dark: #854d0e;
+    --info: #165dff;
+    --info-light: #dbeafe;
+    --info-dark: #1e40af;
     --font-sans: 'Lexend Deca', sans-serif;
 }
 
@@ -29,14 +35,41 @@
     --color-card-message: #c9e6fc;
     --color-success: var(--success);
     --color-success-light: var(--success-light);
+    --color-success-dark: var(--success-dark);
     --color-error: var(--error);
     --color-error-light: var(--error-light);
+    --color-error-dark: var(--error-dark);
     --color-warning: var(--warning);
-    --color-warning-dark: #b38f00;
+    --color-warning-dark: var(--warning-dark);
     --color-warning-light: var(--warning-light);
+    --color-info: var(--info);
+    --color-info-light: var(--info-light);
+    --color-info-dark: var(--info-dark);
     --font-sans: var(--font-sans);
     --radius-card: 24px;
     --radius-button: 50px;
+}
+
+select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236A7686' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-position: right 16px center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    padding-right: 40px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    background: transparent;
+    bottom: 0;
+    color: transparent;
+    cursor: pointer;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
 }
 
 @layer utilities {

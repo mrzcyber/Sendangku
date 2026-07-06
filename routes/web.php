@@ -50,8 +50,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     });
 
     Route::middleware('role:admin,kasir')->group(function(){
-    Route::resource('/restourant-menu',RestaurantMenuController::class);
-    Route::resource('/resaturan-order',RestaurantOrderController::class);
+    Route::resource('/restaurant-menu',RestaurantMenuController::class);
+    Route::resource('/restaurant-order',RestaurantOrderController::class);
     Route::resource('/table',TableController::class);
     });
     

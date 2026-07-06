@@ -6,12 +6,11 @@
 
 @section('content')
 
-<!-- Mobile Overlay -->
-<div id="sidebar-overlay" class="fixed inset-0 bg-black/80 z-40 lg:hidden hidden" onclick="toggleSidebar()"></div>
-
 <div class="flex h-screen max-h-screen flex-1 bg-muted overflow-hidden">
   <!-- SIDEBAR -->
-  <x-sidebar />
+
+  
+
 
   <!-- MAIN CONTENT -->
   <main class="flex-1 lg:ml-[280px] flex flex-col bg-white min-h-screen overflow-x-hidden">
@@ -22,20 +21,10 @@
       </button>
       <h2 class="hidden lg:block font-bold text-2xl text-foreground">Analytics</h2>
       <div class="flex items-center gap-3">
-        <button onclick="openSearchModal()" class="size-11 flex items-center justify-center rounded-xl ring-1 ring-border hover:ring-primary transition-all duration-300 cursor-pointer" aria-label="Search">
-          <i data-lucide="search" class="size-6 text-secondary"></i>
-        </button>
-        <button class="size-11 flex items-center justify-center rounded-xl ring-1 ring-border hover:ring-primary transition-all duration-300 cursor-pointer relative" aria-label="Notifications">
+        <button onclick="openNotificationModal()" class="size-11 flex items-center justify-center rounded-xl ring-1 ring-border hover:ring-primary transition-all duration-300 cursor-pointer relative" aria-label="Notifications">
           <i data-lucide="bell" class="size-6 text-secondary"></i>
           <span class="absolute -top-1 -right-1 h-5 px-1.5 rounded-full bg-error text-white text-xs font-medium flex items-center justify-center">2</span>
         </button>
-        <div class="hidden md:flex items-center gap-3 pl-3 border-l border-border">
-          <div class="text-right">
-            <p class="font-semibold text-foreground text-sm">Alex Morgan</p>
-            <p class="text-secondary text-xs">Data Analyst</p>
-          </div>
-          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100&h=100&fit=crop" alt="Profile" class="size-11 rounded-full object-cover ring-2 ring-border">
-        </div>
       </div>
     </div>
 
@@ -67,7 +56,7 @@
         <div class="flex flex-col rounded-2xl border border-border p-6 gap-3 bg-white">
           <div class="flex items-center gap-[6px]">
             <div class="size-11 bg-success/10 rounded-xl flex items-center justify-center shrink-0">
-              <i data-lucide="dollar-sign" class="size-6 text-success"></i>
+              <i data-lucide="wallet" class="size-6 text-success"></i>
             </div>
             <p class="font-medium text-secondary">Total Revenue</p>
           </div>
@@ -292,42 +281,6 @@
       
     </div>
   </main>
-</div>
-
-<!-- Search Modal -->
-<div id="search-modal" class="fixed inset-0 bg-black/50 z-[100] hidden items-center justify-center p-4">
-  <div class="bg-white rounded-3xl w-full max-w-2xl max-h-[80vh] overflow-hidden shadow-2xl">
-    <div class="p-4 border-b border-border">
-      <div class="flex items-center gap-3 bg-muted rounded-xl px-4">
-        <i data-lucide="search" class="size-5 text-secondary"></i>
-        <input type="text" id="search-input" placeholder="Search reports, metrics, or users..." class="flex-1 py-3 bg-transparent outline-none text-foreground placeholder:text-secondary">
-        <kbd class="hidden sm:inline-flex items-center gap-1 px-2 py-1 bg-white rounded-lg text-xs text-secondary border border-border">ESC</kbd>
-      </div>
-    </div>
-    <div class="p-4 overflow-y-auto max-h-[60vh]">
-      <p class="text-sm text-secondary mb-3">Suggested Results</p>
-      <div class="flex flex-col gap-2">
-        <a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-muted transition-all cursor-pointer">
-          <div class="size-10 bg-primary/10 rounded-xl flex items-center justify-center">
-            <i data-lucide="file-text" class="size-5 text-primary"></i>
-          </div>
-          <div class="flex-1 min-w-0">
-            <p class="font-medium text-foreground">Q3 Financial Report</p>
-            <p class="text-sm text-secondary">PDF Document • 2.4 MB</p>
-          </div>
-        </a>
-        <a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-muted transition-all cursor-pointer">
-          <div class="size-10 bg-success/10 rounded-xl flex items-center justify-center">
-            <i data-lucide="users" class="size-5 text-success"></i>
-          </div>
-          <div class="flex-1 min-w-0">
-            <p class="font-medium text-foreground">Active Users Analysis</p>
-            <p class="text-sm text-secondary">Dashboard View</p>
-          </div>
-        </a>
-      </div>
-    </div>
-  </div>
 </div>
 
 <!-- Date Range Picker Modal -->
