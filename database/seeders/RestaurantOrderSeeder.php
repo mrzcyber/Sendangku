@@ -22,7 +22,7 @@ class RestaurantOrderSeeder extends Seeder
         RestaurantOrder::query()->create([
             'order_code' => 'RST-00000001',
             'name' => 'Budi Santoso',
-            'tables_id' => $table->id,
+            'table_id' => $table->id,
             'note' => 'Tidak pedas.',
             'total_price' => 20000, // Sesuaikan dengan total item restoran.
             'status' => 'pending',

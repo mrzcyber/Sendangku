@@ -22,8 +22,8 @@ class RestaurantOrderItemSeeder extends Seeder
         }
 
         RestaurantOrderItem::query()->create([
-            'restaurant_orders_id' => $order->id,
-            'restaurant_menus_id' => $menu->id,
+            'restaurant_order_id' => $order->id,
+            'restaurant_menu_id' => $menu->id,
             'qty' => 1,
             'price' => $menu->price,
             'subtotal' => $menu->price,

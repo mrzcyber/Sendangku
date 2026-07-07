@@ -23,8 +23,8 @@ class RestaurantOrderItemFactory extends Factory
         $price = fake()->randomElement([5000, 10000, 15000, 20000]);
 
         return [
-            'restaurant_orders_id' => RestaurantOrder::factory(),
-            'restaurant_menus_id' => RestaurantMenu::factory(),
+            'restaurant_order_id' => RestaurantOrder::factory(),
+            'restaurant_menu_id' => RestaurantMenu::factory(),
             'qty' => $qty,
             'price' => $price,
             'subtotal' => $qty * $price,
