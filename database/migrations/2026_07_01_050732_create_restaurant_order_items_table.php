@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('restaurant_orders_items', function (Blueprint $table) {
+        Schema::create('restaurant_order_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('restaurant_orders_id')->constrained('restaurant_orders')->cascadeOnDelete();
-            $table->foreignId('restaurant_menus_id')->nullable()->constrained('restaurant_menus')->nullOnDelete();
+            $table->foreignId('restaurant_order_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('restaurant_menu_id')->nullable()->constrained()->nullOnDelete();
             $table->unsignedInteger('qty');
             $table->unsignedInteger('price');
             $table->unsignedInteger('subtotal');
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('restaurant_orders_items');
+        Schema::dropIfExists('restaurant_order_items');
     }
 };

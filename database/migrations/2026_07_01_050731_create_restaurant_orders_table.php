@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('order_code')->unique();
             $table->string('name');
-            $table->foreignId('tables_id')->nullable()->constrained('tables')->nullOnDelete();
+            $table->foreignId('table_id')->nullable()->constrained()->nullOnDelete();
             $table->text('note')->nullable();
             $table->unsignedInteger('total_price');
             $table->enum('status', ['pending', 'success', 'failed'])->default('pending');
