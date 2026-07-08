@@ -24,7 +24,7 @@ class UpdateBlogRequest extends FormRequest
     {
         return [
             'name' => ['sometimes', 'required', 'string', 'max:255'],
-            'thumbnail' => ['sometimes', 'required', 'string', 'max:255'],
+            'thumbnail' => ['sometimes', 'required', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
             'content' => ['sometimes', 'required', 'string'],
         ];
     }

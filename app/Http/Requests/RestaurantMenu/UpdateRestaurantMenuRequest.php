@@ -25,7 +25,7 @@ class UpdateRestaurantMenuRequest extends FormRequest
         return [
             'status' => ['sometimes', 'required', 'boolean'],
             'name' => ['sometimes', 'required', 'string', 'max:255'],
-            'thumbnail' => ['sometimes', 'required', 'string', 'max:255'],
+            'thumbnail' => ['sometimes', 'required', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
             'price' => ['sometimes', 'required', 'integer', 'min:0'],
         ];
     }

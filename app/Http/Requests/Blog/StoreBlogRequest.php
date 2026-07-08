@@ -24,7 +24,7 @@ class StoreBlogRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'thumbnail' => ['required', 'string', 'max:255'],
+            'thumbnail' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
             'content' => ['required', 'string'],
         ];
     }
