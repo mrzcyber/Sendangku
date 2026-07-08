@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('restaurant_menus', function (Blueprint $table) {
             $table->id();
             $table->boolean('status')->default(true);
+            $table->enum('category', ['makanan', 'minuman', 'lainnya']);
             $table->string('name');
             $table->string('thumbnail');
             $table->unsignedInteger('price');

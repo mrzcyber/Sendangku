@@ -12,6 +12,7 @@ class RestaurantMenu extends Model
 
     protected $fillable = [
         'status',
+        'category',
         'name',
         'thumbnail',
         'price',

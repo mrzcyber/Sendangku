@@ -19,6 +19,7 @@ class RestaurantMenuFactory extends Factory
     {
         return [
             'status' => true,
+            'category' => fake()->randomElement(['makanan', 'minuman', 'lainnya']),
             'name' => fake()->randomElement(['Nasi Goreng', 'Mie Goreng', 'Es Teh', 'Kopi Tubruk']),
             'thumbnail' => 'seeders/sendang.png', // Sesuaikan dengan path asset yang tersedia.
             'price' => fake()->randomElement([5000, 10000, 15000, 20000]),

@@ -16,6 +16,7 @@ class RestaurantMenuSeeder extends Seeder
             ['name' => 'Nasi Goreng'],
             [
                 'status' => true,
+                'category' => 'makanan',
                 'thumbnail' => 'seeders/sendang.png', // Sesuaikan path asset.
                 'price' => 15000,
             ]
@@ -25,6 +26,7 @@ class RestaurantMenuSeeder extends Seeder
             ['name' => 'Es Teh'],
             [
                 'status' => true,
+                'category' => 'minuman',
                 'thumbnail' => 'seeders/sendang.png', // Sesuaikan path asset.
                 'price' => 5000,
             ]
