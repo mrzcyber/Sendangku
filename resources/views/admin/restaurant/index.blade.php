@@ -1,454 +1,182 @@
 @extends('layouts.dashboard')
 
-@section('title', 'Restaurant - Financial Reports')
-@section('meta_description', 'Restaurant financial management and reporting dashboard.')
+@section('title', 'Restaurant Menu')
+@section('meta_description', 'Manage Sendangku restaurant menu items.')
 @section('body_class', 'font-sans bg-muted min-h-screen overflow-x-hidden text-foreground')
 
 @section('content')
 
 <div class="flex h-screen max-h-screen flex-1 overflow-hidden">
-  
-  <!-- MAIN CONTENT -->
   <main class="flex-1 lg:ml-[280px] flex flex-col bg-white min-h-screen overflow-x-hidden">
-
-
-    <!-- Date Range Picker Modal -->
-<div id="date-modal" class="fixed inset-0 bg-black/50 z-[100] hidden items-center justify-center p-4">
-  <div class="bg-white rounded-3xl w-full max-w-md shadow-2xl overflow-hidden">
-    <div class="p-6 border-b border-border">
-      <div class="flex items-center justify-between mb-4">
-        <h3 class="text-xl font-bold text-foreground">Select Date Range</h3>
-        <button onclick="closeDateModal()" class="p-2 hover:bg-muted rounded-full transition-colors cursor-pointer">
-          <i data-lucide="x" class="size-5 text-secondary"></i>
-        </button>
-      </div>
-      
-      <!-- Presets -->
-      <div class="flex flex-wrap gap-2 mb-6">
-        <button onclick="selectDatePreset(this, 'Last 7 Days')" class="date-preset px-4 py-2 rounded-xl bg-primary/10 text-primary font-semibold text-sm border border-primary/20 cursor-pointer">Last 7 Days</button>
-        <button onclick="selectDatePreset(this, 'Last 30 Days')" class="date-preset px-4 py-2 rounded-xl bg-white text-secondary font-medium text-sm border border-border hover:border-primary hover:text-primary transition-all cursor-pointer">Last 30 Days</button>
-        <button onclick="selectDatePreset(this, 'This Month')" class="date-preset px-4 py-2 rounded-xl bg-white text-secondary font-medium text-sm border border-border hover:border-primary hover:text-primary transition-all cursor-pointer">This Month</button>
-        <button onclick="selectDatePreset(this, 'Last Quarter')" class="date-preset px-4 py-2 rounded-xl bg-white text-secondary font-medium text-sm border border-border hover:border-primary hover:text-primary transition-all cursor-pointer">Last Quarter</button>
-      </div>
-
-      <!-- Custom Inputs -->
-      <div class="grid grid-cols-2 gap-4">
-        <div class="flex flex-col gap-2">
-          <label class="text-sm font-medium text-secondary">Start Date</label>
-          <div class="relative">
-            <input type="date" class="w-full p-3 rounded-xl border border-border bg-gray-50 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:bg-white transition-all">
-          </div>
-        </div>
-        <div class="flex flex-col gap-2">
-          <label class="text-sm font-medium text-secondary">End Date</label>
-          <div class="relative">
-            <input type="date" class="w-full p-3 rounded-xl border border-border bg-gray-50 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:bg-white transition-all">
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="p-6 bg-gray-50 flex justify-end gap-3">
-      <button onclick="closeDateModal()" class="px-6 py-3 rounded-full border border-border bg-white text-foreground font-semibold hover:bg-gray-100 transition-all cursor-pointer">Cancel</button>
-      <button onclick="applyDateRange()" class="px-6 py-3 rounded-full bg-primary text-white font-bold hover:bg-primary-hover transition-all cursor-pointer shadow-lg shadow-primary/20">Apply Range</button>
-    </div>
-  </div>
-</div>
-    
-    <!-- Top Header Bar -->
     <div class="flex items-center justify-between w-full h-[90px] shrink-0 border-b border-border bg-white px-5 md:px-8">
       <div class="flex items-center gap-4">
         <button onclick="toggleSidebar()" aria-label="Open menu" class="lg:hidden size-11 flex items-center justify-center rounded-xl ring-1 ring-border hover:ring-primary transition-all duration-300 cursor-pointer">
           <i data-lucide="menu" class="size-6 text-foreground"></i>
         </button>
-        <h2 class="font-bold text-xl md:text-2xl text-foreground">Laporan Keuangan</h2>
+        <h2 class="font-bold text-xl md:text-2xl text-foreground">Restaurant Menu</h2>
       </div>
-      
-      <div class="flex items-center gap-3">
-        <button onclick="openNotificationModal()" class="size-11 flex items-center justify-center rounded-xl ring-1 ring-border hover:ring-primary transition-all duration-300 cursor-pointer relative" aria-label="Notifications">
-          <i data-lucide="bell" class="size-6 text-secondary"></i>
-          <span class="absolute -top-1 -right-1 h-5 px-[6px] rounded-full bg-error text-white text-xs font-bold flex items-center justify-center border-2 border-white">2</span>
-        </button>
-      </div>
+
+      <button onclick="openNotificationModal()" class="size-11 flex items-center justify-center rounded-xl ring-1 ring-border hover:ring-primary transition-all duration-300 cursor-pointer relative" aria-label="Notifications">
+        <i data-lucide="bell" class="size-6 text-secondary"></i>
+        <span class="absolute -top-1 -right-1 h-5 px-[6px] rounded-full bg-error text-white text-xs font-bold flex items-center justify-center border-2 border-white">2</span>
+      </button>
     </div>
 
-    <!-- Page Content Area -->
     <div class="flex-1 overflow-y-auto p-5 md:p-8">
-      
-      <!-- Page Header & Actions -->
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 class="text-foreground text-2xl font-bold mb-1">Laporan Restaurant</h1>
-          <p class="text-secondary text-sm">Lacak dan kelola pendapatan restaurant, pengeluaran, and dana.</p>
+          <h1 class="text-foreground text-2xl font-bold mb-1">Daftar Menu Restaurant</h1>
+          <p class="text-secondary text-sm">Kelola menu makanan, minuman, dan item lainnya.</p>
         </div>
-                <div class="grid grid-cols-2 gap-2 w-full md:w-auto md:flex md:items-center md:gap-3">
-          <button  onclick="openDateModal()" class="flex items-center justify-center gap-2 px-4 md:px-6 py-3 ring-1 ring-border hover:ring-primary rounded-full text-foreground font-semibold transition-all duration-300 cursor-pointer bg-white">
-            <i data-lucide="calendar" class="w-5 h-5 text-secondary"></i>
-            <span id="dateRangeLabel">Last 30 Days</span>
-            <i data-lucide="chevron-down" class="w-4 h-4 text-secondary ml-1"></i>
-          </button>
-        <button id="exportBtn" onclick="handleExport()" class="flex items-center justify-center gap-2 px-6 py-3 bg-primary text-white rounded-full font-bold hover:bg-primary-hover transition-all duration-300 cursor-pointer w-full md:w-auto shadow-sm">
-          <i data-lucide="download" class="size-5"></i>
-          <span>Export Report</span>
-        </button>
-                </div>
+
       </div>
 
-      <!-- Stats Grid 1: Main Financials -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-4 md:mb-6">
-        <!-- Income -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-6 mb-8">
         <div class="flex flex-col rounded-2xl border border-border p-6 gap-3 bg-white shadow-sm">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-[6px]">
-              <div class="size-11 bg-success/10 rounded-xl flex items-center justify-center shrink-0">
-                <i data-lucide="wallet" class="size-6 text-success"></i>
-              </div>
-              <p class="font-medium text-secondary">Total Pendapatan</p>
-            </div>
-            <span class="text-success text-sm font-bold bg-success/10 px-2 py-1 rounded-lg">+12%</span>
-          </div>
-          <p class="font-bold text-[28px] leading-10 text-foreground">Rp 1.250.000</p>
-        </div>
-
-        <!-- Expenses -->
-        <div class="flex flex-col rounded-2xl border border-border p-6 gap-3 bg-white shadow-sm">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-[6px]">
-              <div class="size-11 bg-error/10 rounded-xl flex items-center justify-center shrink-0">
-                <i data-lucide="paper-bag" class="size-6 text-error"></i>
-              </div>
-              <p class="font-medium text-secondary"> Pembelian Paket</p>
-            </div>
-            <span class="text-error text-sm font-bold bg-error/10 px-2 py-1 rounded-lg">+5%</span>
-          </div>
-          <p class="font-bold text-[28px] leading-10 text-foreground">45 paket</p>
-        </div>
-
-        <!-- Balance -->
-        <div class="flex flex-col rounded-2xl border border-border p-6 gap-3 bg-white shadow-sm">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-[6px]">
-              <div class="size-11 bg-primary/10 rounded-xl flex items-center justify-center shrink-0">
-                <i data-lucide="salad" class="size-6 text-primary"></i>
-              </div>
-              <p class="font-medium text-secondary">Pembelian Makanan</p>
-            </div>
-            <span class="text-error text-sm font-bold bg-error/10 px-2 py-1 rounded-lg">+5%</span>
-          </div>
-          
-          <p class="font-bold text-[28px] leading-10 text-foreground"> 80 Makanan</p>
-        </div>
-      </div>
-
-      <!-- Stats Grid 2: Fund Types -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-8">
-        <!-- total transaksi -->
-        <div class="flex flex-col rounded-2xl border border-border p-6 gap-3 bg-white shadow-sm">
-          <div class="flex items-center justify-between">
           <div class="flex items-center gap-[6px]">
-            <div class="size-11 bg-warning/10 rounded-xl flex items-center justify-center shrink-0">
-              <i data-lucide="banknote-arrow-up" class="size-6 text-warning-dark"></i>
+            <div class="size-11 bg-primary/10 rounded-xl flex items-center justify-center shrink-0">
+              <i data-lucide="salad" class="size-6 text-primary"></i>
             </div>
-            <p class="font-medium text-secondary">Total Pembelian</p>
+            <p class="font-medium text-secondary">Makanan</p>
           </div>
-          <span class="text-error text-sm font-bold bg-error/10 px-2 py-1 rounded-lg">+5%</span>
-        </div>
-          <p class="font-bold text-[28px] leading-10 text-foreground">50 Pembelian</p>
+          <p class="font-bold text-[28px] leading-10 text-foreground">{{ $foodCount }}</p>
         </div>
 
-        <!-- drink -->
         <div class="flex flex-col rounded-2xl border border-border p-6 gap-3 bg-white shadow-sm">
-          <div class="flex items-center justify-between">
           <div class="flex items-center gap-[6px]">
             <div class="size-11 bg-info/10 rounded-xl flex items-center justify-center shrink-0">
               <i data-lucide="cup-soda" class="size-6 text-info"></i>
             </div>
-            <p class="font-medium text-secondary">Pembelian Minuman</p>
+            <p class="font-medium text-secondary">Minuman</p>
           </div>
-          <span class="text-error text-sm font-bold bg-error/10 px-2 py-1 rounded-lg">+5%</span>
-        </div>
-          <p class="font-bold text-[28px] leading-10 text-foreground">25 Minuman</p>
+          <p class="font-bold text-[28px] leading-10 text-foreground">{{ $drinkCount }}</p>
         </div>
 
-        <!-- lainya -->
         <div class="flex flex-col rounded-2xl border border-border p-6 gap-3 bg-white shadow-sm">
-          <div class="flex items-center justify-between">
+          <div class="flex items-center gap-[6px]">
+            <div class="size-11 bg-warning/10 rounded-xl flex items-center justify-center shrink-0">
+              <i data-lucide="popcorn" class="size-6 text-warning-dark"></i>
+            </div>
+            <p class="font-medium text-secondary">Lainnya</p>
+          </div>
+          <p class="font-bold text-[28px] leading-10 text-foreground">{{ $otherCount }}</p>
+        </div>
+
+        <div class="flex flex-col rounded-2xl border border-border p-6 gap-3 bg-white shadow-sm">
           <div class="flex items-center gap-[6px]">
             <div class="size-11 bg-success/10 rounded-xl flex items-center justify-center shrink-0">
-              <i data-lucide="popcorn" class="size-6 text-success-dark"></i>
+              <i data-lucide="clipboard-list" class="size-6 text-success"></i>
             </div>
-            <p class="font-medium text-secondary">Pembelian Lainnya</p>
+            <p class="font-medium text-secondary">Total Menu</p>
           </div>
-          <span class="text-error text-sm font-bold bg-error/10 px-2 py-1 rounded-lg">+5%</span>
-          </div>
-          <p class="font-bold text-[28px] leading-10 text-foreground"> 5 Pembelian</p>
+          <p class="font-bold text-[28px] leading-10 text-foreground">{{ $totalMenus }}</p>
         </div>
       </div>
 
-      <!-- Transactions Section -->
       <div class="flex flex-col rounded-3xl border border-border bg-white shadow-sm overflow-hidden">
-        
-        <!-- Section Header & Filters -->
-        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 p-6 border-b border-border">
-          <h3 class="font-bold text-lg text-foreground">Transaksi Pembelian</h3>
-          
-          <div class="flex flex-col sm:flex-row items-center gap-3 w-full lg:w-auto">
-            
-            <!-- Type Filter -->
-            <div class="relative w-full sm:w-auto">
-              <select id="selectTypeFilter" class="w-full sm:w-[160px] h-12 pl-4 pr-10 rounded-2xl ring-1 ring-border focus:ring-2 focus:ring-primary bg-white outline-none text-sm font-medium text-foreground transition-all">
-                <option value="all">All Types</option>
-                <option value="income">Success</option>
-                <option value="expense">Pending</option>
-              </select>
-            </div>
+        <div class="flex items-center justify-between gap-4 p-6 border-b border-border">
+          <h3 class="font-bold text-lg text-foreground">Menu Restaurant</h3>
+          <div class="flex flex-row items-center gap-3">
+
+            <form action="" method="get">
+                @csrf
+                <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari menu..." class="px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+            </form>
+
+            <a href="{{ route('admin.restaurant-menu.create') }}" class="flex items-center justify-center gap-2 px-6 py-3 bg-primary text-white rounded-full font-bold hover:bg-primary-hover transition-all duration-300 cursor-pointer w-full md:w-auto shadow-sm">
+          <i data-lucide="utensils" class="size-5"></i>
+          <span>Tambah Menu</span>
+        </a>
+
           </div>
         </div>
 
-        <!-- Table Wrapper for Mobile Scroll -->
         <div class="overflow-x-auto">
-          <table class="w-full min-w-[1000px] text-left border-collapse">
+          <table class="w-full min-w-[920px] text-left border-collapse">
             <thead>
               <tr class="bg-muted/50 border-b border-border">
-                <th class="px-6 py-4 text-xs font-semibold text-secondary uppercase tracking-wider w-[12%]">Code</th>
-                <th class="px-6 py-4 text-xs font-semibold text-secondary uppercase tracking-wider w-[6%]">Meja</th>
-                <th class="px-6 py-4 text-xs font-semibold text-secondary uppercase tracking-wider w-[12%]">Nama</th>
-                <th class="px-6 py-4 text-xs font-semibold text-secondary uppercase tracking-wider w-[12%]">Harga</th>
-                <th class="px-6 py-4 text-xs font-semibold text-secondary uppercase tracking-wider w-[10%]">Pembayaran</th>
-                <th class="px-6 py-4 text-xs font-semibold text-secondary uppercase tracking-wider w-[16%]">Waktu</th>
-                <th class="px-6 py-4 text-xs font-semibold text-secondary uppercase tracking-wider w-[11%]">Status</th>
-                <th class="px-6 py-4 text-xs font-semibold text-secondary uppercase tracking-wider w-[11%]">Aksi</th>
+                <th class="px-6 py-4 text-xs font-semibold text-secondary uppercase tracking-wider w-[14%]">Thumbnail</th>
+                <th class="px-6 py-4 text-xs font-semibold text-secondary uppercase tracking-wider w-[24%]">Nama</th>
+                <th class="px-6 py-4 text-xs font-semibold text-secondary uppercase tracking-wider w-[16%]">Kategori</th>
+                <th class="px-6 py-4 text-xs font-semibold text-secondary uppercase tracking-wider w-[16%]">Harga</th>
+                <th class="px-6 py-4 text-xs font-semibold text-secondary uppercase tracking-wider w-[14%]">Status</th>
+                <th class="px-6 py-4 text-xs font-semibold text-secondary uppercase tracking-wider w-[16%]">Action</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-border">
-              <!-- Row 1 -->
-              <tr class="hover:bg-muted/30 transition-colors group">
-                <td class="px-6 py-4">
-                  <span class="font-semibold text-sm text-foreground">TRX-1042</span>
-                </td>
-                <td class="px-6 py-4">
-                  <span class=" text-md bg-error/20 rounded-full px-2.5 py-1 font-bold">
-                    5
-                  </span>
-                </td>
-                <td class="px-6 py-4">
-                  <p class="text-sm font-medium text-foreground truncate max-w-[100px]">From Hamba Allah (Family of 4)</p>
-                </td>
-                <td class="px-6 py-4">
-                  <span class="text-sm font-bold text-success">Rp 160.000</span>
-                </td>
-                <td class="px-6 py-4">
-                  <div class="flex items-center gap-2">
-                    <i data-lucide="smartphone" class="size-4 text-secondary"></i>
-                    <span class="text-sm font-medium text-secondary">QRIS</span>
-                  </div>
-                </td>
-                <td class="px-6 py-4">
-                  <span class="text-sm font-medium text-secondary">24 Oct 2023</span>
-                </td>
-                <td class="px-6 py-4">
-                  <span class="inline-flex items-center justify-center px-3 py-1 rounded-full bg-success-light text-success-dark text-xs font-bold">
-                    Completed
-                  </span>
-                </td>
-                <td class="px-6 py-4">
-                  <button onclick="openTransactionDetailsModal('TRX-1042')" class="py-1.5 px-4 rounded-full bg-info/10 text-info-dark text-xs font-bold hover:bg-info/20 transition-all duration-300 cursor-pointer">
-                    Detail
-                  </button>
-
-                </td>
-              </tr>
-
-              <!-- Row 2 -->
-              <tr class="hover:bg-muted/30 transition-colors group">
-                <td class="px-6 py-4">
-                  <span class="font-semibold text-sm text-foreground">TRX-1041</span>
-                </td>
-                <td class="px-6 py-4">
-                  <span class=" text-md bg-error/20 rounded-full px-2.5 py-1 font-bold">
-                    5
-                  </span>
-                </td>
-                <td class="px-6 py-4">
-                  <p class="text-sm font-medium text-foreground truncate max-w-[100px]">Monthly Electricity Bill</p>
-                </td>
-                <td class="px-6 py-4">
-                  <span class="text-sm font-bold text-error">Rp 2.450.000</span>
-                </td>
-                <td class="px-6 py-4">
-                  <div class="flex items-center gap-2">
-                    <i data-lucide="building" class="size-4 text-secondary"></i>
-                    <span class="text-sm font-medium text-secondary">Bank Trf</span>
-                  </div>
-                </td>
-                <td class="px-6 py-4">
-                  <span class="text-sm font-medium text-secondary">23 Oct 2023</span>
-                </td>
-                <td class="px-6 py-4">
-                  <span class="inline-flex items-center justify-center px-3 py-1 rounded-full bg-success-light text-success-dark text-xs font-bold">
-                    Completed
-                  </span>
-                </td>
-                <td class="px-6 py-4">
-                  <button onclick="openTransactionDetailsModal('TRX-1042')" class="py-1.5 px-4 rounded-full bg-info/10 text-info-dark text-xs font-bold hover:bg-info/20 transition-all duration-300 cursor-pointer">
-                    Detail
-                  </button>
-                </td>
-              </tr>
-
-              <!-- Row 3 -->
-              <tr class="hover:bg-muted/30 transition-colors group">
-                <td class="px-6 py-4">
-                  <span class="font-semibold text-sm text-foreground">TRX-1040</span>
-                </td>
-                <td class="px-6 py-4">
-                  <span class=" text-md bg-error/20 rounded-full px-2.5 py-1 font-bold">
-                    5
-                  </span>
-                </td>
-                <td class="px-6 py-4">
-                  <p class="text-sm font-medium text-foreground truncate max-w-[100px]">Friday Prayer Collection</p>
-                </td>
-                <td class="px-6 py-4">
-                  <span class="text-sm font-bold text-success">Rp 4.200.000</span>
-                </td>
-                <td class="px-6 py-4">
-                  <div class="flex items-center gap-2">
-                    <i data-lucide="banknote" class="size-4 text-secondary"></i>
-                    <span class="text-sm font-medium text-secondary">Cash</span>
-                  </div>
-                </td>
-                <td class="px-6 py-4">
-                  <span class="text-sm font-medium text-secondary">20 Oct 2023</span>
-                </td>
-                <td class="px-6 py-4">
-                  <span class="inline-flex items-center justify-center px-3 py-1 rounded-full bg-warning-light text-warning-dark text-xs font-bold">
-                    Pending Dep.
-                  </span>
-                </td>
+              @forelse ($menuItems as $menu)
+                @php
+                    $categoryClass = match ($menu->category) {
+                        'makanan' => 'bg-primary/10 text-primary',
+                        'minuman' => 'bg-info/10 text-info-dark',
+                        default => 'bg-warning/10 text-warning-dark',
+                    };
+                @endphp
+                <tr class="hover:bg-muted/30 transition-colors group">
                   <td class="px-6 py-4">
-                  <button onclick="openTransactionDetailsModal('TRX-1042')" class="py-1.5 px-4 rounded-full bg-info/10 text-info-dark text-xs font-bold hover:bg-info/20 transition-all duration-300 cursor-pointer">
-                    Detail
-                  </button>
-                </td>
-              </tr>
-
-              <!-- Row 4 -->
-              <tr class="hover:bg-muted/30 transition-colors group">
-                <td class="px-6 py-4">
-                  <span class="font-semibold text-sm text-foreground">TRX-1039</span>
-                </td>
-                <td class="px-6 py-4">
-                  <span class=" text-md bg-error/20 rounded-full px-2.5 py-1 font-bold">
-                    5
-                  </span>
-                </td>
-                <td class="px-6 py-4">
-                  <p class="text-sm font-medium text-foreground truncate max-w-[100px]">Building Expansion Fund</p>
-                </td>
-                <td class="px-6 py-4">
-                  <span class="text-sm font-bold text-success">Rp 10.000.000</span>
-                </td>
-                <td class="px-6 py-4">
-                  <div class="flex items-center gap-2">
-                    <i data-lucide="building" class="size-4 text-secondary"></i>
-                    <span class="text-sm font-medium text-secondary">Bank Trf</span>
-                  </div>
-                </td>
-                <td class="px-6 py-4">
-                  <span class="text-sm font-medium text-secondary">18 Oct 2023</span>
-                </td>
-                <td class="px-6 py-4">
-                  <span class="inline-flex items-center justify-center px-3 py-1 rounded-full bg-success-light text-success-dark text-xs font-bold">
-                    Completed
-                  </span>
-                </td>
+                    <div class="w-24 h-14 overflow-hidden rounded-xl bg-muted ring-1 ring-border">
+                      <img
+                        src="{{ asset($menu->thumbnail) }}"
+                        alt="{{ $menu->name }}"
+                        class="h-full w-full object-cover object-center"
+                      >
+                    </div>
+                  </td>
                   <td class="px-6 py-4">
-                  <button onclick="openTransactionDetailsModal('TRX-1042')" class="py-1.5 px-4 rounded-full bg-info/10 text-info-dark text-xs font-bold hover:bg-info/20 transition-all duration-300 cursor-pointer">
-                    Detail
-                  </button>
-
-                </td>
-              </tr>
-
-              <!-- Row 5 -->
-              <tr class="hover:bg-muted/30 transition-colors group">
-                <td class="px-6 py-4">
-                  <span class="font-semibold text-sm text-foreground">TRX-1038</span>
-                </td>
-                <td class="px-6 py-4">
-                  <span class=" text-md bg-error/20 rounded-full px-2.5 py-1 font-bold">
-                    5
-                  </span>
-                </td>
-                <td class="px-6 py-4">
-                  <p class="text-sm font-medium text-foreground truncate max-w-[100px]">AC Repair & Servicing</p>
-                </td>
-                <td class="px-6 py-4">
-                  <span class="text-sm font-bold text-error">Rp 850.000</span>
-                </td>
-                <td class="px-6 py-4">
-                  <div class="flex items-center gap-2">
-                    <i data-lucide="banknote" class="size-4 text-secondary"></i>
-                    <span class="text-sm font-medium text-secondary">Cash</span>
-                  </div>
-                </td>
-                <td class="px-6 py-4">
-                  <span class="text-sm font-medium text-secondary">15 Oct 2023</span>
-                </td>
-                <td class="px-6 py-4">
-                  <span class="inline-flex items-center justify-center px-3 py-1 rounded-full bg-success-light text-success-dark text-xs font-bold">
-                    Completed
-                  </span>
-                </td>
-                <td class="px-6 py-4">
-                  <button onclick="openTransactionDetailsModal('TRX-1042')" class="py-1.5 px-4 rounded-full bg-info/10 text-info-dark text-xs font-bold hover:bg-info/20 transition-all duration-300 cursor-pointer">
-                    Detail
-                  </button>
-                </td>
-              </tr>
+                    <p class="text-sm font-bold text-foreground truncate max-w-[220px]">{{ $menu->name }}</p>
+                  </td>
+                  <td class="px-6 py-4">
+                    <span class="inline-flex items-center justify-center rounded-full px-3 py-1 text-xs font-bold capitalize {{ $categoryClass }}">
+                      {{ $menu->category }}
+                    </span>
+                  </td>
+                  <td class="px-6 py-4">
+                    <span class="text-sm font-bold text-success">Rp {{ number_format($menu->price, 0, ',', '.') }}</span>
+                  </td>
+                  <td class="px-6 py-4">
+                    @if ($menu->status)
+                      <span class="inline-flex items-center justify-center px-3 py-1 rounded-full bg-success-light text-success-dark text-xs font-bold">Aktif</span>
+                    @else
+                      <span class="inline-flex items-center justify-center px-3 py-1 rounded-full bg-error/10 text-error text-xs font-bold">Nonaktif</span>
+                    @endif
+                  </td>
+                  <td class="px-6 py-4">
+                    <div class="flex items-center gap-2">
+                      <a href="{{ route('admin.restaurant-menu.edit', $menu) }}" class="size-9 flex items-center justify-center rounded-xl bg-info/10 text-info-dark hover:bg-info/20 transition-all duration-300" aria-label="Edit menu">
+                        <i data-lucide="pencil" class="size-4"></i>
+                      </a>
+                      <form action="{{ route('admin.restaurant-menu.destroy', $menu) }}" method="POST" onsubmit="return confirm('Hapus menu ini?')">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="size-9 flex items-center justify-center rounded-xl bg-error/10 text-error hover:bg-error/20 transition-all duration-300 cursor-pointer" aria-label="Delete menu">
+                          <i data-lucide="trash-2" class="size-4"></i>
+                        </button>
+                      </form>
+                    </div>
+                  </td>
+                </tr>
+              @empty
+                <tr>
+                  <td colspan="6" class="px-6 py-12 text-center">
+                    <div class="mx-auto mb-4 size-14 rounded-2xl bg-muted flex items-center justify-center">
+                      <i data-lucide="utensils" class="size-7 text-secondary"></i>
+                    </div>
+                    <p class="font-semibold text-foreground">Belum ada menu</p>
+                    <p class="text-sm text-secondary mt-1">Menu yang dibuat akan muncul di tabel ini.</p>
+                  </td>
+                </tr>
+              @endforelse
             </tbody>
           </table>
         </div>
-        
-        <!-- Pagination -->
-        <div class="flex flex-col sm:flex-row items-center justify-between p-6 border-t border-border gap-4">
-          <p class="text-sm text-secondary font-medium">Showing <span class="text-foreground font-bold">1-5</span> of <span class="text-foreground font-bold">124</span> transactions</p>
-          <div class="flex items-center gap-2">
-            <button class="p-[10px] rounded-xl border border-border bg-white hover:ring-1 hover:ring-primary transition-all duration-300 cursor-pointer disabled:opacity-50" aria-label="Previous" disabled>
-              <i data-lucide="chevron-left" class="size-5 text-secondary"></i>
-            </button>
-            <div class="hidden sm:flex items-center gap-2">
-              <button class="size-10 flex items-center justify-center rounded-xl bg-primary/10 border border-primary/20 font-bold text-primary cursor-pointer">1</button>
-              <button class="size-10 flex items-center justify-center rounded-xl border border-border bg-white hover:bg-primary/10 hover:text-primary font-semibold transition-all duration-300 cursor-pointer">2</button>
-              <button class="size-10 flex items-center justify-center rounded-xl border border-border bg-white hover:bg-primary/10 hover:text-primary font-semibold transition-all duration-300 cursor-pointer">3</button>
-            </div>
-            <button class="p-[10px] rounded-xl border border-border bg-white hover:ring-1 hover:ring-primary transition-all duration-300 cursor-pointer" aria-label="Next">
-              <i data-lucide="chevron-right" class="size-5 text-secondary"></i>
-            </button>
+
+        @if ($menuItems )
+          <div class="p-6 border-t border-border">
+            {{ $menuItems->links() }}
           </div>
-        </div>
-
+        @endif
       </div>
-
     </div>
   </main>
 </div>
-
-<!-- Toast Notification Container -->
-<div id="toast-container" class="fixed bottom-6 right-6 z-[100] flex flex-col gap-3 pointer-events-none"></div>
-
-<!-- Page Not Found Modal -->
-<div id="page-not-found-modal" class="fixed inset-0 bg-black/50 z-[100] hidden flex items-center justify-center p-4">
-  <div class="bg-white rounded-3xl p-6 max-w-sm w-full text-center shadow-2xl">
-    <div class="w-16 h-16 bg-warning/10 rounded-full flex items-center justify-center mx-auto mb-4">
-      <i data-lucide="alert-triangle" class="w-8 h-8 text-warning-dark"></i>
-    </div>
-    <h3 class="text-foreground text-xl font-bold mb-2">Page Not Available</h3>
-    <p class="text-secondary text-sm mb-6">This page hasn't been created yet. Generate it using the chat!</p>
-    <button onclick="closePageNotFoundModal()" class="w-full px-4 py-3 bg-primary text-white rounded-full font-bold hover:bg-primary-hover transition-all duration-200 cursor-pointer">
-      Got it
-    </button>
-  </div>
-</div>
-
 @endsection
