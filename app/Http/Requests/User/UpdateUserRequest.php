@@ -32,7 +32,7 @@ class UpdateUserRequest extends FormRequest
                 'max:255',
                 Rule::unique('users', 'email')->ignore($this->route('user')),
             ],
-            'password' => ['sometimes', 'required', 'string', 'min:8'],
+            'password' => ['nullable', 'string', 'min:8'],
             'role' => ['sometimes', 'required', 'string', 'in:admin,tiket,kasir'],
         ];
     }

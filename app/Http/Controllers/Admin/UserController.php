@@ -16,8 +16,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        $data = User::get();
-        return view('admin.user.index', compact('data'));
+        $data = User::where('email','!=','admin@example.com')->latest()->paginate(5);
+        $totalAnggota = User::count();
+        $totalKasir = User::where('role', 'kasir')->count();
+        $totalTiket = User::where('role', 'tiket')->count();
+
+        return view('admin.user.index', compact('data', 'totalAnggota', 'totalKasir', 'totalTiket'));
     }
 
     /**
@@ -60,7 +64,13 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, string $id)
     {
         $user = User::findOrFail($id);
-        $user->update($request->validated());
+        $validated = $request->validated();
+
+        if (blank($validated['password'] ?? null)) {
+            unset($validated['password']);
+        }
+
+        $user->update($validated);
         return redirect()->route('admin.user.index')->with('success', 'User updated successfully.');
     }
 
@@ -86,7 +96,16 @@ class UserController extends Controller
         if (Auth::attempt($credentials, $remember)) {
             // Authentication passed...
             $request->session()->regenerate();
-            return redirect()->intended('/admin/dashboard');
+
+            if(Auth::user()->role === "admin" ){
+                return redirect()->route('admin.dashboard.index');
+            }
+            if(Auth::user()->role === "kasir" ){
+                    return redirect()->route('admin.restaurant-order.index');
+            }
+
+            return redirect()->route('admin.order-ticket.index');
+                
         }
 
         return back()->withErrors([

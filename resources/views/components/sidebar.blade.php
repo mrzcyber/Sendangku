@@ -41,7 +41,7 @@
       <div class="flex flex-col gap-1">
         <h3 class="font-medium text-sm text-secondary">Settings</h3>
         <div class="flex flex-col ">
-          <a href="#" class="group cursor-pointer">
+          <a href="{{ route('admin.user.index') }}" class="group {{ request()->routeIs('admin.user.index') ? 'active' : '' }} cursor-pointer">
             <div class="flex items-center rounded-xl p-4 gap-3 bg-white group-[.active]:bg-muted group-hover:bg-muted transition-all duration-300">
               <i data-lucide="id-card-lanyard" class="size-6 text-secondary group-[.active]:text-foreground group-hover:text-foreground transition-all duration-300"></i>
               <span class="font-medium text-secondary group-[.active]:font-semibold group-[.active]:text-foreground group-hover:text-foreground transition-all duration-300">Employee</span>
