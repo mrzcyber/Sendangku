@@ -47,7 +47,7 @@
               <span class="font-medium text-secondary group-[.active]:font-semibold group-[.active]:text-foreground group-hover:text-foreground transition-all duration-300">Employee</span>
             </div>
           </a>
-          <a href="#" class="group cursor-pointer">
+          <a href="{{ route('admin.service.index') }}" class="group cursor-pointer {{ request()->routeIs('admin.service.index') ? 'active' : '' }}">
             <div class="flex items-center rounded-xl p-4 gap-3 bg-white group-[.active]:bg-muted group-hover:bg-muted transition-all duration-300">
               <i data-lucide="backpack" class="size-6 text-secondary group-[.active]:text-foreground group-hover:text-foreground transition-all duration-300"></i>
               <span class="font-medium text-secondary group-[.active]:font-semibold group-[.active]:text-foreground group-hover:text-foreground transition-all duration-300">Service</span>
@@ -65,10 +65,10 @@
       <div class="flex flex-col gap-1">
         <h3 class="font-medium text-sm text-secondary">Ticket</h3>
         <div class="flex flex-col ">
-          <a href="#" class="group cursor-pointer">
+          <a href="{{ route('admin.ticket-type.index') }}" class="group cursor-pointer">
             <div class="flex items-center rounded-xl p-4 gap-3 bg-white group-[.active]:bg-muted group-hover:bg-muted transition-all duration-300">
               <i data-lucide="ticket" class="size-6 text-secondary group-[.active]:text-foreground group-hover:text-foreground transition-all duration-300"></i>
-              <span class="font-medium text-secondary group-[.active]:font-semibold group-[.active]:text-foreground group-hover:text-foreground transition-all duration-300">Dashboard</span>
+              <span class="font-medium text-secondary group-[.active]:font-semibold group-[.active]:text-foreground group-hover:text-foreground transition-all duration-300">Manage Ticket</span>
             </div>
           </a>
         </div>
@@ -76,16 +76,10 @@
       <div class="flex flex-col gap-1 ">
         <h3 class="font-medium text-sm text-secondary">Restaurant</h3>
         <div class="flex flex-col ">
-          <a href="#" class="group cursor-pointer">
-            <div class="flex items-center rounded-xl p-4 gap-3 bg-white group-[.active]:bg-muted group-hover:bg-muted transition-all duration-300">
-              <i data-lucide="chef-hat" class="size-6 text-secondary group-[.active]:text-foreground group-hover:text-foreground transition-all duration-300"></i>
-              <span class="font-medium text-secondary group-[.active]:font-semibold group-[.active]:text-foreground group-hover:text-foreground transition-all duration-300">Dashboard</span>
-            </div>
-          </a>
-          <a href="#" class="group cursor-pointer">
+          <a href="{{ route('admin.restaurant-menu.index') }}" class="group cursor-pointer">
             <div class="flex items-center rounded-xl p-4 gap-3 bg-white group-[.active]:bg-muted group-hover:bg-muted transition-all duration-300">
               <i data-lucide="hamburger" class="size-6 text-secondary group-[.active]:text-foreground group-hover:text-foreground transition-all duration-300"></i>
-              <span class="font-medium text-secondary group-[.active]:font-semibold group-[.active]:text-foreground group-hover:text-foreground transition-all duration-300">Menu</span>
+              <span class="font-medium text-secondary group-[.active]:font-semibold group-[.active]:text-foreground group-hover:text-foreground transition-all duration-300">Manage Menu</span>
             </div>
           </a>
         </div>
