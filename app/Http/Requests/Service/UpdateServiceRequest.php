@@ -26,9 +26,10 @@ class UpdateServiceRequest extends FormRequest
             'name' => ['sometimes', 'required', 'string', 'max:255'],
             'description' => ['sometimes', 'required', 'string'],
             'price' => ['sometimes', 'required', 'integer', 'min:0'],
-            'duration' => ['sometimes', 'required','max:255'],
-            'thumbnail' => ['image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
-            'image.*' => ['image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
+            'duration' => ['sometimes', 'required', 'string', 'max:255'],
+            'thumbnail' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+            'image' => ['nullable', 'array', 'max:5'],
+            'image.*' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
         ];
     }
 }

@@ -27,8 +27,9 @@ class StoreServiceRequest extends FormRequest
             'description' => ['required', 'string'],
             'price' => ['required', 'integer', 'min:0'],
             'duration' => ['required', 'string', 'max:255'],
-            'thumbnail' => ['image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
-            'image.*' => ['image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
+            'thumbnail' => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+            'image' => ['required', 'array', 'max:5'],
+            'image.*' => ['required','image','mimes:jpg,jpeg,png,webp', 'max:5120'],
         ];
     }
 }
