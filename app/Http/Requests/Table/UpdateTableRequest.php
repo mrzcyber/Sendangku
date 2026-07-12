@@ -34,4 +34,14 @@ class UpdateTableRequest extends FormRequest
 
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'number.required' => 'Nomor meja wajib diisi.',
+            'number.integer' => 'Nomor meja harus berupa angka.',
+            'number.min' => 'Nomor meja minimal 1.',
+            'number.unique' => 'Nomor meja ini sudah terdaftar.',
+        ];
+    }
 }

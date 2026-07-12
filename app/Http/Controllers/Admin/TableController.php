@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\Table\StoreTableRequest;
+use App\Http\Requests\Table\UpdateTableRequest;
+use App\Models\Table;
 
 class TableController extends Controller
 {
@@ -12,7 +14,9 @@ class TableController extends Controller
      */
     public function index()
     {
-        //
+        $tables = Table::orderBy('number','asc')->paginate(10);
+
+        return view('admin.table.index', compact('tables'));
     }
 
     /**
@@ -20,15 +24,20 @@ class TableController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.table.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreTableRequest $request)
     {
-        //
+        $validatedData = $request->validated();
+        $validatedData['table_code'] = 'MEJA-' . str_pad((string) $validatedData['number'], 3, '0', STR_PAD_LEFT);
+
+        Table::create($validatedData);
+
+        return redirect()->route('admin.table.index')->with('success', 'Table created successfully.');
     }
 
     /**
@@ -42,17 +51,22 @@ class TableController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Table $table)
     {
-        //
+        return view('admin.table.edit', compact('table'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateTableRequest $request, Table $table)
     {
-        //
+        $validatedData = $request->validated();
+        $validatedData['table_code'] = 'MEJA-' . str_pad((string) $validatedData['number'], 3, '0', STR_PAD_LEFT);
+
+        $table->update($validatedData);
+
+        return redirect()->route('admin.table.index')->with('success', 'Table updated successfully.');
     }
 
     /**
@@ -60,6 +74,7 @@ class TableController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Table::where('id',$id)->delete();
+        return redirect()->route('admin.table.index')->with('success', 'Table delete successfully.');
     }
 }
