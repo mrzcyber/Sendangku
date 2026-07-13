@@ -59,6 +59,10 @@ select {
     padding-right: 40px;
 }
 
+[x-cloak] {
+    display: none !important;
+}
+
 input[type="date"]::-webkit-calendar-picker-indicator {
     background: transparent;
     bottom: 0;

@@ -17,6 +17,7 @@
         <x-sidebar />
         <x-notification-modal />
         <x-logout-modal />
+        <x-flash/>
         @yield('content')
     </main>
 

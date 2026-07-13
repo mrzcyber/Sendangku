@@ -80,13 +80,16 @@
                       <a href="{{ route('admin.table.edit', $table) }}" class="size-10 inline-flex items-center justify-center rounded-xl ring-1 ring-border text-primary bg-primary/10 hover:ring-primary transition-all duration-300" aria-label="Edit meja {{ $table->number }}">
                         <i data-lucide="pencil" class="size-5"></i>
                       </a>
-                      <form action="{{ route('admin.table.destroy', $table) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus meja ini?')">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="size-10 inline-flex items-center justify-center rounded-xl ring-1 ring-border text-error bg-error/10 hover:ring-error transition-all duration-300 cursor-pointer" aria-label="Hapus meja {{ $table->number }}">
-                          <i data-lucide="trash-2" class="size-5"></i>
-                        </button>
-                      </form>
+
+                    <x-delete-confirm :action="route('admin.table.destroy', $table)" message="Yakin ingin menghapus table ini">
+                        <x-slot:trigger>
+                      <button type="button" class="size-10 inline-flex items-center justify-center rounded-xl ring-1 ring-border text-error bg-error/10 hover:ring-error transition-all duration-300 cursor-pointer" aria-label="Hapus meja {{ $table->number }}">
+
+                         <i data-lucide="trash-2" class="size-5"></i>
+                      </button>
+                        </x-slot:trigger>
+                    </x-delete-confirm>
+
                     </div>
                   </td>
                 </tr>

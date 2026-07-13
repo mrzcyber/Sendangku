@@ -145,13 +145,13 @@
                       <a href="{{ route('admin.restaurant-menu.edit', $menu) }}" class="size-9 flex items-center justify-center rounded-xl bg-info/10 text-info-dark hover:bg-info/20 transition-all duration-300" aria-label="Edit menu">
                         <i data-lucide="pencil" class="size-4"></i>
                       </a>
-                      <form action="{{ route('admin.restaurant-menu.destroy', $menu) }}" method="POST" onsubmit="return confirm('Hapus menu ini?')">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="size-9 flex items-center justify-center rounded-xl bg-error/10 text-error hover:bg-error/20 transition-all duration-300 cursor-pointer" aria-label="Delete menu">
-                          <i data-lucide="trash-2" class="size-4"></i>
-                        </button>
-                      </form>
+                      <x-delete-confirm :action="route('admin.restaurant-menu.destroy', $menu)" message="Hapus menu ini?">
+                        <x-slot:trigger>
+                          <button type="button" class="size-9 flex items-center justify-center rounded-xl bg-error/10 text-error hover:bg-error/20 transition-all duration-300 cursor-pointer" aria-label="Delete menu">
+                            <i data-lucide="trash-2" class="size-4"></i>
+                          </button>
+                        </x-slot:trigger>
+                      </x-delete-confirm>
                     </div>
                   </td>
                 </tr>

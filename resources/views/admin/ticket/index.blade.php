@@ -80,13 +80,13 @@
                       <a href="{{ route('admin.ticket-type.edit', $ticketType) }}" class="size-10 inline-flex items-center justify-center rounded-xl ring-1 ring-border text-primary bg-primary/10 hover:ring-primary transition-all duration-300" aria-label="Edit {{ $ticketType->name }}">
                         <i data-lucide="pencil" class="size-5"></i>
                       </a>
-                      <form action="{{ route('admin.ticket-type.destroy', $ticketType) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus ticket ini?')">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="size-10 inline-flex items-center justify-center rounded-xl ring-1 ring-border text-error bg-error/10 hover:ring-error transition-all duration-300 cursor-pointer" aria-label="Hapus {{ $ticketType->name }}">
-                          <i data-lucide="trash-2" class="size-5"></i>
-                        </button>
-                      </form>
+                      <x-delete-confirm :action="route('admin.ticket-type.destroy', $ticketType)" message="Yakin ingin menghapus ticket ini?">
+                        <x-slot:trigger>
+                          <button type="button" class="size-10 inline-flex items-center justify-center rounded-xl ring-1 ring-border text-error bg-error/10 hover:ring-error transition-all duration-300 cursor-pointer" aria-label="Hapus {{ $ticketType->name }}">
+                            <i data-lucide="trash-2" class="size-5"></i>
+                          </button>
+                        </x-slot:trigger>
+                      </x-delete-confirm>
                     </div>
                   </td>
                 </tr>

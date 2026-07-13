@@ -123,13 +123,13 @@
                       <a href="{{ route('admin.user.edit', $user->id) }}" class="size-10 inline-flex items-center justify-center bg-primary/10  rounded-xl ring-1 ring-border text-primary hover:ring-primary hover:bg-primary/10 transition-all duration-300" aria-label="Edit {{ $user->name }}">
                         <i data-lucide="pencil" class="size-5"></i>
                       </a>
-                      <form action="{{ route('admin.user.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus user ini?')">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="size-10 inline-flex items-center justify-center rounded-xl ring-1 ring-border text-error hover:ring-error bg-error/10 hover:bg-error/10 transition-all duration-300 cursor-pointer" aria-label="Hapus {{ $user->name }}">
-                          <i data-lucide="trash-2" class="size-5"></i>
-                        </button>
-                      </form>
+                      <x-delete-confirm :action="route('admin.user.destroy', $user->id)" message="Yakin ingin menghapus user ini?">
+                        <x-slot:trigger>
+                          <button type="button" class="size-10 inline-flex items-center justify-center rounded-xl ring-1 ring-border text-error hover:ring-error bg-error/10 hover:bg-error/10 transition-all duration-300 cursor-pointer" aria-label="Hapus {{ $user->name }}">
+                            <i data-lucide="trash-2" class="size-5"></i>
+                          </button>
+                        </x-slot:trigger>
+                      </x-delete-confirm>
                     </div>
                   </td>
                 </tr>
