@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('order_code')->unique();
             $table->uuid('qr_token')->unique();
-            $table->string('buyer_name');
-            $table->string('buyer_phone');
-            $table->string('buyer_email');
-            $table->unsignedInteger('total_price');
+            $table->string('buyer_name')->nullable();
+            $table->string('buyer_phone')->nullable();
+            $table->string('buyer_email')->nullable();
+            $table->unsignedInteger('total_price')->default(0);
             $table->enum('status', ['active', 'used'])->default('active');
             $table->enum('purchase', ['online', 'offline']);
             $table->timestamp('scanned_at')->nullable();
