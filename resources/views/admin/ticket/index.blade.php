@@ -37,10 +37,17 @@
             <h3 class="font-bold text-lg text-foreground">Daftar Ticket</h3>
             <p class="text-sm text-secondary mt-1">Seluruh tipe tiket yang tampil untuk pengunjung.</p>
           </div>
-          <a href="{{ route('admin.ticket-type.create') }}" class="flex items-center justify-center gap-2 px-6 py-3 bg-primary text-white rounded-full font-bold hover:bg-primary-hover transition-all duration-300 cursor-pointer w-full md:w-auto shadow-sm">
-            <i data-lucide="plus" class="size-5"></i>
-            <span>Tambah Ticket</span>
-          </a>
+          <div class="flex flex-col md:flex-row justify-center items-center gap-4">
+
+            <a href="{{ route('admin.order-ticket.create') }}" class="flex items-center justify-center gap-2 px-6 py-3 bg-primary text-white rounded-full font-bold hover:bg-primary-hover transition-all duration-300 cursor-pointer w-full md:w-auto shadow-sm">
+              <i data-lucide="tag-plus" class="size-5"></i>
+              <span>Beli Ticket</span>
+            </a>
+            <a href="{{ route('admin.ticket-type.create') }}" class="flex items-center justify-center gap-2 px-6 py-3 bg-secondary text-white rounded-full font-bold hover:bg-gray-700 transition-all duration-300 cursor-pointer w-full md:w-auto shadow-sm">
+              <i data-lucide="plus" class="size-5"></i>
+              <span>Tambah Ticket</span>
+            </a>
+          </div>
         </div>
 
         <div class="overflow-x-auto">

@@ -23,11 +23,30 @@ class StoreOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'buyer_name' => ['required', 'string', 'max:255'],
-            'buyer_phone' => ['required', 'string', 'max:255'],
-            'buyer_email' => ['required', 'email', 'max:255'],
-            'ticket_type_id' => ['nullable', 'integer', 'exists:ticket_types,id'],
-            'qty' => ['required', 'integer', 'min:1'],
+            'purchase' => ['required', 'in:online,offline'],
+            'buyer_name' => ['required_if:purchase,online', 'string', 'max:255'],
+            'buyer_phone' =>['required_if:purchase,online', 'string', 'max:255'],
+            'buyer_email' =>['required_if:purchase,online', 'email', 'max:255'],
+            'items' =>['required','array','min:1'],
+            'items.*.ticket_type_id' => ['required','exists:ticket_types,id'],
+            'items.*.qty' => ['required','min:0']
+        ];
+    }
+
+    public function after(): array
+    {
+        return[
+            function($validator){
+                $hasTicket = collect($this->input('items'))
+                ->contains(fn ($item) => $item['qty'] > 0);
+
+                if(!$hasTicket){
+                    $validator->errors()->add(
+                        'items',
+                        'pilih minimal 1 tiket'
+                    );
+                }
+            }
         ];
     }
 }

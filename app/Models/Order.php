@@ -6,10 +6,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Str;
 
 class Order extends Model
 {
     use HasFactory;
+
+    protected static function booted(): void
+    {
+        static::creating(function($order){
+        $order->qr_token = Str::uuid();
+        });
+    }
 
     protected $fillable = [
         'order_code',
