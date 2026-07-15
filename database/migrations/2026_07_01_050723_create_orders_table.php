@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('order_code')->unique();
+            $table->string('order_code')->unique()->nullable();
             $table->uuid('qr_token')->unique();
             $table->string('buyer_name')->nullable();
             $table->string('buyer_phone')->nullable();
