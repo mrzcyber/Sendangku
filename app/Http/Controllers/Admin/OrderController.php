@@ -9,6 +9,7 @@ use App\Models\OrderItem;
 use App\Models\TicketType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class OrderController extends Controller
 {
@@ -97,5 +98,76 @@ class OrderController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function scan()
+    {
+        return view('admin.ticket.scan');
+    }
+
+    public function verify(Request $request)
+    {
+       
+$validator = Validator::make(
+    $request->all(),
+    [
+        'qr_token' => ['required', 'uuid'],
+    ],
+    [
+        'qr_token.required' => 'QR Code tidak ditemukan.',
+        'qr_token.uuid' => 'QR Code tidak valid.',
+    ]
+);
+
+if ($validator->fails()) {
+    return response()->json([
+        'success' => false,
+        'message' => $validator->errors()->first('qr_token'),
+    ], 422);
+}
+
+
+
+
+        $order = Order::with('orderItems.ticketType')
+            ->where('qr_token', $request->qr_token)
+            ->firstOrFail();
+        
+        $data = [];
+        
+        foreach ($order->orderItems as $item) {
+            $data[] = [
+                'ticket_type' => $item->ticketType->name,
+                'qty' => $item->qty,
+            ];
+        }
+
+         if (! $order) {
+        return response()->json([
+            'success' => false,
+            'message' => 'QR tidak ditemukan.',
+        ], 404);
+            }
+       
+       if($order->status === 'used'){
+            return response()->json([
+                'success'=>false,
+                'message'=>'Tiket Telah Digunakan pada '. $order->scanned_at,
+                'data' => $data
+
+            ]);
+           }
+        
+           $order->update([
+           'status'=>'used',
+           'scanned_at'=>now(),
+           'scanned_by'=>Auth::id()
+           ]);
+           return response()->json([
+           'success' => true,
+           'message' => 'Tiket berhasil diverifikasi.',
+           'data' => $data
+           ]);
+           
     }
 }

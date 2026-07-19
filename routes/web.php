@@ -56,6 +56,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     });
     
     Route::middleware('role:admin,tiket')->group(function(){
+    Route::get('/order-ticket/scan',[OrderController::class,'scan'])->name('order-ticket.scan');
+    Route::post('/order-ticket/verify',[OrderController::class,'verify'])->name('order-ticket.verify');
     Route::resource('/order-ticket', OrderController::class);
     Route::resource('/ticket-type', TicketTypeController::class);
     });
