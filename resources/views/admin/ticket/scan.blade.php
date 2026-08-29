@@ -50,27 +50,22 @@
     x-data="scanner()"
     class="min-h-screen flex flex-col items-center justify-center bg-muted">
 
-    <div class="fixed inset-0 bg-black "> {{-- ganti bg-white → bg-black biar camera keliatan --}}
-        <div class="absolute top-40 md:top-12 left-1/2 -translate-x-1/2 text-white w-96 text-center z-10 text-xl font-semibold">
+    <div class=" relative flex justify-between py-10 items-center flex-col inset-0 w-full h-screen bg-black "> 
+        <div class=" text-white w-96 text-center z-10 text-xl font-semibold">
             Arahkan Tiket ke kamera
         </div>
 
         <div id="reader" class="absolute inset-0"></div>
 
-        <a href="{{ route('admin.ticket-type.index') }}" class="absolute bottom-22 left-1/2 -translate-x-1/2 z-10 w-80 inline-flex items-center justify-center gap-2 px-5 py-3 ring-1 ring-border hover:ring-primary rounded-full text-foreground font-semibold transition-all duration-300 bg-white shadow-sm shadow-gray-600">
+        <a href="{{ route('admin.ticket-type.index') }}" class=" z-10 w-80 inline-flex items-center justify-center gap-2 px-5 py-3 ring-1 ring-border hover:ring-primary rounded-full text-foreground font-semibold transition-all duration-300 bg-white shadow-sm shadow-gray-600">
           <i data-lucide="arrow-left" class="size-5 text-secondary"></i>
           <span>Kembali</span>
         </a>
 
-        {{-- <button
-            @click="closePopup()"
-            class="mt-5 px-4 py-2 bg-blue-500 text-white rounded absolute bottom-6 left-1/2 -translate-x-1/2 z-10">
-            Scan Lagi
-        </button> --}}
+
     </div>
 
-    <!-- Popup — Fix 4: hapus x-transition, pakai style manual -->
-{{-- Backdrop --}}
+
 <div
     x-show="show"
     x-transition:enter="transition ease-out duration-200"
@@ -183,7 +178,6 @@ function scanner() {
                     {
                         fps: 30,
                         qrbox: function(viewfinderWidth, viewfinderHeight) {
-                            // Fix 5: pastikan nilai valid sebelum kalkulasi
                             const w = viewfinderWidth || window.innerWidth;
                             const h = viewfinderHeight || window.innerHeight;
                             const minEdge = Math.min(w, h);
@@ -219,7 +213,6 @@ function scanner() {
                 });
 
                 const result = await response.json();
-                    // tangkap data jika ada
                      this.data = result.data ?? [];
 
                 if (!response.ok) {
@@ -235,7 +228,7 @@ function scanner() {
             }
         },
 
-        // Fix 6: pakai $nextTick agar Alpine re-render sebelum show = true
+
         showPopup(success, message) {
             this.success = success;
             this.message = message;

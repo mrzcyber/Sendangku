@@ -94,7 +94,7 @@ class UserController extends Controller
         $remember = $request->boolean('remember');
 
         if (Auth::attempt($credentials, $remember)) {
-            // Authentication passed...
+
             $request->session()->regenerate();
 
             if(Auth::user()->role === "admin" ){

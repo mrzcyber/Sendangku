@@ -97,7 +97,7 @@ class ServiceController extends Controller
         $thumbnail = $service->thumbnail;
         $images = $service->serviceGalleries;
 
-        // store data
+
         if($request->hasFile('thumbnail')){
          $validatedData['thumbnail'] = $request->file('thumbnail')->store('service','public');
         }
@@ -112,7 +112,7 @@ class ServiceController extends Controller
             $service->update($validatedData);
 
             if($galleryPath){
-            // delete in db
+
             $service->serviceGalleries()->delete();
                 foreach ($galleryPath as $image) {
                     $service->serviceGalleries()->create([
@@ -123,7 +123,7 @@ class ServiceController extends Controller
 
         });
         
-        // delete thumbnail
+
         if($request->hasFile('thumbnail')){
             if($thumbnail){
                 if(Storage::disk('public')->exists($thumbnail)){
@@ -133,7 +133,7 @@ class ServiceController extends Controller
  
         };
 
-        // delete gallery
+
         if($request->hasFile('image')){
             if($images){
                 foreach ($images as  $image) {
@@ -155,14 +155,13 @@ class ServiceController extends Controller
      */
     public function destroy(Service $service)
     {
-        // thumbnail
+
         if($service->thumbnail){
             if(Storage::disk('public')->exists($service->thumbnail)){
                 Storage::disk('public')->delete($service->thumbnail);
             }
         }
 
-        // gallery
         $galleries = $service->serviceGalleries()->pluck('image')->toArray();
 
             foreach ($galleries as $galery) {

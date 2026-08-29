@@ -43,7 +43,7 @@ class BlogController extends Controller
     {
         $validatedData = $request->validated();
 
-        // Handle the thumbnail upload if it exists
+
         if ($request->hasFile('thumbnail')) {
             $thumbnailPath = $request->file('thumbnail')->store('blog', 'public');
             $validatedData['thumbnail'] = $thumbnailPath;
@@ -77,9 +77,9 @@ class BlogController extends Controller
     {
         $validatedData = $request->validated();
 
-        // Handle the thumbnail upload if it exists
+
         if ($request->hasFile('thumbnail')) {
-            // Delete the old thumbnail if it exists
+
             if ($blog->thumbnail) {
                 if(Storage::disk('public')->exists($blog->thumbnail)) {
                     Storage::disk('public')->delete($blog->thumbnail);

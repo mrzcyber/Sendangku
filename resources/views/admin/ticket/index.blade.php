@@ -24,11 +24,15 @@
     </div>
 
     <div class="flex-1 overflow-y-auto p-5 md:p-8">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 md:px-8">
         <div>
           <h1 class="text-foreground text-2xl font-bold mb-1">Data Ticket</h1>
           <p class="text-secondary text-sm">Daftar tipe tiket yang tersedia untuk pengunjung.</p>
         </div>
+        <a href="{{ route('admin.order-ticket.scan') }}" class="flex items-center justify-center gap-2 px-8 py-3 bg-primary text-white rounded-full font-bold hover:bg-primary-hover transition-all duration-300 cursor-pointer w-full md:w-auto shadow-sm">
+              <i data-lucide="scan-square" class="size-5"></i>
+              <span>Scan Ticket</span>
+        </a>
       </div>
 
       <div class="flex flex-col rounded-3xl border border-border bg-white shadow-sm overflow-hidden">
