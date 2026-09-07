@@ -27,6 +27,8 @@ class Order extends Model
         'buyer_email',
         'total_price',
         'status',
+        'pay_status',
+        'snap_token',
         'purchase',
         'scanned_at',
         'scanned_by',

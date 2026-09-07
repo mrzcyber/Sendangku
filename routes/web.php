@@ -23,12 +23,11 @@ Route::get('/layanan', function () {
 Route::get('/layanan/berkuda', function () {
     return view('front.detail');
 });
-Route::get('/checkout/ticket', function () {
-    return view('front.checkout-ticket');
-});
-Route::get('/checkout/ticket/succes', function () {
-    return view('front.ticket-succes');
-});
+
+
+Route::get('/checkout/ticket/success',[PublicOrderController::class,'success'])->name('checkout.ticket.success');
+Route::get('/checkout/ticket',[PublicOrderController::class,'index'])->name('checkout.ticket');
+Route::post('/checkout/ticket',[PublicOrderController::class,'create'])->name('checkout.ticket.create');
 
 
 Route::post('/login', [UserController::class, 'authenticate'])->name('login.auth');
@@ -65,7 +64,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 });
 
 
-    Route::resource('/order-ticket', PublicOrderController::class);
+
+
     Route::resource('/restaurant-menu', PublicRestaurantMenuController::class);
     Route::resource('/restaurant-order', PublicRestaurantOrderController::class);
     Route::resource('/service', PublicServiceController::class);

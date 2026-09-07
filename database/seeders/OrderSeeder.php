@@ -22,6 +22,8 @@ class OrderSeeder extends Seeder
             'buyer_email' => 'pengunjung@example.com',
             'total_price' => 25000, // Sesuaikan dengan total item tiket.
             'status' => 'active',
+            'pay_status' => 'paid',
+            'snap_token' => null,
             'purchase' => 'online',
             'scanned_at' => null,
             'scanned_by' => null,
@@ -34,6 +36,8 @@ class OrderSeeder extends Seeder
             'buyer_email' => 'offline@example.com',
             'total_price' => 10000, // Sesuaikan dengan total item tiket.
             'status' => 'used',
+            'pay_status' => 'paid',
+            'snap_token' => null,
             'purchase' => 'offline',
             'scanned_at' => now(),
             'scanned_by' => $scanner?->id, // Null jika belum ada user role tiket.
