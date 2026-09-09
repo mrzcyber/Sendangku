@@ -51,6 +51,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::middleware('role:admin,kasir')->group(function(){
     Route::resource('/restaurant-menu',RestaurantMenuController::class);
     Route::resource('/restaurant-order',RestaurantOrderController::class);
+    Route::patch('/restaurant-order/{id}/confirm', [RestaurantOrderController::class, 'confirm'])->name('restaurant-order.confirm');
     Route::resource('/table',TableController::class);
     });
     

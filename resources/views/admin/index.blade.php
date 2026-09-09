@@ -21,10 +21,10 @@
       </button>
       <h2 class="hidden lg:block font-bold text-2xl text-foreground">Dashboard Sendangku</h2>
       <div class="flex items-center gap-3">
-        <button onclick="openNotificationModal()" class="size-11 flex items-center justify-center rounded-xl ring-1 ring-border hover:ring-primary transition-all duration-300 cursor-pointer relative" aria-label="Notifications">
+        {{-- <button onclick="openNotificationModal()" class="size-11 flex items-center justify-center rounded-xl ring-1 ring-border hover:ring-primary transition-all duration-300 cursor-pointer relative" aria-label="Notifications">
           <i data-lucide="bell" class="size-6 text-secondary"></i>
           <span class="absolute -top-1 -right-1 h-5 px-1.5 rounded-full bg-error text-white text-xs font-medium flex items-center justify-center">2</span>
-        </button>
+        </button> --}}
       </div>
     </div>
 

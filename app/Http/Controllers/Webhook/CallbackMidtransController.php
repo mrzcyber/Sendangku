@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Webhook;
 
 use App\Mail\OrderConfirmationMail;
 use App\Models\Order;
+use App\Models\RestaurantOrder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -21,22 +22,27 @@ class CallbackMidtransController
         $orderId = $notif['order_id'];
         $status = $notif['transaction_status'];
         $order = Order::with('orderItems')->where('order_code', $orderId)->first();
+        $restaurantOrder = $order ? null : RestaurantOrder::where('order_code', $orderId)->first();
 
 
-        if (!$order) {
+        if (!$order && !$restaurantOrder) {
             return response()->json([
                 'message' => 'Order not found'
             ], 404);
         }
 
         if ($status === 'settlement' || $status === 'capture') {
-            $order->update([
-                'pay_status'=> 'paid'
-            ]);
-            Mail::to($order->buyer_email)->queue(new OrderConfirmationMail($order));
+            if ($order) {
+                $order->update([
+                    'pay_status' => 'paid',
+                ]);
+                Mail::to($order->buyer_email)->queue(new OrderConfirmationMail($order));
+            } else {
+                $restaurantOrder->update(['status' => 'success']);
+            }
 
         }elseif (in_array($status, ['expire','cancel','deny'])) {
-            $order->delete();
+            ($order ?: $restaurantOrder)->delete();
         }
         
       

@@ -5,13 +5,14 @@ namespace App\Http\Controllers\Public;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RestaurantOrder\StoreRestaurantOrderRequest;
 use App\Models\RestaurantMenu;
-use App\Models\RestaurantOrder;
 use App\Models\Table;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
+use App\Services\RestourantService;
+use Illuminate\Support\Facades\RateLimiter;
 
 class RestaurantOrderController extends Controller
 {
+    public function __construct(private RestourantService $restourantService) {}
+
     /**
      * Display a listing of the resource.
      */
@@ -31,51 +32,22 @@ class RestaurantOrderController extends Controller
      */
     public function store(StoreRestaurantOrderRequest $request)
     {
-        $validated = $request->validated();
+        $key = 'restaurant-pay:' . $request->ip();
 
-        $menuIds = collect($validated['items'])->pluck('restaurant_menu_id')->unique();
-        $menus = RestaurantMenu::query()
-            ->where('status', true)
-            ->whereIn('id', $menuIds)
-            ->get()
-            ->keyBy('id');
-
-        if ($menus->count() !== $menuIds->count()) {
-            return back()
-                ->withInput()
-                ->withErrors(['items' => 'Satu atau lebih menu sudah tidak tersedia.']);
+        if (RateLimiter::tooManyAttempts($key, 2)) {
+            return response()->json([
+                'message' => 'Terlalu banyak percobaan, silakan coba lagi nanti.',
+            ], 429);
         }
 
-        $items = collect($validated['items'])->map(function (array $item) use ($menus) {
-            $menu = $menus->get($item['restaurant_menu_id']);
-            $quantity = $item['qty'];
+        RateLimiter::hit($key, 60);
 
-            return [
-                'restaurant_menu_id' => $menu->id,
-                'qty' => $quantity,
-                'price' => $menu->price,
-                'subtotal' => $menu->price * $quantity,
-            ];
-        });
+        $order = $this->restourantService->createOrder($request->validated());
+        $snapToken = $this->restourantService->generateSnapToken($order);
 
-        $order = DB::transaction(function () use ($validated, $items) {
-            $order = RestaurantOrder::create([
-                'order_code' => 'R' . now()->format('YmdHis') . strtoupper(Str::random(4)),
-                'name' => $validated['name'],
-                'table_id' => $validated['table_id'],
-                'note' => $validated['note'] ?? null,
-                'total_price' => $items->sum('subtotal'),
-                'status' => 'pending',
-                'payment' => 'offline',
-            ]);
-
-            $order->restaurantOrderItems()->createMany($items->all());
-
-            return $order;
-        });
-
-        return redirect()
-            ->route('restaurant.order')
-            ->with('success', "Pesanan {$order->order_code} berhasil dibuat.");
+        return response()->json([
+            'snap_token' => $snapToken,
+            'order_code' => $order->order_code,
+        ]);
     }
 }

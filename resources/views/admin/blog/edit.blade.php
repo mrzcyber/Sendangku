@@ -21,11 +21,11 @@
         </button>
         <h2 class="font-bold text-xl md:text-2xl text-foreground">Blog & News</h2>
       </div>
-
+{{-- 
       <button onclick="openNotificationModal()" class="size-11 flex items-center justify-center rounded-xl ring-1 ring-border hover:ring-primary transition-all duration-300 cursor-pointer relative" aria-label="Notifications">
         <i data-lucide="bell" class="size-6 text-secondary"></i>
         <span class="absolute -top-1 -right-1 h-5 px-[6px] rounded-full bg-error text-white text-xs font-bold flex items-center justify-center border-2 border-white">2</span>
-      </button>
+      </button> --}}
     </div>
 
     <div class="flex-1 overflow-y-auto p-5 md:p-8">

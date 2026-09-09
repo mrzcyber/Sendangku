@@ -17,10 +17,16 @@ class RestaurantOrder extends Model
         'table_id',
         'note',
         'total_price',
+        'snap_token',
         'status',
+        'confirmed',
         'payment',
     ];
     
+    protected $casts = [
+        'confirmed' => 'boolean',
+    ];
+
     public function table():BelongsTo
     {
         return $this->belongsTo(Table::class);
@@ -30,7 +36,4 @@ class RestaurantOrder extends Model
     {
         return $this->hasMany(RestaurantOrderItem::class);
     }
-
-
-
 }
