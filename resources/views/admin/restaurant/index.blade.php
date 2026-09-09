@@ -116,7 +116,7 @@
                   <td class="px-6 py-4">
                     <div class="w-24 h-14 overflow-hidden rounded-xl bg-muted ring-1 ring-border">
                       <img
-                        src="{{ asset($menu->thumbnail) }}"
+                        src="{{ asset('storage/' . $menu->thumbnail) }}"
                         alt="{{ $menu->name }}"
                         class="h-full w-full object-cover object-center"
                       >

@@ -83,7 +83,7 @@ class ServiceController extends Controller
     public function edit(Service $service)
     {
         $data = $service->load('serviceGalleries');
-        return view('admin.service.edit',compact($data));
+        return view('admin.service.edit',compact('data'));
         
     }
 

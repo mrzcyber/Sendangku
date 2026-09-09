@@ -62,7 +62,7 @@
                     <div class="flex items-center gap-3">
                       <div class="h-12 w-20 overflow-hidden rounded-xl bg-muted ring-1 ring-border shrink-0">
                         @if ($service->thumbnail)
-                          <img src="{{ asset($service->thumbnail) }}" alt="{{ $service->name }}" class="h-full w-full object-cover object-center">
+                          <img src="{{ asset('storage/' . $service->thumbnail) }}" alt="{{ $service->name }}" class="h-full w-full object-cover object-center">
                         @else
                           <div class="h-full w-full flex items-center justify-center text-secondary">
                             <i data-lucide="image" class="size-5"></i>

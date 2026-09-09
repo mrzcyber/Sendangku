@@ -92,7 +92,7 @@
               <div class="aspect-[16/9] w-full overflow-hidden rounded-2xl bg-muted ring-1 ring-border">
                 <img
                   id="thumbnailPreview"
-                  src="{{ $hasThumbnail ? asset($thumbnailPath) : '#' }}"
+                  src="{{ $hasThumbnail ? asset('storage/' . $thumbnailPath) : '#' }}"
                   alt="Thumbnail preview"
                   class="{{ $hasThumbnail ? '' : 'hidden' }} h-full w-full object-cover object-center"
                 >
@@ -111,7 +111,7 @@
               <input id="thumbnail" name="thumbnail" type="file" accept="image/*" class="sr-only">
 
               <p id="thumbnailFileName" class="text-sm font-medium text-secondary truncate">
-                {{ $hasThumbnail ? basename($thumbnailPath) : 'Belum ada thumbnail.' }}
+                {{ $hasThumbnail ? basename('storage/' . $thumbnailPath) : 'Belum ada thumbnail.' }}
               </p>
               @error('thumbnail')
                 <p class="text-sm font-medium text-error">{{ $message }}</p>

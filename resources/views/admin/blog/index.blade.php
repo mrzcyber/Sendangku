@@ -5,15 +5,6 @@
 @section('body_class', 'font-sans bg-muted min-h-screen overflow-x-hidden text-foreground')
 
 @section('content')
-@php
-    $blogItems = isset($blogs)
-        ? collect($blogs instanceof \Illuminate\Pagination\AbstractPaginator ? $blogs->items() : $blogs)
-        : collect();
-
-    $totalBlogs = isset($blogs) && method_exists($blogs, 'total') ? $blogs->total() : $blogItems->count();
-    $updatedThisMonth = $blogItems->filter(fn ($blog) => optional($blog->updated_at)->isCurrentMonth())->count();
-    $latestPost = $blogItems->sortByDesc('created_at')->first();
-@endphp
 
 <div class="flex h-screen max-h-screen flex-1 overflow-hidden">
   <main class="flex-1 lg:ml-[280px] flex flex-col bg-white min-h-screen overflow-x-hidden">
@@ -92,12 +83,12 @@
               </tr>
             </thead>
             <tbody class="divide-y divide-border">
-              @forelse ($blogItems as $blog)
+              @forelse ($blogs as $blog)
                 <tr class="hover:bg-muted/30 transition-colors group">
                   <td class="px-6 py-4">
                     <div class="w-28 h-16 overflow-hidden rounded-xl bg-muted ring-1 ring-border">
                       <img
-                        src="{{ asset($blog->thumbnail) }}"
+                        src="{{ asset('storage/' . $blog->thumbnail) }}"
                         alt="{{ $blog->name }}"
                         class="h-full w-full object-cover object-center"
                       >

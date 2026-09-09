@@ -9,7 +9,6 @@
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     @vite(['resources/css/app.css', 'resources/css/dashboard.css', 'resources/js/app.js', 'resources/js/dashboard.js'])
     <style>
-        /* Fix 1: pastikan html & body tidak ada overflow */
         html, body {
             margin: 0;
             padding: 0;
@@ -18,7 +17,6 @@
             overflow: hidden;
         }
 
-        /* Fix 2: override semua style dari Html5Qrcode library */
         #reader {
             width: 100vw !important;
             height: 100dvh !important;
@@ -31,10 +29,9 @@
         #reader video {
             width: 100vw !important;
             height: 100dvh !important;
-            object-fit: cover !important; /* cover biar penuh, bukan contain */
+            object-fit: cover !important; 
         }
 
-        /* Fix 3: sembunyikan UI bawaan library yang bikin layout berantakan */
         #reader__scan_region {
             width: 100% !important;
             height: 100% !important;
@@ -69,19 +66,6 @@
 <div
     x-show="show"
     x-transition:enter="transition ease-out duration-200"
-    x-transition:enter-start="opacity-0"
-    x-transition:enter-end="opacity-100"
-    x-transition:leave="transition ease-in duration-150"
-    x-transition:leave-start="opacity-100"
-    x-transition:leave-end="opacity-0"
-    class="fixed inset-0 bg-black/60 z-40"
-    style="display: none;"
-></div>
-
-{{-- Modal Tengah --}}
-<div
-    x-show="show"
-    x-transition:enter="transition ease-out duration-200"
     x-transition:enter-start="opacity-0 scale-95"
     x-transition:enter-end="opacity-100 scale-100"
     x-transition:leave="transition ease-in duration-150"
@@ -90,9 +74,8 @@
     class="fixed inset-0 z-50 flex items-center justify-center px-6"
     style="display: none;"
 >
-    <div class="bg-white rounded-2xl w-full max-w-xs p-6 flex flex-col items-center shadow-xl">
+    <div class="bg-white rounded-2xl w-full max-w-xl p-6 flex flex-col items-center shadow-xl">
 
-        {{-- Icon --}}
         <div :class="success ? 'bg-green-100' : 'bg-red-100'"
              class="w-12 h-12 rounded-full flex items-center justify-center mb-3">
             <i :data-lucide="success ? 'circle-check' : 'circle-x'"
@@ -100,16 +83,13 @@
                class="size-6"></i>
         </div>
 
-        {{-- Title --}}
         <p :class="success ? 'text-green-700' : 'text-red-700'"
            class="font-semibold text-base mb-1 text-center"
            x-text="success ? 'Tiket valid!' : 'Tiket tidak valid'"></p>
 
-        {{-- Message --}}
         <p class="text-xs text-gray-400 text-center mb-3 leading-relaxed"
            x-text="message"></p>
 
-        {{-- Data tiket (jika ada) --}}
         <template x-if="data && data.length > 0">
             <div class="w-full bg-gray-50 rounded-xl px-4 py-3 mb-5 space-y-2">
                 <template x-for="item in data" :key="item.ticket_type">
@@ -122,16 +102,13 @@
             </div>
         </template>
 
-        {{-- Scan Lagi --}}
-        <button
-            @click="closePopup()"
-            :class="success ? 'bg-green-600 hover:bg-green-700' : 'bg-red-600 hover:bg-red-700'"
-            class="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-full text-white text-sm font-medium transition-colors mb-2">
-            <i data-lucide="scan" class="size-4"></i>
+
+        <button @click="closePopup()"
+                class="w-full flex items-center cursor-pointer justify-center gap-2 px-4 py-2.5 rounded-full border border-gray-200 text-gray-500 text-sm font-medium hover:bg-gray-300 transition-colors mb-2">
+            <i data-lucide="x" class="size-4"></i>
             Scan lagi
         </button>
 
-        {{-- Kembali --}}
         <a href="{{ route('admin.ticket-type.index') }}"
            class="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-full border border-gray-200 text-gray-500 text-sm font-medium hover:bg-gray-50 transition-colors">
             <i data-lucide="arrow-left" class="size-4"></i>

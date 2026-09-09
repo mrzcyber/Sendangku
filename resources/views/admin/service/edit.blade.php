@@ -6,6 +6,7 @@
 
 @section('content')
 @php
+    $service = $data ?? $service ?? null;
     $serviceName = old('name', $service->name ?? '');
     $servicePrice = old('price', $service->price ?? '');
     $serviceDuration = old('duration', $service->duration ?? '');
@@ -43,7 +44,7 @@
         </a>
       </div>
 
-      <form action="{{ route('admin.service.update', $service) }}" method="POST" enctype="multipart/form-data" class="grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_420px] gap-6">
+      <form action="{{ route('admin.service.update', $data) }}" method="POST" enctype="multipart/form-data" class="grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_420px] gap-6">
         @csrf
         @method('PUT')
 
@@ -127,7 +128,7 @@
               <div id="galleryPreviewGrid" class="grid grid-cols-2 md:grid-cols-5 gap-3">
                 @forelse ($galleries->take(5) as $gallery)
                   <div class="aspect-[4/3] overflow-hidden rounded-2xl bg-muted ring-1 ring-border">
-                    <img src="{{ asset($gallery->image) }}" alt="Galery {{ $serviceName }}" class="h-full w-full object-cover object-center">
+                    <img src="{{ asset('storage/' . $gallery->image) }}" alt="Galery {{ $serviceName }}" class="h-full w-full object-cover object-center">
                   </div>
                 @empty
                   @for ($i = 1; $i <= 5; $i++)
@@ -175,7 +176,7 @@
               <div class="aspect-[16/9] w-full overflow-hidden rounded-2xl bg-muted ring-1 ring-border">
                 <img
                   id="thumbnailPreview"
-                  src="{{ $hasThumbnail ? asset($thumbnailPath) : '#' }}"
+                  src="{{ $hasThumbnail ? asset('storage/' . $thumbnailPath) : '#' }}"
                   alt="Thumbnail preview"
                   class="{{ $hasThumbnail ? '' : 'hidden' }} h-full w-full object-cover object-center"
                 >

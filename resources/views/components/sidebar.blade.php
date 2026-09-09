@@ -96,10 +96,10 @@
     <div class="absolute bottom-0 left-0 w-[280px] bg-white border-t border-border p-4">
       <div class="flex items-center justify-between p-3 rounded-2xl ring-1 ring-border hover:ring-primary transition-all duration-300 bg-white">
         <div class="flex items-center gap-3 min-w-0">
-          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop" alt="Admin Profile" class="size-10 rounded-full object-cover shrink-0">
+          <img src="{{ asset('img/profile.jpg') }}" alt="Admin Profile" class="size-10 rounded-full object-cover shrink-0">
           <div class="min-w-0">
-            <p class="font-semibold text-sm text-foreground truncate">Ahmad Fauzi</p>
-            <p class="text-xs text-secondary truncate">Head Administrator</p>
+            <p class="font-semibold text-sm text-foreground truncate">{{ auth()->user()->name }}</p>
+            <p class="text-xs text-secondary truncate">{{ auth()->user()->role }}</p>
           </div>
         </div>
         <button onclick="showLogoutModal()" class="size-10 flex items-center justify-center rounded-xl hover:bg-error/10 text-secondary hover:text-error transition-all duration-300 cursor-pointer shrink-0" aria-label="Logout">

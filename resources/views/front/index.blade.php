@@ -97,7 +97,6 @@ class=" flex flex-col justify-start xl:pt-16 md:items-start items-center px-3 md
 </a> </p>
 
 <div class=" w-full mt-5 xl:border-t border-t-2 border-gray-300  py-5  ">
-    {{-- <h3 class="text-3xl font-medium font-poppins semibold mb-5">Kami Memiliki</h3> --}}
     <ul class="flex flex-row gap-5 list-none ">
     <li class="flex flex-col justify-center items-center text-amber-500"> <h3 class="md:text-3xl text-xl font-extrabold ">1000+</h3> <p class="md:text-lg font-medium text-gray-500  font-poppins text-center "> Pengunjung Setiap Minggu </p> </li>
     <li class="flex flex-col justify-center items-center text-amber-500"> <h3 class="md:text-3xl text-xl font-extrabold ">7+</h3> <p class="md:text-lg font-medium text-gray-500  font-poppins text-center"> Layanan Menarik </p> </li>
@@ -133,7 +132,7 @@ id="layanan"
         <div class="absolute inset-0 bg-black opacity-75"></div>
     </div>
 
-    {{-- ── Mobile: Title di atas gambar ── --}}
+    {{-- Mobile --}}
     <div
     data-aos="fade-up"
     data-aos-easing="ease-in-out"
@@ -144,7 +143,7 @@ id="layanan"
         <div class="border-b-2 border-amber-500 w-32 mx-auto"></div>
     </div>
 
-    {{-- ── Desktop: Teks kiri (hidden di mobile) ── --}}
+    {{--Desktop --}}
     <div 
     data-aos="fade-up"
     data-aos-easing="ease-in-out"
@@ -179,7 +178,7 @@ id="layanan"
 
     </div>
 
-    {{-- ── Swiper ── --}}
+    {{-- Swiper --}}
     <div 
         data-aos="fade-up"
     data-aos-easing="ease-in-out"
@@ -188,7 +187,7 @@ id="layanan"
     class="lg:max-w-2xl xl:max-w-3xl w-full z-10 px-2 sm:px-5 flex flex-col gap-4 sm:gap-8 overflow-x-hidden pt-2 sm:pt-5 order-2 sm:order-2">
 
         <div class="relative">
-            {{-- Mobile: Prev button (overlay kiri) --}}
+            {{-- Mobile --}}
             <button
                 class="sm:hidden absolute left-1 top-1/2 -translate-y-1/2 z-20
                        w-8 h-8 rounded-full bg-black/40 backdrop-blur-sm
@@ -216,7 +215,7 @@ id="layanan"
                 </div>
             </div>
 
-            {{-- Mobile: Next button (overlay kanan) --}}
+            {{-- Mobile --}}
             <button
                 class="sm:hidden absolute right-1 top-1/2 -translate-y-1/2 z-20
                        w-8 h-8 rounded-full bg-black/40 backdrop-blur-sm
@@ -230,7 +229,7 @@ id="layanan"
             </button>
         </div>
 
-        {{-- Desktop: Nav buttons (hidden di mobile) --}}
+        {{-- Desktop --}}
         <div class="hidden sm:flex flex-row gap-4 pl-2">
             <button
                 x-ref="btnPrev"
@@ -254,7 +253,7 @@ id="layanan"
 
     </div>
 
-    {{-- ── Mobile: Description & CTA di bawah gambar ── --}}
+    {{--  Mobile --}}
     <div 
             data-aos="fade-up"
     data-aos-easing="ease-in-out"
@@ -533,14 +532,14 @@ class="w-full relative flex flex-col items-center justify-center py-8 md:py-16 h
      data-aos-duration="1000"
      data-aos-offset="0"
     class="flex flex-col items-center text-center max-w-3xl mx-auto relative z-10" >
-        <p class="text-sm md:text-lg font-poppins font-semibold uppercase tracking-[0.08em] text-amber-500 mb-1">Penginapan Nyaman</p>
-        <h1 class="text-2xl md:text-4xl text-white font-poppins font-semibold mb-3 uppercase leading-tight">Villa Sendang Kun Gerit</h1>
+        <p class="text-sm md:text-lg font-poppins font-semibold uppercase tracking-[0.08em] text-amber-500 mb-1">Jelajahi Wisata</p>
+        <h1 class="text-2xl md:text-4xl text-white font-poppins font-semibold mb-3 uppercase leading-tight"> Sendang Kun Gerit</h1>
         <div class="border-b-2 border-amber-500 w-64 mb-5"></div>
         <p class="text-[13px] md:text-lg font-medium font-md text-white/90 leading-relaxed mb-7 max-w-3xl">
-            Nikmati suasana menginap yang tenang dan dekat dengan area wisata. Cocok untuk keluarga, rombongan kecil, atau pengunjung yang ingin beristirahat lebih lama di Sendang Kun Gerit.
+            Nikmati suasana liburan yang tenang dan dekat dengan area wisata. Cocok untuk keluarga, rombongan kecil, atau pengunjung yang ingin bersantai di Sendang Kun Gerit.
         </p>
-        <a href="https://wa.me/628XXXXXXXXXX?text=Halo%2C%20saya%20ingin%20booking%20Villa%20Sendang%20Kun%20Gerit" class="font-dm text-[13px] md:text-[14px] font-semibold tracking-[0.07em] uppercase border border-amber-500/70 text-white px-5 py-2.5 bg-amber-600 hover:border-amber-600 hover:bg-amber-700 hover:text-white transition-all duration-200">
-            Booking Villa
+        <a href="{{ route('checkout.ticket') }}" class="font-dm text-[13px] md:text-[14px] font-semibold tracking-[0.07em] uppercase border border-amber-500/70 text-white px-5 py-2.5 bg-amber-600 hover:border-amber-600 hover:bg-amber-700 hover:text-white transition-all duration-200">
+            Pesan Tiket
         </a>
     </div>
 
