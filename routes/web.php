@@ -20,9 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/layanan', function () {
     return view('front.service');
 });
-Route::get('/layanan/berkuda', function () {
-    return view('front.detail');
-});
+Route::get('/layanan/{service:slug}', [HomeController::class, 'show'])->name('service.detail');
 
 
 Route::get('/checkout/ticket/success',[PublicOrderController::class,'success'])->name('checkout.ticket.success');
@@ -72,4 +70,3 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::resource('/restaurant-order', PublicRestaurantOrderController::class);
     Route::resource('/service', PublicServiceController::class);
     Route::get('/',[HomeController::class, 'index'])->name('home');
-

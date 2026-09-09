@@ -118,10 +118,11 @@ class=" flex flex-col justify-start xl:pt-16 md:items-start items-center px-3 md
 
 {{-- section layanan --}}
 
+@if ($services->isNotEmpty())
 <section
 id="layanan"
     class="w-full relative py-12 sm:py-30 flex flex-col sm:flex-row items-center justify-center overflow-hidden gap-4 sm:gap-5"
-    x-data="layananSection"
+    x-data="layananSection(@js($services))"
 >
        
 
@@ -271,6 +272,7 @@ id="layanan"
     </div>
 
 </section>
+@endif
 
 
 {{-- section resto --}}

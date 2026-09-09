@@ -1,40 +1,8 @@
 document.addEventListener('alpine:init', () => {
-    Alpine.data('layananSection', () => ({
+    Alpine.data('layananSection', (layanan = []) => ({
         active: 0,
         swiper: null,
-
-        layanan: [
-            {
-                title: 'Layanan Berkuda',
-                description: 'Latihan berkuda bermanfaat meningkatkan kekuatan otot, keseimbangan, membantu memperbaiki postur tubuh dan mengurangi stress.',
-                href: '/layanan/berkuda',
-                image: 'img/sendang.png',
-            },
-            {
-                title: 'Kolam Renang Olimpik',
-                description: 'Nikmati fasilitas kolam renang standar olimpik yang bersih dan terawat, cocok untuk semua kalangan dari anak-anak hingga dewasa.',
-                href: '/layanan/kolam-renang',
-                image: 'img/sendang.png',
-            },
-            {
-                title: 'Waterpark & Wahana',
-                description: 'Rasakan sensasi meluncur di berbagai wahana waterpark seru yang memacu adrenalin bersama keluarga dan orang tercinta.',
-                href: '/layanan/waterpark',
-                image: 'img/sendang.png',
-            },
-            {
-                title: 'Resto & Angkringan',
-                description: 'Santap hidangan khas Wonosobo yang lezat di restoran kami dengan pemandangan alam yang indah dan suasana nyaman.',
-                href: '/layanan/resto',
-                image: 'img/sendang.png',
-            },
-            {
-                title: 'Karaoke Family',
-                description: 'Nikmati hiburan karaoke bersama keluarga di ruangan bersih, nyaman, dan dilengkapi koleksi lagu terlengkap.',
-                href: '/layanan/karaoke',
-                image: 'img/sendang.png',
-            },
-        ],
+        layanan,
 
         /* Ambil index asli dari slide element — reliable di loop mode */
         _getSlideIndex() {
@@ -63,6 +31,10 @@ document.addEventListener('alpine:init', () => {
         },
 
         initSwiper() {
+            if (!this.layanan.length) {
+                return;
+            }
+
             this.swiper = new Swiper(this.$refs.swiperLayanan, {
                 loop: true,
                 slidesPerView: 3,
