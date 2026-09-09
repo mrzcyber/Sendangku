@@ -221,92 +221,106 @@ function initCharts() {
     const deviceCanvas = document.getElementById('deviceChart');
     const acquisitionCanvas = document.getElementById('acquisitionChart');
 
-    if (!trafficCanvas || !deviceCanvas || !acquisitionCanvas) {
-        return;
+    if (trafficCanvas) {
+        const trafficContext = trafficCanvas.getContext('2d');
+        const gradient = trafficContext.createLinearGradient(0, 0, 0, 300);
+        let labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+        let values = [0, 0, 0, 0, 0, 0, 0];
+
+        try {
+            labels = JSON.parse(trafficCanvas.dataset.labels || '[]');
+            values = JSON.parse(trafficCanvas.dataset.values || '[]');
+        } catch (error) {
+            console.warn('Dashboard traffic data could not be parsed.', error);
+        }
+
+        gradient.addColorStop(0, 'rgba(22, 93, 255, 0.2)');
+        gradient.addColorStop(1, 'rgba(22, 93, 255, 0)');
+
+        new window.Chart(trafficContext, {
+            type: 'line',
+            data: {
+                labels,
+                datasets: [{
+                    label: 'Visitors',
+                    data: values,
+                    borderColor: '#165DFF',
+                    backgroundColor: gradient,
+                    borderWidth: 3,
+                    pointBackgroundColor: '#fff',
+                    pointBorderColor: '#165DFF',
+                    pointBorderWidth: 2,
+                    pointRadius: 4,
+                    pointHoverRadius: 6,
+                    fill: true,
+                    tension: 0.4,
+                }],
+            },
+            options: commonOptions,
+        });
     }
 
-    const trafficContext = trafficCanvas.getContext('2d');
-    const gradient = trafficContext.createLinearGradient(0, 0, 0, 300);
+    if (deviceCanvas) {
+        const onlineVal = Number(deviceCanvas.dataset.online ?? 0);
+        const offlineVal = Number(deviceCanvas.dataset.offline ?? 0);
 
-    gradient.addColorStop(0, 'rgba(22, 93, 255, 0.2)');
-    gradient.addColorStop(1, 'rgba(22, 93, 255, 0)');
-
-    new window.Chart(trafficContext, {
-        type: 'line',
-        data: {
-            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-            datasets: [{
-                label: 'Visitors',
-                data: [1250, 1900, 1500, 2200, 1800, 2800, 2400],
-                borderColor: '#165DFF',
-                backgroundColor: gradient,
-                borderWidth: 3,
-                pointBackgroundColor: '#fff',
-                pointBorderColor: '#165DFF',
-                pointBorderWidth: 2,
-                pointRadius: 4,
-                pointHoverRadius: 6,
-                fill: true,
-                tension: 0.4,
-            }],
-        },
-        options: commonOptions,
-    });
-
-    new window.Chart(deviceCanvas.getContext('2d'), {
-        type: 'doughnut',
-        data: {
-            labels: ['Mobile', 'Desktop', 'Tablet'],
-            datasets: [{
-                data: [55, 30, 15],
-                backgroundColor: ['#165DFF', '#C9E6FC', '#E5E7EB'],
-                borderWidth: 0,
-                hoverOffset: 4,
-            }],
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            cutout: '75%',
-            plugins: {
-                legend: { display: false },
-                tooltip: {
-                    backgroundColor: '#080C1A',
-                    callbacks: {
-                        label(context) {
-                            return ` ${context.label}: ${context.raw}%`;
+        new window.Chart(deviceCanvas.getContext('2d'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Online', 'Offline'],
+                datasets: [{
+                    data: [onlineVal, offlineVal],
+                    backgroundColor: ['#165DFF', '#C9E6FC'],
+                    borderWidth: 0,
+                    hoverOffset: 4,
+                }],
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '75%',
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: '#080C1A',
+                        callbacks: {
+                            label(context) {
+                                return ` ${context.label}: ${context.raw}%`;
+                            },
                         },
                     },
                 },
             },
-        },
-    });
+        });
+    }
 
-    new window.Chart(acquisitionCanvas.getContext('2d'), {
-        type: 'bar',
-        data: {
-            labels: ['Direct', 'Social', 'Organic', 'Referral', 'Email'],
-            datasets: [{
-                label: 'Users',
-                data: [4500, 3200, 5100, 1800, 2400],
-                backgroundColor: '#165DFF',
-                borderRadius: 6,
-                barThickness: 24,
-            }],
-        },
-        options: {
-            ...commonOptions,
-            scales: {
-                x: {
-                    grid: { display: false },
-                    ticks: { font: { family: "'Lexend Deca', sans-serif" }, color: '#6A7686' },
-                },
-                y: {
-                    display: false,
+    if (acquisitionCanvas) {
+        new window.Chart(acquisitionCanvas.getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['Direct', 'Social', 'Organic', 'Referral', 'Email'],
+                datasets: [{
+                    label: 'Users',
+                    data: [4500, 3200, 5100, 1800, 2400],
+                    backgroundColor: '#165DFF',
+                    borderRadius: 6,
+                    barThickness: 24,
+                }],
+            },
+            options: {
+                ...commonOptions,
+                scales: {
+                    x: {
+                        grid: { display: false },
+                        ticks: { font: { family: "'Lexend Deca', sans-serif" }, color: '#6A7686' },
+                    },
+                    y: {
+                        display: false,
+                    },
                 },
             },
-        },
-    });
+        });
+    }
 }
 
 // Used by logout button/modal in x-sidebar and admin/restaurant/index.blade.php.

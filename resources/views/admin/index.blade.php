@@ -19,7 +19,7 @@
       <button onclick="toggleSidebar()" aria-label="Open menu" class="lg:hidden size-11 flex items-center justify-center rounded-xl ring-1 ring-border hover:ring-primary transition-all duration-300 cursor-pointer">
         <i data-lucide="menu" class="size-6 text-foreground"></i>
       </button>
-      <h2 class="hidden lg:block font-bold text-2xl text-foreground">Analytics</h2>
+      <h2 class="hidden lg:block font-bold text-2xl text-foreground">Dashboard Sendangku</h2>
       <div class="flex items-center gap-3">
         <button onclick="openNotificationModal()" class="size-11 flex items-center justify-center rounded-xl ring-1 ring-border hover:ring-primary transition-all duration-300 cursor-pointer relative" aria-label="Notifications">
           <i data-lucide="bell" class="size-6 text-secondary"></i>
@@ -34,19 +34,19 @@
       <!-- Page Header with Filters -->
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6 md:mb-8">
         <div>
-          <h1 class="text-foreground text-2xl md:text-3xl font-bold mb-1">Performance Overview</h1>
-          <p class="text-secondary text-sm md:text-base">Track your key metrics and report status</p>
+          <h1 class="text-foreground text-2xl md:text-3xl font-bold mb-1">Informasi Dashboard</h1>
+          <p class="text-secondary text-sm md:text-base">Lacak metrik utama dan status laporan </p>
         </div>
         <div class="grid grid-cols-2 gap-2 w-full md:w-auto md:flex md:items-center md:gap-3">
           <button onclick="openDateModal()" class="flex items-center justify-center gap-2 px-4 md:px-6 py-3 ring-1 ring-border hover:ring-primary rounded-full text-foreground font-semibold transition-all duration-300 cursor-pointer bg-white">
             <i data-lucide="calendar" class="w-5 h-5 text-secondary"></i>
-            <span id="dateRangeLabel">Last 30 Days</span>
+            <span id="dateRangeLabel">Hari Ini</span>
             <i data-lucide="chevron-down" class="w-4 h-4 text-secondary ml-1"></i>
           </button>
-          <button onclick="openExportModal()" class="flex items-center justify-center gap-2 px-4 md:px-6 py-3 bg-primary text-white rounded-full font-bold hover:bg-primary-hover transition-all duration-300 cursor-pointer shadow-lg shadow-primary/20">
+          {{-- <button onclick="openExportModal()" class="flex items-center justify-center gap-2 px-4 md:px-6 py-3 bg-primary text-white rounded-full font-bold hover:bg-primary-hover transition-all duration-300 cursor-pointer shadow-lg shadow-primary/20">
             <i data-lucide="download" class="w-5 h-5"></i>
             <span>Export Report</span>
-          </button>
+          </button> --}}
         </div>
       </div>
 
@@ -58,13 +58,13 @@
             <div class="size-11 bg-success/10 rounded-xl flex items-center justify-center shrink-0">
               <i data-lucide="wallet" class="size-6 text-success"></i>
             </div>
-            <p class="font-medium text-secondary">Total Revenue</p>
+            <p class="font-medium text-secondary">Total Pendapatan</p>
           </div>
           <div class="flex items-center gap-3">
-            <p class="font-bold text-[32px] leading-10">$124K</p>
-            <span class="flex items-center gap-1 text-success text-sm font-semibold bg-success/10 px-2 py-0.5 rounded-full">
+            <p class="font-bold text-[28px] leading-10">Rp {{ number_format($totalRevenue, 0, ',', '.') }}</p>
+            {{-- <span class="flex items-center gap-1 text-success text-sm font-semibold bg-success/10 px-2 py-0.5 rounded-full">
               <i data-lucide="trending-up" class="w-3 h-3"></i> 12%
-            </span>
+            </span> --}}
           </div>
         </div>
 
@@ -74,13 +74,13 @@
             <div class="size-11 bg-primary/10 rounded-xl flex items-center justify-center shrink-0">
               <i data-lucide="users" class="size-6 text-primary"></i>
             </div>
-            <p class="font-medium text-secondary">Active Users</p>
+            <p class="font-medium text-secondary">Total Pengunjung</p>
           </div>
           <div class="flex items-center gap-3">
-            <p class="font-bold text-[32px] leading-10">45.2K</p>
-            <span class="flex items-center gap-1 text-success text-sm font-semibold bg-success/10 px-2 py-0.5 rounded-full">
+            <p class="font-bold text-[28px] leading-10">{{ number_format($totalVisitors, 0, ',', '.') }}</p>
+            {{-- <span class="flex items-center gap-1 text-success text-sm font-semibold bg-success/10 px-2 py-0.5 rounded-full">
               <i data-lucide="trending-up" class="w-3 h-3"></i> 8.5%
-            </span>
+            </span> --}}
           </div>
         </div>
 
@@ -90,13 +90,13 @@
             <div class="size-11 bg-warning/10 rounded-xl flex items-center justify-center shrink-0">
               <i data-lucide="activity" class="size-6 text-warning-dark"></i>
             </div>
-            <p class="font-medium text-secondary">Bounce Rate</p>
+            <p class="font-medium text-secondary">Tiket Online</p>
           </div>
           <div class="flex items-center gap-3">
-            <p class="font-bold text-[32px] leading-10">42.5%</p>
-            <span class="flex items-center gap-1 text-error text-sm font-semibold bg-error/10 px-2 py-0.5 rounded-full">
-              <i data-lucide="trending-down" class="w-3 h-3"></i> 2.1%
-            </span>
+            <p class="font-bold text-[28px] leading-10">{{ number_format($onlineTickets, 0, ',', '.') }}</p>
+                {{-- <span class="flex items-center gap-1 text-error text-sm font-semibold bg-error/10 px-2 py-0.5 rounded-full">
+                  <i data-lucide="trending-down" class="w-3 h-3"></i> 2.1%
+                </span> --}}
           </div>
         </div>
 
@@ -106,13 +106,13 @@
             <div class="size-11 bg-card-message rounded-xl flex items-center justify-center shrink-0">
               <i data-lucide="clock" class="size-6 text-primary"></i>
             </div>
-            <p class="font-medium text-secondary">Avg. Session</p>
+            <p class="font-medium text-secondary">Tiket Offline</p>
           </div>
           <div class="flex items-center gap-3">
-            <p class="font-bold text-[32px] leading-10">4m 32s</p>
-            <span class="flex items-center gap-1 text-success text-sm font-semibold bg-success/10 px-2 py-0.5 rounded-full">
+            <p class="font-bold text-[28px] leading-10">{{ number_format($offlineTickets, 0, ',', '.') }}</p>
+            {{-- <span class="flex items-center gap-1 text-success text-sm font-semibold bg-success/10 px-2 py-0.5 rounded-full">
               <i data-lucide="trending-up" class="w-3 h-3"></i> 5%
-            </span>
+            </span> --}}
           </div>
         </div>
       </div>
@@ -123,61 +123,62 @@
         <div class="lg:col-span-2 flex flex-col rounded-2xl border border-border p-6 gap-6 bg-white">
           <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
-              <h3 class="font-bold text-lg text-foreground">Traffic Overview</h3>
-              <p class="text-sm text-secondary">Daily unique visitors vs page views</p>
+              <h3 class="font-bold text-lg text-foreground">Trafik pengunjung</h3>
+              <p class="text-sm text-secondary">Trafik Pengunjung wisata mingguan</p>
             </div>
-            <div class="flex items-center bg-muted rounded-xl p-1">
+            {{-- <div class="flex items-center bg-muted rounded-xl p-1">
               <button class="px-3 py-1.5 bg-white shadow-sm rounded-lg text-xs font-semibold text-foreground transition-all">Daily</button>
               <button class="px-3 py-1.5 text-xs font-medium text-secondary hover:text-foreground transition-all">Weekly</button>
               <button class="px-3 py-1.5 text-xs font-medium text-secondary hover:text-foreground transition-all">Monthly</button>
-            </div>
+            </div> --}}
           </div>
           <div class="w-full relative h-[300px]">
-            <canvas id="trafficChart"></canvas>
+            <canvas id="trafficChart" data-labels='@json($trafficLabels)' data-values='@json($trafficValues)'></canvas>
           </div>
         </div>
 
         <!-- Doughnut Chart (Devices) -->
         <div class="flex flex-col rounded-2xl border border-border p-6 gap-6 bg-white">
           <div>
-            <h3 class="font-bold text-lg text-foreground">Device Distribution</h3>
-            <p class="text-sm text-secondary">Traffic source by device type</p>
+            <h3 class="font-bold text-lg text-foreground">Presentase Pembelian Tiket</h3>
+            <p class="text-sm text-secondary">Presentase pembelian tiket berdasarkan Kategori</p>
           </div>
           <div class="relative h-[220px] w-full flex items-center justify-center">
-            <canvas id="deviceChart"></canvas>
+            <canvas id="deviceChart" data-online="{{ $onlinePercentage }}" data-offline="{{ $offlinePercentage }}"></canvas>
             <!-- Center Text Overlay -->
             <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-              <span class="text-3xl font-bold text-foreground">85%</span>
-              <span class="text-xs text-secondary font-medium">Mobile</span>
+              <span class="text-3xl font-bold text-foreground">{{ $onlinePercentage }}%</span>
+              <span class="text-xs text-secondary font-medium">online</span>
             </div>
           </div>
           <div class="flex flex-col gap-3 mt-auto">
             <div class="flex items-center justify-between text-sm">
               <div class="flex items-center gap-2">
                 <span class="w-3 h-3 rounded-full bg-primary"></span>
-                <span class="text-secondary">Mobile</span>
+                <span class="text-secondary">online</span>
               </div>
-              <span class="font-semibold text-foreground">55%</span>
+              <span class="font-semibold text-foreground">{{ $onlinePercentage }}%</span>
             </div>
             <div class="flex items-center justify-between text-sm">
               <div class="flex items-center gap-2">
                 <span class="w-3 h-3 rounded-full bg-card-message"></span>
-                <span class="text-secondary">Desktop</span>
+                <span class="text-secondary">offline</span>
               </div>
-              <span class="font-semibold text-foreground">30%</span>
+              <span class="font-semibold text-foreground">{{ $offlinePercentage }}%</span>
             </div>
-            <div class="flex items-center justify-between text-sm">
+            {{-- <div class="flex items-center justify-between text-sm">
               <div class="flex items-center gap-2">
                 <span class="w-3 h-3 rounded-full bg-gray-200"></span>
                 <span class="text-secondary">Tablet</span>
               </div>
               <span class="font-semibold text-foreground">15%</span>
-            </div>
+            </div> --}}
           </div>
         </div>
       </div>
 
-      <!-- Row 2: Bar Chart & Reports -->
+      {{-- Row 2: Bar Chart & Reports (Diabaikan sementara sesuai permintaan) --}}
+      {{--
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <!-- Bar Chart (Acquisition) -->
         <div class="flex flex-col rounded-2xl border border-border p-6 gap-6 bg-white">
@@ -278,6 +279,7 @@
           </div>
         </div>
       </div>
+      --}}
       
     </div>
   </main>
@@ -288,39 +290,22 @@
   <div class="bg-white rounded-3xl w-full max-w-md shadow-2xl overflow-hidden">
     <div class="p-6 border-b border-border">
       <div class="flex items-center justify-between mb-4">
-        <h3 class="text-xl font-bold text-foreground">Select Date Range</h3>
+        <h3 class="text-xl font-bold text-foreground">Pilih Rentang Waktu</h3>
         <button onclick="closeDateModal()" class="p-2 hover:bg-muted rounded-full transition-colors cursor-pointer">
           <i data-lucide="x" class="size-5 text-secondary"></i>
         </button>
       </div>
       
-      <!-- Presets -->
-      <div class="flex flex-wrap gap-2 mb-6">
-        <button onclick="selectDatePreset(this, 'Last 7 Days')" class="date-preset px-4 py-2 rounded-xl bg-primary/10 text-primary font-semibold text-sm border border-primary/20 cursor-pointer">Last 7 Days</button>
-        <button onclick="selectDatePreset(this, 'Last 30 Days')" class="date-preset px-4 py-2 rounded-xl bg-white text-secondary font-medium text-sm border border-border hover:border-primary hover:text-primary transition-all cursor-pointer">Last 30 Days</button>
-        <button onclick="selectDatePreset(this, 'This Month')" class="date-preset px-4 py-2 rounded-xl bg-white text-secondary font-medium text-sm border border-border hover:border-primary hover:text-primary transition-all cursor-pointer">This Month</button>
-        <button onclick="selectDatePreset(this, 'Last Quarter')" class="date-preset px-4 py-2 rounded-xl bg-white text-secondary font-medium text-sm border border-border hover:border-primary hover:text-primary transition-all cursor-pointer">Last Quarter</button>
-      </div>
-
-      <!-- Custom Inputs -->
-      <div class="grid grid-cols-2 gap-4">
-        <div class="flex flex-col gap-2">
-          <label class="text-sm font-medium text-secondary">Start Date</label>
-          <div class="relative">
-            <input type="date" class="w-full p-3 rounded-xl border border-border bg-gray-50 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:bg-white transition-all">
-          </div>
-        </div>
-        <div class="flex flex-col gap-2">
-          <label class="text-sm font-medium text-secondary">End Date</label>
-          <div class="relative">
-            <input type="date" class="w-full p-3 rounded-xl border border-border bg-gray-50 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:bg-white transition-all">
-          </div>
-        </div>
+      <!-- Presets (Hari Ini, Minggu Ini, Bulan Ini) -->
+      <div class="flex flex-wrap gap-2.5">
+        <button onclick="selectDatePreset(this, 'Hari Ini')" class="date-preset px-4 py-2.5 rounded-xl bg-primary/10 text-primary font-semibold text-sm border border-primary/20 cursor-pointer transition-all">Hari Ini</button>
+        <button onclick="selectDatePreset(this, 'Minggu Ini')" class="date-preset px-4 py-2.5 rounded-xl bg-white text-secondary font-medium text-sm border border-border hover:border-primary hover:text-primary transition-all cursor-pointer">Minggu Ini</button>
+        <button onclick="selectDatePreset(this, 'Bulan Ini')" class="date-preset px-4 py-2.5 rounded-xl bg-white text-secondary font-medium text-sm border border-border hover:border-primary hover:text-primary transition-all cursor-pointer">Bulan Ini</button>
       </div>
     </div>
     <div class="p-6 bg-gray-50 flex justify-end gap-3">
-      <button onclick="closeDateModal()" class="px-6 py-3 rounded-full border border-border bg-white text-foreground font-semibold hover:bg-gray-100 transition-all cursor-pointer">Cancel</button>
-      <button onclick="applyDateRange()" class="px-6 py-3 rounded-full bg-primary text-white font-bold hover:bg-primary-hover transition-all cursor-pointer shadow-lg shadow-primary/20">Apply Range</button>
+      <button onclick="closeDateModal()" class="px-5 py-2.5 rounded-full border border-border bg-white text-foreground font-semibold hover:bg-gray-100 transition-all cursor-pointer text-sm">Batal</button>
+      <button onclick="applyDateRange()" class="px-6 py-2.5 rounded-full bg-primary text-white font-bold hover:bg-primary-hover transition-all cursor-pointer shadow-lg shadow-primary/20 text-sm">Terapkan</button>
     </div>
   </div>
 </div>
