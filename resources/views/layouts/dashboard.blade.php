@@ -16,7 +16,6 @@
     <main>
         <div id="sidebar-overlay" class="fixed inset-0 bg-black/80 z-40 lg:hidden hidden" onclick="toggleSidebar()"></div>
         <x-sidebar />
-        <x-notification-modal />
         <x-logout-modal />
         <x-flash/>
         @yield('content')
