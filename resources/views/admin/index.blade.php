@@ -40,7 +40,7 @@
         <div class="grid grid-cols-2 gap-2 w-full md:w-auto md:flex md:items-center md:gap-3">
           <button onclick="openDateModal()" class="flex items-center justify-center gap-2 px-4 md:px-6 py-3 ring-1 ring-border hover:ring-primary rounded-full text-foreground font-semibold transition-all duration-300 cursor-pointer bg-white">
             <i data-lucide="calendar" class="w-5 h-5 text-secondary"></i>
-            <span id="dateRangeLabel">Hari Ini</span>
+            <span id="dateRangeLabel">{{ $dateRangeLabel }}</span>
             <i data-lucide="chevron-down" class="w-4 h-4 text-secondary ml-1"></i>
           </button>
           {{-- <button onclick="openExportModal()" class="flex items-center justify-center gap-2 px-4 md:px-6 py-3 bg-primary text-white rounded-full font-bold hover:bg-primary-hover transition-all duration-300 cursor-pointer shadow-lg shadow-primary/20">
@@ -84,35 +84,29 @@
           </div>
         </div>
 
-        <!-- Bounce Rate -->
+        <!-- Pendapatan Tiket -->
         <div class="flex flex-col rounded-2xl border border-border p-6 gap-3 bg-white">
           <div class="flex items-center gap-[6px]">
             <div class="size-11 bg-warning/10 rounded-xl flex items-center justify-center shrink-0">
-              <i data-lucide="activity" class="size-6 text-warning-dark"></i>
+              <i data-lucide="ticket" class="size-6 text-warning-dark"></i>
             </div>
-            <p class="font-medium text-secondary">Tiket Online</p>
+            <p class="font-medium text-secondary">Pendapatan Tiket</p>
           </div>
           <div class="flex items-center gap-3">
-            <p class="font-bold text-[28px] leading-10">{{ number_format($onlineTickets, 0, ',', '.') }}</p>
-                {{-- <span class="flex items-center gap-1 text-error text-sm font-semibold bg-error/10 px-2 py-0.5 rounded-full">
-                  <i data-lucide="trending-down" class="w-3 h-3"></i> 2.1%
-                </span> --}}
+            <p class="font-bold text-[28px] leading-10">Rp {{ number_format($ticketRevenue, 0, ',', '.') }}</p>
           </div>
         </div>
 
-        <!-- Sessions -->
+        <!-- Pendapatan Restourant -->
         <div class="flex flex-col rounded-2xl border border-border p-6 gap-3 bg-white">
           <div class="flex items-center gap-[6px]">
             <div class="size-11 bg-card-message rounded-xl flex items-center justify-center shrink-0">
-              <i data-lucide="clock" class="size-6 text-primary"></i>
+              <i data-lucide="utensils" class="size-6 text-primary"></i>
             </div>
-            <p class="font-medium text-secondary">Tiket Offline</p>
+            <p class="font-medium text-secondary">Pendapatan Restourant</p>
           </div>
           <div class="flex items-center gap-3">
-            <p class="font-bold text-[28px] leading-10">{{ number_format($offlineTickets, 0, ',', '.') }}</p>
-            {{-- <span class="flex items-center gap-1 text-success text-sm font-semibold bg-success/10 px-2 py-0.5 rounded-full">
-              <i data-lucide="trending-up" class="w-3 h-3"></i> 5%
-            </span> --}}
+            <p class="font-bold text-[28px] leading-10">Rp {{ number_format($restaurantRevenue, 0, ',', '.') }}</p>
           </div>
         </div>
       </div>
@@ -296,11 +290,12 @@
         </button>
       </div>
       
-      <!-- Presets (Hari Ini, Minggu Ini, Bulan Ini) -->
+      <!-- Presets (Hari Ini, Minggu Ini, Bulan Ini, Semua Waktu) -->
       <div class="flex flex-wrap gap-2.5">
-        <button onclick="selectDatePreset(this, 'Hari Ini')" class="date-preset px-4 py-2.5 rounded-xl bg-primary/10 text-primary font-semibold text-sm border border-primary/20 cursor-pointer transition-all">Hari Ini</button>
-        <button onclick="selectDatePreset(this, 'Minggu Ini')" class="date-preset px-4 py-2.5 rounded-xl bg-white text-secondary font-medium text-sm border border-border hover:border-primary hover:text-primary transition-all cursor-pointer">Minggu Ini</button>
-        <button onclick="selectDatePreset(this, 'Bulan Ini')" class="date-preset px-4 py-2.5 rounded-xl bg-white text-secondary font-medium text-sm border border-border hover:border-primary hover:text-primary transition-all cursor-pointer">Bulan Ini</button>
+        <button type="button" onclick="selectDatePreset(this, 'Hari Ini'); window.selectedDashboardRange = 'today';" class="date-preset px-4 py-2.5 rounded-xl {{ $range === 'today' ? 'bg-primary/10 text-primary font-semibold border-primary/20' : 'bg-white text-secondary font-medium border-border hover:border-primary hover:text-primary' }} text-sm border transition-all cursor-pointer">Hari Ini</button>
+        <button type="button" onclick="selectDatePreset(this, 'Minggu Ini'); window.selectedDashboardRange = 'week';" class="date-preset px-4 py-2.5 rounded-xl {{ $range === 'week' ? 'bg-primary/10 text-primary font-semibold border-primary/20' : 'bg-white text-secondary font-medium border-border hover:border-primary hover:text-primary' }} text-sm border transition-all cursor-pointer">Minggu Ini</button>
+        <button type="button" onclick="selectDatePreset(this, 'Bulan Ini'); window.selectedDashboardRange = 'month';" class="date-preset px-4 py-2.5 rounded-xl {{ $range === 'month' ? 'bg-primary/10 text-primary font-semibold border-primary/20' : 'bg-white text-secondary font-medium border-border hover:border-primary hover:text-primary' }} text-sm border transition-all cursor-pointer">Bulan Ini</button>
+        <button type="button" onclick="selectDatePreset(this, 'Semua Waktu'); window.selectedDashboardRange = 'all';" class="date-preset px-4 py-2.5 rounded-xl {{ $range === 'all' || !$range ? 'bg-primary/10 text-primary font-semibold border-primary/20' : 'bg-white text-secondary font-medium border-border hover:border-primary hover:text-primary' }} text-sm border transition-all cursor-pointer">Semua Waktu</button>
       </div>
     </div>
     <div class="p-6 bg-gray-50 flex justify-end gap-3">
@@ -367,3 +362,50 @@
 </div>
 
 @endsection
+
+@push('scripts')
+<script>
+    window.selectedDashboardRange = '{{ $range }}';
+
+    function selectDatePreset(button, preset) {
+        document.querySelectorAll('.date-preset').forEach(btn => {
+            btn.className = 'date-preset px-4 py-2.5 rounded-xl bg-white text-secondary font-medium text-sm border border-border hover:border-primary hover:text-primary transition-all cursor-pointer';
+        });
+        button.className = 'date-preset px-4 py-2.5 rounded-xl bg-primary/10 text-primary font-semibold text-sm border border-primary/20 cursor-pointer transition-all';
+    }
+
+    function applyDateRange() {
+        const url = new URL(window.location.href);
+        if (window.selectedDashboardRange && window.selectedDashboardRange !== 'all') {
+            url.searchParams.set('range', window.selectedDashboardRange);
+        } else {
+            url.searchParams.delete('range');
+        }
+        window.location.href = url.toString();
+    }
+
+    // Memastikan sumbu Y Chart Pengunjung Row 1 memiliki range 0 - 5000
+    document.addEventListener('DOMContentLoaded', function() {
+        const canvas = document.getElementById('trafficChart');
+        if (!canvas) return;
+
+        const setTrafficChartRange = () => {
+            const chart = window.Chart && window.Chart.getChart ? window.Chart.getChart(canvas) : null;
+            if (chart && chart.options && chart.options.scales && chart.options.scales.y) {
+                chart.options.scales.y.min = 0;
+                chart.options.scales.y.max = 5000;
+                chart.options.scales.y.ticks.stepSize = 1000;
+                chart.options.scales.y.ticks.autoSkip = false;
+                chart.options.scales.y.ticks.maxTicksLimit = 6;
+                chart.options.scales.y.ticks.callback = function(value) {
+                    return value.toLocaleString('id-ID');
+                };
+                chart.update();
+            }
+        };
+
+        setTrafficChartRange();
+        setTimeout(setTrafficChartRange, 350);
+    });
+</script>
+@endpush

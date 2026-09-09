@@ -242,7 +242,7 @@ function initCharts() {
             data: {
                 labels,
                 datasets: [{
-                    label: 'Visitors',
+                    label: 'Pengunjung',
                     data: values,
                     borderColor: '#165DFF',
                     backgroundColor: gradient,
@@ -256,7 +256,28 @@ function initCharts() {
                     tension: 0.4,
                 }],
             },
-            options: commonOptions,
+            options: {
+                ...commonOptions,
+                scales: {
+                    x: commonOptions.scales.x,
+                    y: {
+                        min: 0,
+                        max: 5000,
+                        border: { display: false },
+                        grid: { color: '#F3F4F3', borderDash: [5, 5] },
+                        ticks: {
+                            font: { family: "'Lexend Deca', sans-serif" },
+                            color: '#6A7686',
+                            stepSize: 1000,
+                            autoSkip: false,
+                            maxTicksLimit: 6,
+                            callback: function(value) {
+                                return value.toLocaleString('id-ID');
+                            }
+                        },
+                    },
+                },
+            },
         });
     }
 
