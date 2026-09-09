@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\TableController;
 use App\Http\Controllers\Admin\TicketTypeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Public\HomeController;
+use App\Http\Controllers\Public\BlogController as PublicBlogController;
 use App\Http\Controllers\Public\OrderController as PublicOrderController;
 use App\Http\Controllers\Public\RestaurantMenuController as PublicRestaurantMenuController;
 use App\Http\Controllers\Public\RestaurantOrderController as PublicRestaurantOrderController;
@@ -21,6 +22,8 @@ Route::get('/layanan', function () {
     return view('front.service');
 });
 Route::get('/layanan/{service:slug}', [HomeController::class, 'show'])->name('service.detail');
+Route::get('/blog', [PublicBlogController::class, 'index'])->name('blog.index');
+Route::get('/blog/{blog:slug}', [PublicBlogController::class, 'show'])->name('blog.detail');
 
 
 Route::get('/checkout/ticket/success',[PublicOrderController::class,'success'])->name('checkout.ticket.success');

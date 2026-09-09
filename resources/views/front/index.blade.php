@@ -581,22 +581,8 @@ class="flex flex-col items-center">
      data-aos-duration="1000"
      data-aos-offset="0"
 class="w-full max-w-6xl grid z-10 justify-center lg:gap-8 gap-5 grid-rows-1 md:grid-cols-3 items-stretch ">
-    <div class="group flex flex-col overflow-hidden rounded-lg bg-transparent lg:w-full w-80 md:w-auto shrink-0">
-        <div class="w-full h-56 overflow-hidden">
-            <img src="img/sendang.png" alt="Berita wisata Sendang Kun Gerit" class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105">
-        </div>
-        <div class="flex flex-col flex-1 p-5">
-            <div class="flex items-center justify-between gap-3 text-[12px] font-poppins font-semibold uppercase tracking-[0.06em] text-amber-600 mb-3">
-                <span>Berita &amp; Informasi</span>
-                <span class="text-gray-400">12 Jan 2026</span>
-            </div>
-            <h2 class="text-lg md:text-xl font-semibold font-poppins text-black leading-snug mb-4">Sendang Kun Gerit Jadi Pilihan Wisata Keluarga</h2>
-            <div class="border-b border-gray-200 mt-auto mb-4"></div>
-            <a href="/tiket" class="w-fit font-dm text-[13px] font-semibold tracking-[0.07em] uppercase border border-amber-500 text-black px-4 py-2 hover:bg-amber-600 hover:text-white transition-all duration-200">
-                Baca Selengkapnya
-            </a>
-        </div>
-    </div>
+
+    @foreach ($blogs as $blog)
     <div
     data-aos="fade-zoom-in"
      data-aos-easing="linear"
@@ -605,44 +591,26 @@ class="w-full max-w-6xl grid z-10 justify-center lg:gap-8 gap-5 grid-rows-1 md:g
      data-aos-offset="0"
      class="group flex flex-col overflow-hidden rounded-lg bg-transparent lg:w-full w-80 md:w-auto shrink-0">
         <div class="w-full h-56 overflow-hidden">
-            <img src="img/food2.png" alt="Berita resto Sendang Kun Gerit" class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105">
+            <img src="{{ $blog['image'] }}" alt="{{ $blog['name'] }}" class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105" onerror="this.src='/img/sendang.png'">
         </div>
         <div class="flex flex-col flex-1 p-5">
             <div class="flex items-center justify-between gap-3 text-[12px] font-poppins font-semibold uppercase tracking-[0.06em] text-amber-600 mb-3">
-                <span>Kuliner</span>
-                <span class="text-gray-400">18 Jan 2026</span>
+                <span>Berita</span>
+                <span class="text-gray-400">{{ $blog['date'] }}</span>
             </div>
-            <h2 class="text-lg md:text-xl font-semibold font-poppins text-black leading-snug mb-4">Menikmati Resto dan Angkringan di Area Sendang</h2>
+            <h2 class="text-lg md:text-xl font-semibold font-poppins text-black leading-snug mb-4">{{ $blog['name'] }}</h2>
+            <p class="text-sm md:text-base font-medium font-poppins text-gray-600 leading-relaxed mb-4 line-clamp-3">{{ Str::limit($blog['content'],100) }}</p>
             <div class="border-b border-gray-200 mt-auto mb-4"></div>
-            <a href="/tiket" class="w-fit font-dm text-[13px] font-semibold tracking-[0.07em] uppercase border border-amber-500 text-black px-4 py-2 hover:bg-amber-600 hover:text-white transition-all duration-200">
+            <a href="{{ route('blog.detail', $blog['slug']) }}" class="w-fit font-dm text-[13px] font-semibold tracking-[0.07em] uppercase border border-amber-500 text-black px-4 py-2 hover:bg-amber-600 hover:text-white transition-all duration-200">
                 Baca Selengkapnya
             </a>
         </div>
     </div>
-    <div
-    data-aos="fade-zoom-in"
-     data-aos-easing="linear"
-     data-aos-delay="1000"
-     data-aos-duration="1000"
-     data-aos-offset="0"
-    class="group flex flex-col overflow-hidden rounded-lg bg-transparent lg:w-full w-80 md:w-auto shrink-0 ">
-        <div class="w-full h-56 overflow-hidden">
-            <img src="img/sendang.png" alt="Berita fasilitas Sendang Kun Gerit" class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105">
-        </div>
-        <div class="flex flex-col flex-1 p-5">
-            <div class="flex items-center justify-between gap-3 text-[12px] font-poppins font-semibold uppercase tracking-[0.06em] text-amber-600 mb-3">
-                <span>Fasilitas</span>
-                <span class="text-gray-400">25 Jan 2026</span>
-            </div>
-            <h2 class="text-lg md:text-xl font-semibold font-poppins text-black leading-snug mb-4">Fasilitas Pendukung untuk Liburan Lebih Nyaman</h2>
-            <div class="border-b border-gray-200 mt-auto mb-4"></div>
-            <a href="/tiket" class="w-fit font-dm text-[13px] font-semibold tracking-[0.07em] uppercase border border-amber-500 text-black px-4 py-2 hover:bg-amber-600 hover:text-white transition-all duration-200">
-                Baca Selengkapnya
-            </a>
-        </div>
-    </div>
+
+    @endforeach
+
 </div>
-                   <a href="/tiket" class=" border-t border-amber-500 z-10  mx-2  font-dm text-[16px] mt-8  font-semibold tracking-[0.07em] uppercase text-black px-4 py-2 hover:text-amber-600 transition-all duration-200">
+                   <a href="{{ route('blog.index') }}" class=" border-t border-amber-500 z-10  mx-2  font-dm text-[16px] mt-8  font-semibold tracking-[0.07em] uppercase text-black px-4 py-2 hover:text-amber-600 transition-all duration-200">
                 Berita Lainnya
             </a>
 </section>
