@@ -23,13 +23,12 @@ class StoreRestaurantOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-
             'name' => ['required', 'string', 'max:255'],
-            'table_id' => ['nullable', 'integer', 'exists:tables,id'],
-            'restaurant_menu_id' => ['nullable', 'integer'],
-            'qty' => ['required', 'integer', 'min:1'],
-            'note' => ['nullable', 'string', 'max:255']
-
+            'table_id' => ['required', 'integer', 'exists:tables,id'],
+            'note' => ['nullable', 'string', 'max:1000'],
+            'items' => ['required', 'array', 'min:1'],
+            'items.*.restaurant_menu_id' => ['required', 'integer', 'exists:restaurant_menus,id'],
+            'items.*.qty' => ['required', 'integer', 'min:1', 'max:99'],
         ];
     }
 }

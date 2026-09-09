@@ -28,6 +28,8 @@ Route::get('/layanan/berkuda', function () {
 Route::get('/checkout/ticket/success',[PublicOrderController::class,'success'])->name('checkout.ticket.success');
 Route::get('/checkout/ticket',[PublicOrderController::class,'index'])->name('checkout.ticket');
 Route::post('/checkout/ticket',[PublicOrderController::class,'create'])->name('checkout.ticket.create');
+Route::get('/restourant',[PublicRestaurantOrderController::class,'index'])->name('restaurant.order');
+Route::post('/restourant',[PublicRestaurantOrderController::class,'store'])->name('restaurant.order.store');
 
 
 Route::post('/login', [UserController::class, 'authenticate'])->name('login.auth');
@@ -70,5 +72,4 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::resource('/restaurant-order', PublicRestaurantOrderController::class);
     Route::resource('/service', PublicServiceController::class);
     Route::get('/',[HomeController::class, 'index'])->name('home');
-
 
