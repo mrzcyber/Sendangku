@@ -79,7 +79,7 @@ data-aos="fade-down"
 
         <li class="w-px h-3.5 xl:mx-1" :class="isHome ? 'bg-white/15' : 'bg-stone-200'"></li>
         <li>
-            <a href="/tiket"
+            <a href="{{ route('checkout.ticket') }}"
                class="font-dm text-[12px] font-medium tracking-[0.07em] uppercase px-5 py-2
                       transition-all duration-200 border"
                :class="isHome
@@ -165,7 +165,7 @@ data-aos="fade-down"
         </ul>
 
         <a
-            href="/tiket"
+            href="{{ route('checkout.ticket') }}"
             class="mt-6 flex items-center justify-center w-full py-3.5 font-dm text-sm font-semibold
                    tracking-widest uppercase bg-amber-500 text-white hover:bg-amber-600 transition-all duration-200"
             @click="open = false"

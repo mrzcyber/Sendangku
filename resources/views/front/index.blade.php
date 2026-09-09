@@ -26,7 +26,7 @@ class=" relative xl:h-[800px] h-[800px] md:h-screen w-full flex xl:items-end ite
         <h2 class="md:text-2xl text-xl font-md font-semibold  text-amber-600 ">Selamat Datang </h2>
         <h1 class="md:text-[38px] text-[20px] font-semibold font-poppins md:mb-4 mb-2 leading-none">Wisata Sendang Kun Gerit</h1>
         <p class="md:text-lg text-sm font-dm xl:w-[650px] xl:mb-10 text-white/95 mb-3 text-center xl:text-start ">kelezatan kuliner dan kesegaran pemandian dalam satu destinasi wisata yang nyaman <span class="md:inline hidden ">Perpaduan sempurna antara cita rasa istimewa dan pengalaman pemandian yang menyegarkan.</span> </p>
-                <a href="/tiket" class="font-dm md:text-[14px]  text-[12px] scale-[80%] md:scale-100 font-medium tracking-[0.07em] uppercase border border-amber-500/70 text-white px-4 py-2.5 bg-amber-600 hover:border-amber-600 hover:bg-amber-700 hover:text-white transition-all duration-200">
+                <a href="{{ route('checkout.ticket') }}" class="font-dm md:text-[14px]  text-[12px] scale-[80%] md:scale-100 font-medium tracking-[0.07em] uppercase border border-amber-500/70 text-white px-4 py-2.5 bg-amber-600 hover:border-amber-600 hover:bg-amber-700 hover:text-white transition-all duration-200">
                 Beli Tiket Sekarang
             </a>
     </div>

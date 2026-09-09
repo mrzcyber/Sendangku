@@ -9,10 +9,10 @@
 
 @section('content')
 
-<section class="w-full bg-gray-50 px-4 md:px-10 xl:px-20 py-10 pt-28 md:py-42 md:mt-80">
+<section class="w-full bg-gray-50 flex px-4 md:px-10 xl:px-20 py-10 pt-28 md:py-42 md:pt-80">
 
 <div
-    class="max-w-3xl mx-auto"
+    class="max-w-3xl w-full mx-auto"
     x-data="{
         tickets: @js($tickets),
 
@@ -84,7 +84,9 @@
         <div class="mx-auto mt-4 w-56 h-1 bg-amber-500"></div>
     </div>
 
-    <form @submit.prevent="pay()" class="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8 items-start">
+    <form @submit.prevent="pay()" class="flex flex-col gap-6  ">
+
+        {{-- Left side --}}
 
         <div class="lg:col-span-3 flex flex-col gap-6">
 

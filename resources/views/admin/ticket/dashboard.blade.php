@@ -42,14 +42,14 @@
       
       <!-- Presets -->
       <div class="flex flex-wrap gap-2 mb-6">
-        <button onclick="selectDatePreset(this, 'Last 7 Days')" class="date-preset px-4 py-2 rounded-xl bg-primary/10 text-primary font-semibold text-sm border border-primary/20 cursor-pointer">Last 7 Days</button>
-        <button onclick="selectDatePreset(this, 'Last 30 Days')" class="date-preset px-4 py-2 rounded-xl bg-white text-secondary font-medium text-sm border border-border hover:border-primary hover:text-primary transition-all cursor-pointer">Last 30 Days</button>
-        <button onclick="selectDatePreset(this, 'This Month')" class="date-preset px-4 py-2 rounded-xl bg-white text-secondary font-medium text-sm border border-border hover:border-primary hover:text-primary transition-all cursor-pointer">This Month</button>
-        <button onclick="selectDatePreset(this, 'Last Quarter')" class="date-preset px-4 py-2 rounded-xl bg-white text-secondary font-medium text-sm border border-border hover:border-primary hover:text-primary transition-all cursor-pointer">Last Quarter</button>
+        <button onclick="selectDatePreset(this, 'Last 7 Days')" class="date-preset px-4 py-2 rounded-xl bg-primary/10 text-primary font-semibold text-sm border border-primary/20 cursor-pointer">Hari Ini</button>
+        <button onclick="selectDatePreset(this, 'Last 30 Days')" class="date-preset px-4 py-2 rounded-xl bg-white text-secondary font-medium text-sm border border-border hover:border-primary hover:text-primary transition-all cursor-pointer">Minggu Ini</button>
+        <button onclick="selectDatePreset(this, 'This Month')" class="date-preset px-4 py-2 rounded-xl bg-white text-secondary font-medium text-sm border border-border hover:border-primary hover:text-primary transition-all cursor-pointer">Bulan Ini</button>
+        {{-- <button onclick="selectDatePreset(this, 'Last Quarter')" class="date-preset px-4 py-2 rounded-xl bg-white text-secondary font-medium text-sm border border-border hover:border-primary hover:text-primary transition-all cursor-pointer">Last Quarter</button> --}}
       </div>
 
       <!-- Custom Inputs -->
-      <div class="grid grid-cols-2 gap-4">
+      {{-- <div class="grid grid-cols-2 gap-4">
         <div class="flex flex-col gap-2">
           <label class="text-sm font-medium text-secondary">Start Date</label>
           <div class="relative">
@@ -62,7 +62,7 @@
             <input type="date" class="w-full p-3 rounded-xl border border-border bg-gray-50 text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:bg-white transition-all">
           </div>
         </div>
-      </div>
+      </div> --}}
     </div>
     <div class="p-6 bg-gray-50 flex justify-end gap-3">
       <button onclick="closeDateModal()" class="px-6 py-3 rounded-full border border-border bg-white text-foreground font-semibold hover:bg-gray-100 transition-all cursor-pointer">Cancel</button>
@@ -116,9 +116,9 @@
               <div class="size-11 bg-error/10 rounded-xl flex items-center justify-center shrink-0">
                 <i data-lucide="user" class="size-6 text-error"></i>
               </div>
-              <p class="font-medium text-secondary">Pengunjung Wanita</p>
+              <p class="font-medium text-secondary">Tiket Terscan</p>
             </div>
-            <span class="text-error text-sm font-bold bg-error/10 px-2 py-1 rounded-lg">-5%</span>
+            {{-- <span class="text-error text-sm font-bold bg-error/10 px-2 py-1 rounded-lg">-5%</span> --}}
           </div>
           <p class="font-bold text-[28px] leading-10 text-foreground">3000</p>
         </div>
@@ -165,9 +165,9 @@
             <div class="size-11 bg-info/10 rounded-xl flex items-center justify-center shrink-0">
               <i data-lucide="user-round" class="size-6 text-info"></i>
             </div>
-            <p class="font-medium text-secondary">Pengunjung Pria</p>
+            <p class="font-medium text-secondary">Tiket Belum Terscan</p>
           </div>
-          <span class="text-error text-sm font-bold bg-error/10 px-2 py-1 rounded-lg">-5%</span>
+          {{-- <span class="text-error text-sm font-bold bg-error/10 px-2 py-1 rounded-lg">-5%</span> --}}
           </div>
           <p class="font-bold text-[32px] leading-10 text-foreground">2000</p>
         </div>
