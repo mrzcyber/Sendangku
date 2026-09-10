@@ -66,7 +66,7 @@ class="w-[520px] 2xl:w-[600px]  ml-20 relative hidden md:block">
      data-aos-duration="1500"
      data-aos-offset="0"
 class="xl:w-64 w-44 -rotate-[4deg] h-44  absolute -top-16 -right-10 overflow-hidden border-8 border-white shadow-md shadow-black ">
- <img src="img/sendang.png" alt="Icon 1" class="w-full h-full object-cover bg-center bg-no-repeat">
+ <img src="img/sendang4.webp" alt="Icon 1" class="w-full h-full object-cover bg-center bg-no-repeat">
 </div>    
 
 <div
@@ -76,7 +76,7 @@ class="xl:w-64 w-44 -rotate-[4deg] h-44  absolute -top-16 -right-10 overflow-hid
      data-aos-duration="1500"
      data-aos-offset="0"
 class="xl:w-64 w-44 -rotate-[4deg] h-44  absolute -bottom-16 -left-16 overflow-hidden border-8 border-white shadow-md shadow-black ">
- <img src="img/sendang.png" alt="Icon 1" class="w-full h-full object-cover bg-center bg-no-repeat">
+ <img src="img/sendangkun3.webp" alt="Icon 1" class="w-full h-full object-cover bg-center bg-no-repeat">
 </div>    
 
 </div>
@@ -315,7 +315,7 @@ class="w-full relative overflow-hidden bg-[#FFF8E1]/80 py-10 md:py-16 xl:px-20 m
                         <p class="md:text-[16px] font-medium text-gray-500 font-poppins text-center md:text-start mt-1">Paket Menarik</p>
                     </div>
                     <div class="w-full md:w-auto hidden lg:flex justify-center md:justify-start md:ml-2">
-                        <a href="https://wa.me/628XXXXXXXXXX?text=Halo%2C%20saya%20ingin%20pesan%20menu%20Resto%20Sendang%20Kun%20Gerit" class="w-fit font-dm text-[12px] lg:text-[13px] font-semibold tracking-[0.07em] uppercase border border-amber-500/70 text-white px-4 py-2.5 bg-amber-600 hover:border-amber-600 hover:bg-amber-700 hover:text-white transition-all duration-200">
+                        <a href="/restourant" class="w-fit font-dm text-[12px] lg:text-[13px] font-semibold tracking-[0.07em] uppercase border border-amber-500/70 text-white px-4 py-2.5 bg-amber-600 hover:border-amber-600 hover:bg-amber-700 hover:text-white transition-all duration-200">
                             Pesan Sekarang
                         </a>
                     </div>
@@ -330,7 +330,7 @@ class="w-full relative overflow-hidden bg-[#FFF8E1]/80 py-10 md:py-16 xl:px-20 m
         data-aos-duration="1000"
         class="relative w-full md:w-1/2 max-w-[460px] mx-auto md:block hidden">
             <div class="w-full h-[330px] xl:h-[360px] -rotate-[3deg] border-[10px] shadow-md shadow-black border-white overflow-hidden bg-white">
-                <img src="img/food2.png" alt="Menu Resto Sendang Kun Gerit" class="w-full h-full object-cover object-center">
+                <img src="img/menu1.jpeg" alt="Menu Resto Sendang Kun Gerit" class="w-full h-full object-cover object-center">
             </div>
 
             <div
@@ -339,7 +339,7 @@ class="w-full relative overflow-hidden bg-[#FFF8E1]/80 py-10 md:py-16 xl:px-20 m
             data-aos-delay="800"
             data-aos-duration="1200"
             class="xl:w-52 w-40 rotate-[5deg] xl:h-40 h-36 absolute -top-10 -right-6 overflow-hidden border-8 border-white shadow-md shadow-black bg-white">
-                <img src="img/overlay-food.png" alt="Hidangan Resto Sendang Kun Gerit" class="w-full h-full object-cover object-center">
+                <img src="img/menu3.jpeg" alt="Hidangan Resto Sendang Kun Gerit" class="w-full h-full object-cover object-center">
             </div>
 
             <div
@@ -348,7 +348,7 @@ class="w-full relative overflow-hidden bg-[#FFF8E1]/80 py-10 md:py-16 xl:px-20 m
             data-aos-delay="900"
             data-aos-duration="1200"
             class="xl:w-52 w-40 rotate-[4deg] xl:h-40 h-36 absolute -bottom-12 -left-8 overflow-hidden border-8 border-white shadow-md shadow-black bg-white">
-                <img src="img/food2.png" alt="Galeri Makanan Sendang Kun Gerit" class="w-full h-full object-cover object-right">
+                <img src="img/menu2.jpg" alt="Galeri Makanan Sendang Kun Gerit" class="w-full h-full object-cover object-right">
             </div>
         </div>
 
@@ -359,13 +359,13 @@ class="w-full relative overflow-hidden bg-[#FFF8E1]/80 py-10 md:py-16 xl:px-20 m
         data-aos-duration="1000"
         class="md:hidden grid grid-cols-2 gap-3">
             <div class="col-span-2 h-56 overflow-hidden border-8 border-white shadow-md shadow-black bg-white">
-                <img src="img/food2.png" alt="Menu Resto Sendang Kun Gerit" class="w-full h-full object-cover object-center">
+                <img src="img/menu1.jpeg" alt="Menu Resto Sendang Kun Gerit" class="w-full h-full object-cover object-center">
             </div>
             <div class="h-36 overflow-hidden border-8 border-white shadow-md shadow-black bg-white">
-                <img src="img/overlay-food.png" alt="Hidangan Resto Sendang Kun Gerit" class="w-full h-full object-cover object-center">
+                <img src="img/menu3.jpeg" alt="Hidangan Resto Sendang Kun Gerit" class="w-full h-full object-cover object-center">
             </div>
             <div class="h-36 overflow-hidden border-8 border-white shadow-md shadow-black bg-white">
-                <img src="img/food2.png" alt="Galeri Makanan Sendang Kun Gerit" class="w-full h-full object-cover object-right">
+                <img src="img/menu2.jpg" alt="Galeri Makanan Sendang Kun Gerit" class="w-full h-full object-cover object-right">
             </div>
         </div>
     </div>
