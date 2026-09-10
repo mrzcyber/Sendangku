@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
@@ -12,7 +13,12 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        //
+        $services = Service::query()->latest()->get();
+        $services->each(fn (Service $service) =>
+            $service->setAttribute('thumbnail_url', $this->imageUrl($service->thumbnail))
+        );
+
+        return view('front.service', compact('services'));
     }
 
     /**
@@ -34,9 +40,19 @@ class ServiceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Service $service)
     {
-        //
+        $service->load([
+            'serviceGalleries:id,service_id,image',
+            'servicePackages' => fn ($query) => $query->orderByDesc('populer')->orderBy('price'),
+        ]);
+
+        $service->setAttribute('thumbnail_url', $this->imageUrl($service->thumbnail));
+        $service->serviceGalleries->each(fn ($gallery) =>
+            $gallery->setAttribute('image_url', $this->imageUrl($gallery->image))
+        );
+
+        return view('front.detail', compact('service'));
     }
 
     /**
@@ -61,5 +77,10 @@ class ServiceController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    private function imageUrl(?string $path): string
+    {
+        return filled($path) ? '/storage/' . ltrim($path, '/') : asset('img/sendang.png');
     }
 }

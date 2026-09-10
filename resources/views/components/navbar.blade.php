@@ -59,9 +59,8 @@ data-aos="fade-down"
         @foreach([
             ['/', 'Home'],
             ['/#tentang', 'Tentang Kami'],
-            ['/#layanan', 'Layanan'],
-            ['/#resto', 'Resto'],
-            ['/#acara', 'Acara'],
+            ['/layanan', 'Layanan'],
+            ['/restourant', 'Resto'],
             ['/#berita', 'Berita'],
             ['/#kontak', 'Kontak'],
         ] as [$href, $label])
@@ -143,9 +142,8 @@ data-aos="fade-down"
             @foreach([
             ['/', 'Home'],
             ['/#tentang', 'Tentang Kami'],
-            ['/#layanan', 'Layanan'],
-            ['/#resto', 'Resto'],
-            ['/#acara', 'Acara'],
+            ['/layanan', 'Layanan'],
+            ['/restourant', 'Resto'],
             ['/#berita', 'Berita'],
             ['/#kontak', 'Kontak'],
             ] as [$href, $label])

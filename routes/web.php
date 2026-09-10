@@ -18,10 +18,9 @@ use App\Http\Controllers\Public\RestaurantOrderController as PublicRestaurantOrd
 use App\Http\Controllers\Public\ServiceController as PublicServiceController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/layanan', function () {
-    return view('front.service');
-});
-Route::get('/layanan/{service:slug}', [HomeController::class, 'show'])->name('service.detail');
+
+Route::get('/layanan', [PublicServiceController::class, 'index'])->name('service.index');
+Route::get('/layanan/{service:slug}', [PublicServiceController::class, 'show'])->name('service.detail');
 Route::get('/blog', [PublicBlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{blog:slug}', [PublicBlogController::class, 'show'])->name('blog.detail');
 
