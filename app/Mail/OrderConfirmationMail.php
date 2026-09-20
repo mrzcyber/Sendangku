@@ -23,9 +23,7 @@ class OrderConfirmationMail extends Mailable
      */
     public function __construct(public Order $order)
     {
-        $this->qrCode = 'data:image/svg+xml;base64,'. base64_encode(
-            QrCode::format('svg')->size(300)->generate($order->qr_token)
-        );
+        $this->qrCode = asset('storage/' . $order->qr_path);
     }
 
     /**

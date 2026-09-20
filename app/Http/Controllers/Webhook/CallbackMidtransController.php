@@ -7,6 +7,8 @@ use App\Models\Order;
 use App\Models\RestaurantOrder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class CallbackMidtransController
 {
@@ -36,6 +38,10 @@ class CallbackMidtransController
                 $order->update([
                     'pay_status' => 'paid',
                 ]);
+                $qrCode = QrCode::format('png')->size(300)->generate($order->qr_token);
+                $path = 'qrcodes/' . $order->qr_token . '.png' ;
+                Storage::disk('public')->put($path,$qrCode);
+                $order->update(['qr_path'=>$path]);
                 Mail::to($order->buyer_email)->queue(new OrderConfirmationMail($order));
             } else {
                 $restaurantOrder->update(['status' => 'success']);

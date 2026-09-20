@@ -22,6 +22,7 @@ class Order extends Model
     protected $fillable = [
         'order_code',
         'qr_token',
+        'qr_path',
         'buyer_name',
         'buyer_phone',
         'buyer_email',
