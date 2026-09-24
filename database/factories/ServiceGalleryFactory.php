@@ -20,7 +20,7 @@ class ServiceGalleryFactory extends Factory
     {
         return [
             'service_id' => Service::factory(),
-            'image' => 'seeders/sendang.png', // Sesuaikan dengan path asset yang tersedia.
+            'image' => 'seeders/sendang.avif', // Sesuaikan dengan path asset yang tersedia.
         ];
     }
 }

@@ -19,7 +19,7 @@ class ServiceSeeder extends Seeder
                 'description' => 'Layanan relaksasi air hangat untuk pengunjung Sendangku.',
                 'price' => 50000,
                 'duration' => '60 menit', // Sesuaikan durasi aktual.
-                'thumbnail' => 'seeders/sendang.png', // Sesuaikan path asset.
+                'thumbnail' => 'seeders/sendang.avif', // Sesuaikan path asset.
             ]
         );
 
@@ -30,7 +30,7 @@ class ServiceSeeder extends Seeder
                 'description' => 'Layanan dokumentasi kunjungan wisata.',
                 'price' => 75000,
                 'duration' => '60 menit', // Sesuaikan durasi aktual.
-                'thumbnail' => 'seeders/sendang.png', // Sesuaikan path asset.
+                'thumbnail' => 'seeders/sendang.avif', // Sesuaikan path asset.
             ]
         );
     }

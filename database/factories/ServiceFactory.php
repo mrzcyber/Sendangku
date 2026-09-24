@@ -26,7 +26,7 @@ class ServiceFactory extends Factory
             'description' => fake()->paragraph(),
             'price' => fake()->randomElement([ 50000, 75000, 100000]),
             'duration' => fake()->randomElement(['30 menit', '60 menit', '120 menit']), // Sesuaikan format durasi jika perlu.
-            'thumbnail' => 'seeders/sendang.png', // Sesuaikan dengan path asset yang tersedia.
+            'thumbnail' => 'seeders/sendang.avif', // Sesuaikan dengan path asset yang tersedia.
         ];
     }
 }

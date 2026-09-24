@@ -6,7 +6,7 @@
 <section 
 class=" relative xl:h-[800px] h-[800px] md:h-screen w-full flex xl:items-end items-center justify-center xl:justify-start  ">
     <div class="absolute  inset-0">
-        <img src="img/sendang.png" alt="Background Image" class="w-full h-full object-cover bg-center bg-no-repeat">
+        <img src="img/sendang.avif" alt="Background Image" class="w-full h-full object-cover bg-center bg-no-repeat">
          <div class="absolute inset-0 bg-black opacity-30"></div>
     <div class="absolute bottom-0 py-28 bg-gradient-to-t  w-full from-white to-transparent opacity-35 -mb-16 "></div>
     <div class="absolute left-0 top-0 w-full opacity-35 -ml-80  h-full bg-gradient-to-r    from-amber-600 to-transparent justify-end flex pt-28  "></div>
@@ -38,7 +38,7 @@ id="tentang"
 class="w-full md:pb-36 pb-10 pt-10  relative flex md:pt-40 justify-center bg-[#FFF8E1]/80">
 
         <div class="absolute inset-0">
-        <img src="img/icon-bg.png" alt="Background Image" class="w-full h-full object-cover opacity-40 bg-center bg-no-repeat">
+        <img src="img/icon-bg.avif" alt="Background Image" class="w-full h-full object-cover opacity-40 bg-center bg-no-repeat">
          {{-- <div class="absolute inset-0 bg-black opacity-"></div> --}}
         <div class="absolute bottom-0 py-28 bg-gradient-to-t  w-full from-amber-500/80  to-transparent  -mb-36 "></div>
 
@@ -56,7 +56,7 @@ class="w-full md:pb-36 pb-10 pt-10  relative flex md:pt-40 justify-center bg-[#F
      data-aos-offset="0"
 class="w-[520px] 2xl:w-[600px]  ml-20 relative hidden md:block">
 <div class="w-full h-[430px] rotate-[4deg] border-[10px] shadow-md shadow-black border-white ">
-    <img src="img/sendang.png" alt="Icon 1" class="w-full h-full object-cover bg-center bg-no-repeat">
+    <img src="img/sendang.avif" alt="Icon 1" class="w-full h-full object-cover bg-center bg-no-repeat">
 </div>
 
 <div 
@@ -128,7 +128,7 @@ id="layanan"
 
     {{-- Background --}}
     <div class="absolute inset-0">
-            <div class="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed" style="background-image: url('img/sendang.png');"></div>
+            <div class="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed" style="background-image: url('img/sendang.avif');"></div>
         <div class="absolute inset-0 bg-amber-500 opacity-40"></div>
         <div class="absolute inset-0 bg-black opacity-75"></div>
     </div>
@@ -282,7 +282,7 @@ id="resto"
 class="w-full relative overflow-hidden bg-[#FFF8E1]/80 py-10 md:py-16 xl:px-20 md:px-10 px-3">
 
     <div class="absolute inset-0 opacity-35">
-        <img src="img/icon-bg.png" alt="Background Image" class="w-full h-full object-cover bg-center bg-no-repeat">
+        <img src="img/icon-bg.avif" alt="Background Image" class="w-full h-full object-cover bg-center bg-no-repeat">
         <div class="absolute inset-0 bg-white/50"></div>
         <div class="absolute top-0 py-24 bg-gradient-to-b w-full from-amber-500/40 to-transparent -mt-24"></div>
     </div>
@@ -330,7 +330,7 @@ class="w-full relative overflow-hidden bg-[#FFF8E1]/80 py-10 md:py-16 xl:px-20 m
         data-aos-duration="1000"
         class="relative w-full md:w-1/2 max-w-[460px] mx-auto md:block hidden">
             <div class="w-full h-[330px] xl:h-[360px] -rotate-[3deg] border-[10px] shadow-md shadow-black border-white overflow-hidden bg-white">
-                <img src="img/menu1.jpeg" alt="Menu Resto Sendang Kun Gerit" class="w-full h-full object-cover object-center">
+                <img src="img/menu1.avif" alt="Menu Resto Sendang Kun Gerit" class="w-full h-full object-cover object-center">
             </div>
 
             <div
@@ -339,7 +339,7 @@ class="w-full relative overflow-hidden bg-[#FFF8E1]/80 py-10 md:py-16 xl:px-20 m
             data-aos-delay="800"
             data-aos-duration="1200"
             class="xl:w-52 w-40 rotate-[5deg] xl:h-40 h-36 absolute -top-10 -right-6 overflow-hidden border-8 border-white shadow-md shadow-black bg-white">
-                <img src="img/menu3.jpeg" alt="Hidangan Resto Sendang Kun Gerit" class="w-full h-full object-cover object-center">
+                <img src="img/menu3.avif" alt="Hidangan Resto Sendang Kun Gerit" class="w-full h-full object-cover object-center">
             </div>
 
             <div
@@ -348,7 +348,7 @@ class="w-full relative overflow-hidden bg-[#FFF8E1]/80 py-10 md:py-16 xl:px-20 m
             data-aos-delay="900"
             data-aos-duration="1200"
             class="xl:w-52 w-40 rotate-[4deg] xl:h-40 h-36 absolute -bottom-12 -left-8 overflow-hidden border-8 border-white shadow-md shadow-black bg-white">
-                <img src="img/menu2.jpg" alt="Galeri Makanan Sendang Kun Gerit" class="w-full h-full object-cover object-right">
+                <img src="img/menu2.avif" alt="Galeri Makanan Sendang Kun Gerit" class="w-full h-full object-cover object-right">
             </div>
         </div>
 
@@ -359,13 +359,13 @@ class="w-full relative overflow-hidden bg-[#FFF8E1]/80 py-10 md:py-16 xl:px-20 m
         data-aos-duration="1000"
         class="md:hidden grid grid-cols-2 gap-3">
             <div class="col-span-2 h-56 overflow-hidden border-8 border-white shadow-md shadow-black bg-white">
-                <img src="img/menu1.jpeg" alt="Menu Resto Sendang Kun Gerit" class="w-full h-full object-cover object-center">
+                <img src="img/menu1.avif" alt="Menu Resto Sendang Kun Gerit" class="w-full h-full object-cover object-center">
             </div>
             <div class="h-36 overflow-hidden border-8 border-white shadow-md shadow-black bg-white">
-                <img src="img/menu3.jpeg" alt="Hidangan Resto Sendang Kun Gerit" class="w-full h-full object-cover object-center">
+                <img src="img/menu3.avif" alt="Hidangan Resto Sendang Kun Gerit" class="w-full h-full object-cover object-center">
             </div>
             <div class="h-36 overflow-hidden border-8 border-white shadow-md shadow-black bg-white">
-                <img src="img/menu2.jpg" alt="Galeri Makanan Sendang Kun Gerit" class="w-full h-full object-cover object-right">
+                <img src="img/menu2.avif" alt="Galeri Makanan Sendang Kun Gerit" class="w-full h-full object-cover object-right">
             </div>
         </div>
     </div>
@@ -379,7 +379,7 @@ id="fasilitas"
 class="w-full relative overflow-hidden bg-[#FFF8E1]/80 py-10 md:py-16 xl:px-20 md:px-10 px-3">
 
     <div class="absolute inset-0 opacity-30">
-        <img src="img/icon-bg.png" alt="Background Image" class="w-full h-full object-cover bg-center bg-no-repeat">
+        <img src="img/icon-bg.avif" alt="Background Image" class="w-full h-full object-cover bg-center bg-no-repeat">
         <div class="absolute inset-0 bg-white/70"></div>
         <div class="absolute bottom-0 py-24 bg-gradient-to-t w-full from-amber-500/40 to-transparent -mb-24"></div>
     </div>
@@ -402,7 +402,7 @@ class="w-full relative overflow-hidden bg-[#FFF8E1]/80 py-10 md:py-16 xl:px-20 m
             data-aos-easing="ease-in-out"
             data-aos-duration="1000"
             class="relative min-h-[330px] overflow-hidden shadow-md shadow-black/20">
-                <img src="img/sendang.png" alt="Jam Operasional Sendang Kun Gerit" class="absolute inset-0 w-full h-full object-cover">
+                <img src="img/sendang.avif" alt="Jam Operasional Sendang Kun Gerit" class="absolute inset-0 w-full h-full object-cover">
                 <div class="absolute inset-0 bg-black/70"></div>
                 <div class="absolute inset-0 bg-amber-600/20"></div>
 
@@ -523,7 +523,7 @@ id="villa"
 class="w-full relative flex flex-col items-center justify-center py-8 md:py-16 h-[550px] xl:px-20 md:px-10 px-3 overflow-hidden">
 
     <div class="absolute  inset-0">
-        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed" style="background-image: url('img/sendang.png');"></div>
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed" style="background-image: url('img/sendang.avif');"></div>
          <div class="absolute inset-0 bg-amber-500 opacity-40"></div>
         <div class="absolute inset-0 bg-black opacity-85"></div>
     </div>
@@ -558,7 +558,7 @@ id="berita"
 class="w-full  flex flex-col py-10 items-center bg-[#FFF8E1]/70 relative px-3 lg:px-20">
 
         <div class="absolute  inset-0">
-        <img src="img/icon-bg.png" alt="Background Image" class="w-full h-full object-cover opacity-40 bg-center bg-no-repeat">
+        <img src="img/icon-bg.avif" alt="Background Image" class="w-full h-full object-cover opacity-40 bg-center bg-no-repeat">
          {{-- <div class="absolute inset-0 bg-black opacity-15"></div> --}}
         {{-- <div class="absolute bottom-0 py-28 bg-linear-to-t  w-full from-amber-500/80  to-transparent  -mb-28 "></div> --}}
 
@@ -591,7 +591,7 @@ class="w-full max-w-6xl grid z-10 justify-center lg:gap-8 gap-5 grid-rows-1 md:g
      data-aos-offset="0"
      class="group flex flex-col overflow-hidden rounded-lg bg-transparent lg:w-full w-80 md:w-auto shrink-0">
         <div class="w-full h-56 overflow-hidden">
-            <img src="{{ $blog['image'] }}" alt="{{ $blog['name'] }}" class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105" onerror="this.src='/img/sendang.png'">
+            <img src="{{ $blog['image'] }}" alt="{{ $blog['name'] }}" class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105" onerror="this.src='/img/sendang.avif'">
         </div>
         <div class="flex flex-col flex-1 p-5">
             <div class="flex items-center justify-between gap-3 text-[12px] font-poppins font-semibold uppercase tracking-[0.06em] text-amber-600 mb-3">

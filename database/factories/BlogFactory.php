@@ -23,7 +23,7 @@ class BlogFactory extends Factory
         return [
             'name' => $name,
             'slug' => Str::slug($name . '-' . fake()->unique()->numberBetween(1, 999)), // Sesuaikan jika slug mau diatur manual.
-            'thumbnail' => 'seeders/sendang.png', // Sesuaikan dengan path asset yang tersedia.
+            'thumbnail' => 'seeders/sendang.avif', // Sesuaikan dengan path asset yang tersedia.
             'content' => fake()->paragraphs(5, true),
         ];
     }

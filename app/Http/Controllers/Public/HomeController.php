@@ -40,6 +40,6 @@ class HomeController extends Controller
     {
         return filled($path)
             ? '/storage/' . ltrim($path, '/')
-            : asset('img/sendang.png');
+            : asset('img/sendang.avif');
     }
 }

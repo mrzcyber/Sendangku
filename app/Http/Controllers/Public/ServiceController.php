@@ -81,6 +81,6 @@ class ServiceController extends Controller
 
     private function imageUrl(?string $path): string
     {
-        return filled($path) ? '/storage/' . ltrim($path, '/') : asset('img/sendang.png');
+        return filled($path) ? '/storage/' . ltrim($path, '/') : asset('img/sendang.avif');
     }
 }

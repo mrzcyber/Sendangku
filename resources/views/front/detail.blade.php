@@ -18,7 +18,7 @@
 
 <section class="relative mt-10 bg-black">
     <div class="h-72 w-full sm:h-96">
-        <img src="{{ $service->thumbnail_url }}" alt="{{ $service->name }}" class="h-full w-full object-cover" onerror="this.src='/img/sendang.png'">
+        <img src="{{ $service->thumbnail_url }}" alt="{{ $service->name }}" class="h-full w-full object-cover" onerror="this.src='/img/sendang.avif'">
     </div>
     <div class="absolute inset-0 bg-black/55"></div>
     <div class="absolute inset-0 flex flex-col justify-center px-5 sm:px-10">
@@ -47,7 +47,7 @@
                 <div class="swiper-wrapper">
                     @foreach ($galleryImages as $gallery)
                         <div class="swiper-slide">
-                            <img src="{{ 'storage/' . $gallery->image_url }}" alt="Galeri {{ $service->name }}" class="aspect-[4/3] w-full object-cover" draggable="false" onerror="this.src='/img/sendang.png'">
+                            <img src="{{ 'storage/' . $gallery->image_url }}" alt="Galeri {{ $service->name }}" class="aspect-[4/3] w-full object-cover" draggable="false" onerror="this.src='/img/sendang.avif'">
                         </div>
                     @endforeach
                 </div>
@@ -58,7 +58,7 @@
         <div class="hidden grid-cols-4 gap-3 lg:grid">
             @foreach ($galleryImages->take(5) as $index => $gallery)
                 <a href="{{ $gallery->image_url }}" class="glightbox overflow-hidden {{ $index === 0 ? 'col-span-2 row-span-2' : '' }}" data-gallery="service-gallery">
-                    <img src="{{ $gallery->image_url }}" alt="Galeri {{ $service->name }}" class="h-full min-h-44 w-full object-cover transition-transform duration-300 hover:scale-105" onerror="this.src='/img/sendang.png'">
+                    <img src="{{ $gallery->image_url }}" alt="Galeri {{ $service->name }}" class="h-full min-h-44 w-full object-cover transition-transform duration-300 hover:scale-105" onerror="this.src='/img/sendang.avif'">
                 </a>
             @endforeach
         </div>

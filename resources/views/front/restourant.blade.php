@@ -16,7 +16,7 @@
                 ...menu,
                 image: menu.thumbnail 
                     ? (menu.thumbnail.startsWith('http') || menu.thumbnail.startsWith('/') ? menu.thumbnail : '/storage/' + menu.thumbnail) 
-                    : '/img/food2.png'
+                    : '/img/food2.avif'
             })),
             tables: @js($tables),
             cart: [],
@@ -209,7 +209,7 @@
                     <template x-for="menu in filteredMenus" :key="menu.id">
                         <article class="overflow-hidden border border-stone-200 bg-white shadow-sm">
                             <div class="aspect-[4/3] overflow-hidden bg-stone-100">
-                                <img :src="menu.image" :alt="menu.name" class="h-full w-full object-cover" x-on:error="$event.target.src = '/img/food2.png'">
+                                <img :src="menu.image" :alt="menu.name" class="h-full w-full object-cover" x-on:error="$event.target.src = '/img/food2.avif'">
                             </div>
                             <div class="p-4">
                                 <p class="text-xs font-medium capitalize text-amber-600" x-text="menu.category"></p>
@@ -245,7 +245,7 @@
                 <div class="max-h-72 divide-y divide-stone-100 overflow-y-auto px-5">
                     <template x-for="item in cart" :key="item.id">
                         <div class="flex gap-3 py-4">
-                            <img :src="item.image" :alt="item.name" class="h-12 w-12 shrink-0 object-cover" x-on:error="$event.target.src = '/img/food2.png'">
+                            <img :src="item.image" :alt="item.name" class="h-12 w-12 shrink-0 object-cover" x-on:error="$event.target.src = '/img/food2.avif'">
                             <div class="min-w-0 flex-1">
                                 <div class="flex justify-between gap-2">
                                     <h3 class="truncate text-sm font-semibold text-stone-800" x-text="item.name"></h3>

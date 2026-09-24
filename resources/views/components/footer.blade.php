@@ -17,7 +17,7 @@ class="w-full bg-stone-900 relative overflow-hidden">
 
             {{-- ── Kolom 1: Brand & Sosmed ── --}}
             <div class="flex flex-col gap-5">
-                <img src="/img/logo-2.png" alt="Logo Sendang Kun Gerit" class="w-36 object-contain">
+                <img src="/img/logo-2.avif" alt="Logo Sendang Kun Gerit" class="w-36 object-contain">
 
                 <p class="text-gray-400 text-sm leading-relaxed">
                     Wisata alam pemandian &amp; waterpark keluarga di jantung Sragen. Hadir untuk memberikan pengalaman liburan yang menyenangkan dan tak terlupakan.

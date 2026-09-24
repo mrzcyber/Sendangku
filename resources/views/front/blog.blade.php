@@ -5,7 +5,7 @@
 @section('content')
 <section class="relative mt-10 bg-black">
     <div class="h-64 w-full sm:h-80">
-        <img src="{{ asset('img/sendang.png') }}" alt="Blog Sendangku" class="h-full w-full object-cover">
+        <img src="{{ asset('img/sendang.avif') }}" alt="Blog Sendangku" class="h-full w-full object-cover">
     </div>
     <div class="absolute inset-0 bg-black/55"></div>
     <div class="absolute inset-0 flex flex-col items-center justify-center px-5 text-center">
@@ -29,7 +29,7 @@
             @forelse ($blogs as $blog)
                 <article class="group flex flex-col overflow-hidden rounded-lg bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
                     <a href="{{ route('blog.detail', $blog) }}" class="h-56 overflow-hidden">
-                        <img src="{{ $blog->thumbnail_url }}" alt="{{ $blog->name }}" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" onerror="this.src='/img/sendang.png'">
+                        <img src="{{ $blog->thumbnail_url }}" alt="{{ $blog->name }}" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" onerror="this.src='/img/sendang.avif'">
                     </a>
                     <div class="flex flex-1 flex-col p-5">
                         <p class="text-xs font-semibold uppercase tracking-wider text-amber-600">{{ $blog->created_at?->translatedFormat('d M Y') ?? '-' }}</p>

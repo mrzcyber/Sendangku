@@ -5,7 +5,7 @@
 @section('content')
 <section class="w-full mt-10 relative">
         <div class="h-64 md:h-96 w-full">
-        <img src="/img/sendang.png" alt="Background" class="w-full h-full object-cover object-bottom mb-52">
+        <img src="/img/sendang.avif" alt="Background" class="w-full h-full object-cover object-bottom mb-52">
     </div>
        <div class="absolute inset-0 top-0 bg-black opacity-40"></div>
             <div class="w-full h-full top-0 absolute flash"></div>
@@ -39,7 +39,7 @@ class="w-full max-w-6xl px-5 xl:px-0 grid grid-cols-1 md:grid-cols-2 xl:grid-col
 @forelse ($services as $service)
 <a href="{{ route('service.detail', $service) }}" class="h-[30rem] w-full overflow-hidden border-x border-b shadow-md hover:shadow-2xl rounded-2xl border-gray-300 transition-all duration-400 hover:-translate-y-1">
     <div class="w-full overflow-hidden h-60">
-    <img src="{{ $service->thumbnail_url }}" alt="{{ $service->name }}" class="w-full h-full object-center object-cover" onerror="this.src='/img/sendang.png'">
+    <img src="{{ $service->thumbnail_url }}" alt="{{ $service->name }}" class="w-full h-full object-center object-cover" onerror="this.src='/img/sendang.avif'">
 </div>
 
 

@@ -50,7 +50,7 @@ data-aos="fade-down"
 
     {{-- Logo --}}
     <a href="/" class="flex items-center z-50 relative">
-        <img src="/img/logo.png" alt="Sendang Kun Gerit" class="w-28 object-contain">
+        <img src="/img/logo.avif" alt="Sendang Kun Gerit" class="w-28 object-contain">
     </a>
 
     {{-- ── Desktop & iPad links ── --}}

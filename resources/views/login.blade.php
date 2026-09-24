@@ -3,7 +3,7 @@
 @section('content')
     <section class="relative min-h-screen w-full overflow-hidden bg-stone-950 font-poppins">
         <div class="absolute inset-0">
-            <img src="{{ asset('img/sendang.png') }}" alt="Wisata Sendang Kun Gerit" class="h-full w-full object-cover">
+            <img src="{{ asset('img/sendang.avif') }}" alt="Wisata Sendang Kun Gerit" class="h-full w-full object-cover">
             <div class="absolute inset-0 bg-black/60"></div>
             <div class="absolute inset-0 bg-gradient-to-r from-amber-900/70 via-stone-950/60 to-black/70"></div>
             <div class="absolute bottom-0 h-56 w-full bg-gradient-to-t from-stone-950 to-transparent"></div>
@@ -12,7 +12,7 @@
         <div class="relative z-10 flex min-h-screen w-full items-center justify-center px-4 py-10 sm:px-6 lg:px-8">
             <div class="grid w-full max-w-5xl overflow-hidden bg-white/95 shadow-2xl shadow-black/40 backdrop-blur md:grid-cols-[1.05fr_0.95fr]">
                 <div class="relative hidden min-h-[560px] overflow-hidden md:block">
-                    <img src="{{ asset('img/sendang.png') }}" alt="Sendangku" class="h-full w-full object-cover">
+                    <img src="{{ asset('img/sendang.avif') }}" alt="Sendangku" class="h-full w-full object-cover">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent"></div>
                     <div class="absolute left-8 right-8 bottom-8 text-white">
                         <p class="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-amber-400">Sendangku</p>
@@ -25,7 +25,7 @@
 
                 <div class="flex min-h-[560px] flex-col justify-center px-6 py-8 sm:px-10">
                     <a href="/" class="mb-10 inline-flex w-fit items-center">
-                        <img src="{{ asset('img/logo.png') }}" alt="Sendang Kun Gerit" class="h-16 w-auto object-contain">
+                        <img src="{{ asset('img/logo.avif') }}" alt="Sendang Kun Gerit" class="h-16 w-auto object-contain">
                     </a>
 
                     <div class="mb-8">

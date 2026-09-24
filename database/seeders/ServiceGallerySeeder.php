@@ -21,7 +21,7 @@ class ServiceGallerySeeder extends Seeder
 
         ServiceGallery::query()->create([
             'service_id' => $service->id,
-            'image' => 'seeders/sendang.png', // Sesuaikan path asset.
+            'image' => 'seeders/sendang.avif', // Sesuaikan path asset.
         ]);
     }
 }
