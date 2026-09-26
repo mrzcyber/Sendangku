@@ -35,7 +35,7 @@ class=" relative xl:h-[800px] h-[800px] md:h-screen w-full flex xl:items-end ite
 
 <section 
 id="tentang"
-class="w-full md:pb-36 pb-10 pt-10  relative flex md:pt-40 justify-center bg-[#FFF8E1]/80">
+class="w-full md:pb-36 pb-20 pt-10  relative flex md:pt-40 justify-center bg-[#FFF8E1]/80">
 
         <div class="absolute inset-0">
         <img src="img/icon-bg.avif" alt="Background Image" class="w-full h-full object-cover opacity-40 bg-center bg-no-repeat">
@@ -45,7 +45,7 @@ class="w-full md:pb-36 pb-10 pt-10  relative flex md:pt-40 justify-center bg-[#F
     </div >
 
 
-<div class="w-full justify-center flex flex-row gap-12 xl:gap-20  z-10 ">
+<div class="relative z-10 mx-auto flex w-full max-w-7xl flex-col-reverse items-center gap-12 px-5 sm:px-8 md:flex-row md:items-center md:gap-10 lg:gap-12 xl:gap-20">
 
 
 <div
@@ -54,8 +54,8 @@ class="w-full md:pb-36 pb-10 pt-10  relative flex md:pt-40 justify-center bg-[#F
      data-aos-delay="200"
      data-aos-duration="1000"
      data-aos-offset="0"
-class="w-[520px] 2xl:w-[600px]  ml-20 relative hidden md:block">
-<div class="w-full h-[430px] rotate-[4deg] border-[10px] shadow-md shadow-black border-white ">
+class="relative w-[280px] shrink-0 sm:w-[320px] md:w-[320px] lg:w-[440px] xl:w-[520px]">
+<div class="h-[250px] w-full rotate-[4deg] border-[6px] border-white shadow-md shadow-black sm:h-[310px] md:h-[320px] lg:h-[390px] xl:h-[430px] xl:border-[10px]">
     <img src="img/sendang.avif" alt="Icon 1" class="w-full h-full object-cover bg-center bg-no-repeat">
 </div>
 
@@ -65,7 +65,7 @@ class="w-[520px] 2xl:w-[600px]  ml-20 relative hidden md:block">
      data-aos-delay="1000"
      data-aos-duration="1500"
      data-aos-offset="0"
-class="xl:w-64 w-44 -rotate-[4deg] h-44  absolute -top-16 -right-10 overflow-hidden border-8 border-white shadow-md shadow-black ">
+class="absolute -top-7 -right-4 h-24 w-24 -rotate-[4deg] overflow-hidden border-4 border-white shadow-md shadow-black sm:-top-10 sm:-right-7 sm:h-28 sm:w-28 md:-top-10 md:-right-7 md:h-28 md:w-28  xl:-top-12 xl:-right-8 lg:w-40 lg:h-40 xl:border-8">
  <img src="img/sendang4.webp" alt="Icon 1" class="w-full h-full object-cover bg-center bg-no-repeat">
 </div>    
 
@@ -75,7 +75,7 @@ class="xl:w-64 w-44 -rotate-[4deg] h-44  absolute -top-16 -right-10 overflow-hid
      data-aos-delay="1000"
      data-aos-duration="1500"
      data-aos-offset="0"
-class="xl:w-64 w-44 -rotate-[4deg] h-44  absolute -bottom-16 -left-16 overflow-hidden border-8 border-white shadow-md shadow-black ">
+class="absolute -bottom-7 -left-4 h-24 w-24 -rotate-[4deg] overflow-hidden border-4 border-white shadow-md shadow-black sm:-bottom-10 sm:-left-8 sm:h-28 sm:w-28 md:-bottom-10 md:-left-8 md:h-28 md:w-28  xl:-bottom-12 xl:-left-18 lg:w-40 lg:h-40 xl:border-8">
  <img src="img/sendangkun3.webp" alt="Icon 1" class="w-full h-full object-cover bg-center bg-no-repeat">
 </div>    
 
@@ -88,16 +88,16 @@ class="xl:w-64 w-44 -rotate-[4deg] h-44  absolute -bottom-16 -left-16 overflow-h
      data-aos-delay="1000"
      data-aos-duration="1500"
      data-aos-offset="0"
-class=" flex flex-col justify-start xl:pt-16 md:items-start items-center px-3 md:px-1  ">
+class="flex w-full max-w-xl flex-col items-center justify-start px-0 text-center md:flex-1 md:items-start md:text-left xl:pt-16">
 <h2 class="text-xl md:font-normal font-semibold font-poppins text-amber-500 ">Tentang </h2>
 <h1 class="xl:text-3xl md:text-2xl text-xl md:font-normal font-semibold font-poppins md:mb-3 leading-none">Wisata Sendang Kun Gerit</h1>
-<div class="border-b-2 border-amber-500 w-52 md:w-64 mx-auto md:mx-0  mb-6 md:mb-4 mt-2 md:mt-1"></div>
-<p class="xl:text-lg md:text-md text-sm font-poppins max-w-xl mb-2 md:text-start text-center leading-relaxed text-gray-600 ">Wisata Sendang Kun Gerit adalah destinasi wisata yang menawarkan keindahan alam, kuliner lezat, dan pengalaman pemandian yang menyegarkan. <span class="hidden md:inline">Terletak di tengah pesona alam bumdes yang memukau,</span>  tempat ini menjadi pilihan ideal untuk bersantai, menikmati hidangan pilihan, dan merasakan kesegaran pemandian alami.  <a href="/tentang" class="font-dm hover:text-black/80 md:text-xl text-md text-gray-800 transition-colors">
+<div class="mb-6 mt-2 w-52 border-b-2 border-amber-500 lg:mb-4 lg:mt-1 lg:w-64"></div>
+<p class="mb-2 max-w-xl text-sm leading-relaxed text-gray-600 sm:text-base xl:text-lg">Wisata Sendang Kun Gerit adalah destinasi wisata yang menawarkan keindahan alam, kuliner lezat, dan pengalaman pemandian yang menyegarkan. <span class="hidden md:inline">Terletak di tengah pesona alam bumdes yang memukau,</span>  tempat ini menjadi pilihan ideal untuk bersantai, menikmati hidangan pilihan, dan merasakan kesegaran pemandian alami.  <a href="/tentang" class="font-dm text-md text-gray-800 transition-colors hover:text-black/80 md:text-xl">
                 Selengkapnya...
 </a> </p>
 
-<div class=" w-full mt-5 xl:border-t border-t-2 border-gray-300  py-5  ">
-    <ul class="flex flex-row gap-5 list-none ">
+<div class="mt-5 w-full border-t-2 border-gray-300 py-5 xl:border-t">
+    <ul class="flex w-full list-none justify-between gap-2 sm:gap-5">
     <li class="flex flex-col justify-center items-center text-amber-500"> <h3 class="md:text-3xl text-xl font-extrabold ">1000+</h3> <p class="md:text-lg font-medium text-gray-500  font-poppins text-center "> Pengunjung Setiap Minggu </p> </li>
     <li class="flex flex-col justify-center items-center text-amber-500"> <h3 class="md:text-3xl text-xl font-extrabold ">7+</h3> <p class="md:text-lg font-medium text-gray-500  font-poppins text-center"> Layanan Menarik </p> </li>
     <li class="flex flex-col justify-center items-center text-amber-500"> <h3 class="md:text-3xl text-xl font-extrabold ">5+</h3> <p class="md:text-lg font-medium text-gray-500  font-poppins text-center"> Paket Wisata </p> </li>
@@ -187,7 +187,7 @@ id="layanan"
      data-aos-duration="1000"
     class="lg:max-w-2xl xl:max-w-3xl w-full z-10 px-2 sm:px-5 flex flex-col gap-4 sm:gap-8 overflow-x-hidden pt-2 sm:pt-5 order-2 sm:order-2">
 
-        <div class="relative">
+        <div class="relative px-2">
             {{-- Mobile --}}
             <button
                 class="sm:hidden absolute left-1 top-1/2 -translate-y-1/2 z-20
@@ -516,10 +516,10 @@ class="w-full relative overflow-hidden bg-[#FFF8E1]/80 py-10 md:py-16 xl:px-20 m
 </section>
 
 
-{{-- section villa --}}
+{{-- section add --}}
 
 <section
-id="villa"
+id="add"
 class="w-full relative flex flex-col items-center justify-center py-8 md:py-16 h-[550px] xl:px-20 md:px-10 px-3 overflow-hidden">
 
     <div class="absolute  inset-0">
