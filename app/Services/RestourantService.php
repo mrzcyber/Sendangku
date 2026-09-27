@@ -48,7 +48,7 @@ class RestourantService
                 'table_id' => $data['table_id'],
                 'note' => $data['note'] ?? null,
                 'total_price' => $items->sum('subtotal'),
-                'status' => 'pending',
+                'pay_status' => 'pending',
                 'payment' => 'online',
             ]);
 
@@ -79,8 +79,9 @@ class RestourantService
                 ];
             })->values()->toArray(),
             'expiry' => [
-                'unit' => 'minute',
-                'duration' => 15,
+                'start_time' => now('Asia/Jakarta')->format('Y-m-d H:i:s O'),
+                'unit' => 'minutes',
+                'duration' => 60,
             ],
         ];
 

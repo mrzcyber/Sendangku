@@ -36,7 +36,7 @@ class DashboardController extends Controller
         $ticketRevenue = (clone $ticketOrders)->sum('total_price');
 
         // 2. Pendapatan Restoran (RestaurantOrder)
-        $restaurantOrders = RestaurantOrder::query()->where('status', 'success');
+        $restaurantOrders = RestaurantOrder::query()->where('pay_status', 'success');
         $applyDateFilter($restaurantOrders, 'created_at');
         $restaurantRevenue = (clone $restaurantOrders)->sum('total_price');
 

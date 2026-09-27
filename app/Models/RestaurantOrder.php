@@ -18,7 +18,7 @@ class RestaurantOrder extends Model
         'note',
         'total_price',
         'snap_token',
-        'status',
+        'pay_status',
         'confirmed',
         'payment',
     ];

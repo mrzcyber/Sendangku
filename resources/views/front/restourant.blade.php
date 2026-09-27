@@ -178,12 +178,6 @@
             </div>
         @endif
 
-        @if ($errors->any())
-            <div class="mb-6 border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
-                {{ $errors->first() }}
-            </div>
-        @endif
-
         <form method="POST" action="{{ route('restaurant.order.store') }}" @submit.prevent="pay()" class="grid grid-cols-1 gap-8 xl:grid-cols-[minmax(0,1fr)_360px] xl:items-start">
             @csrf
 
@@ -325,8 +319,6 @@
                             class="w-full resize-y border border-stone-300 px-3 py-2.5 text-sm outline-none transition-colors focus:border-amber-600 focus:ring-2 focus:ring-amber-100"></textarea>
                     </div>
 
-                    <p x-show="error" x-text="error" class="text-sm text-red-600" role="alert"></p>
-
                     <button 
                         type="submit" 
                         class="flex w-full items-center justify-center gap-2 bg-amber-600 px-4 py-3 font-poppins text-sm font-semibold text-white transition-colors hover:bg-amber-700 disabled:cursor-not-allowed disabled:bg-stone-300" 
@@ -337,6 +329,8 @@
                 </div>
             </aside>
         </form>
+
+        <x-error-popup :message="$errors->first()" />
 
         <button 
             type="button" 

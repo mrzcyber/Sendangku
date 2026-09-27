@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('table_id')->nullable()->constrained()->nullOnDelete();
             $table->text('note')->nullable();
             $table->unsignedInteger('total_price');
-            $table->enum('status', ['pending', 'success', 'failed'])->default('pending');
+            $table->enum('pay_status', ['pending', 'success', 'failed'])->default('pending');
             $table->enum('payment', ['offline', 'online'])->default('online');
             $table->timestamps();
         });

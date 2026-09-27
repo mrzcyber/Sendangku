@@ -176,13 +176,12 @@
           
           <div class="flex flex-col sm:flex-row items-center gap-3 w-full lg:w-auto">
             
-            <!-- Type Filter -->
+            <!-- Confirmation Filter -->
             <div class="relative w-full sm:w-auto">
-              <select id="selectTypeFilter" onchange="filterRestaurantStatus(this.value)" class="w-full sm:w-[160px] h-12 pl-4 pr-10 rounded-2xl ring-1 ring-border focus:ring-2 focus:ring-primary bg-white outline-none text-sm font-medium text-foreground transition-all">
-                <option value="all" {{ $statusFilter === 'all' || !$statusFilter ? 'selected' : '' }}>Semua Status</option>
-                <option value="success" {{ $statusFilter === 'success' ? 'selected' : '' }}>Success</option>
-                <option value="pending" {{ $statusFilter === 'pending' ? 'selected' : '' }}>Pending</option>
-                <option value="failed" {{ $statusFilter === 'failed' ? 'selected' : '' }}>Failed</option>
+              <select id="selectConfirmationFilter" onchange="filterRestaurantConfirmation(this.value)" class="w-full sm:w-[190px] h-12 pl-4 pr-10 rounded-2xl ring-1 ring-border focus:ring-2 focus:ring-primary bg-white outline-none text-sm font-medium text-foreground transition-all">
+                <option value="0" {{ $confirmationFilter === '0' ? 'selected' : '' }}>Belum Dikonfirmasi</option>
+                <option value="1" {{ $confirmationFilter === '1' ? 'selected' : '' }}>Sudah Dikonfirmasi</option>
+                <option value="all" {{ $confirmationFilter === 'all' ? 'selected' : '' }}>Semua Konfirmasi</option>
               </select>
             </div>
           </div>
@@ -221,7 +220,7 @@
                     </p>
                   </td>
                   <td class="px-6 py-4">
-                    <span class="text-sm font-bold {{ $order->status === 'success' ? 'text-success' : ($order->status === 'pending' ? 'text-warning-dark' : 'text-error') }}">
+                    <span class="text-sm font-bold text-success">
                       Rp {{ number_format($order->total_price, 0, ',', '.') }}
                     </span>
                   </td>
@@ -242,17 +241,17 @@
                     </span>
                   </td>
                   <td class="px-6 py-4">
-                    @if ($order->status === 'success')
+                    @if ($order->pay_status === 'success')
                       <span class="inline-flex items-center justify-center px-3 py-1 rounded-full bg-success-light text-success-dark text-xs font-bold">
                         Success
                       </span>
-                    @elseif ($order->status === 'pending')
+                    @elseif ($order->pay_status === 'pending')
                       <span class="inline-flex items-center justify-center px-3 py-1 rounded-full bg-warning-light text-warning-dark text-xs font-bold">
                         Pending
                       </span>
                     @else
                       <span class="inline-flex items-center justify-center px-3 py-1 rounded-full bg-error/10 text-error text-xs font-bold">
-                        {{ ucfirst($order->status) }}
+                        {{ ucfirst($order->pay_status) }}
                       </span>
                     @endif
                   </td>
@@ -273,13 +272,16 @@
                     <button 
                       type="button"
                       onclick="openRestaurantOrderDetail(@js([
+                        'id' => $order->id,
                         'order_code' => $order->order_code,
                         'name' => $order->name,
                         'table' => $order->table ? 'Meja ' . $order->table->number : 'Meja ' . ($order->table_id ?? '-'),
                         'note' => $order->note ?: '-',
                         'total_price' => 'Rp ' . number_format($order->total_price, 0, ',', '.'),
-                        'status' => ucfirst($order->status),
+                        'status' => ucfirst($order->pay_status),
                         'payment' => ucfirst($order->payment),
+                        'confirmed' => $order->confirmed,
+                        'confirm_url' => route('admin.restaurant-order.confirm', $order),
                         'time' => $order->created_at ? $order->created_at->translatedFormat('d M Y, H:i') : '-',
                         'items' => $order->restaurantOrderItems->map(fn($item) => [
                           'name' => $item->restaurantMenu?->name ?? 'Menu',
@@ -455,7 +457,16 @@
       </div>
     </div>
 
-    <div class="p-4 bg-gray-50 border-t border-border flex justify-end">
+    <div class="flex justify-end gap-3 border-t border-border bg-gray-50 p-4">
+      <button
+        id="modal-confirm-order-button"
+        type="button"
+        onclick="confirmRestaurantOrderFromDetail()"
+        class="hidden items-center gap-2 rounded-full bg-success px-6 py-2.5 font-semibold text-white transition-all hover:bg-success-dark disabled:cursor-not-allowed disabled:opacity-60"
+      >
+        <i data-lucide="check-circle" class="size-4"></i>
+        Konfirmasi
+      </button>
       <button type="button" onclick="closeRestaurantOrderDetail()" class="px-6 py-2.5 rounded-full border border-border bg-white text-foreground font-semibold hover:bg-gray-100 transition-all cursor-pointer">
         Tutup
       </button>
@@ -467,13 +478,9 @@
 
 @push('scripts')
 <script>
-    function filterRestaurantStatus(status) {
+    function filterRestaurantConfirmation(confirmed) {
         const url = new URL(window.location.href);
-        if (status && status !== 'all') {
-            url.searchParams.set('status', status);
-        } else {
-            url.searchParams.delete('status');
-        }
+        url.searchParams.set('confirmed', confirmed);
         url.searchParams.delete('page');
         window.location.href = url.toString();
     }
@@ -499,6 +506,13 @@
 
         const statusBadge = document.getElementById('modal-status-badge');
         statusBadge.innerHTML = `<span class="inline-flex items-center gap-1.5">${data.status} • ${data.payment}</span>`;
+
+        const confirmButton = document.getElementById('modal-confirm-order-button');
+        if (confirmButton) {
+            confirmButton.dataset.url = data.confirm_url || '';
+            confirmButton.classList.toggle('hidden', Boolean(data.confirmed));
+            confirmButton.classList.toggle('inline-flex', !data.confirmed);
+        }
 
         const container = document.getElementById('modal-items-container');
         container.innerHTML = '';
@@ -531,6 +545,44 @@
             modal.classList.add('hidden');
             modal.classList.remove('flex');
         }
+    }
+
+    function confirmRestaurantOrderFromDetail() {
+        const btn = document.getElementById('modal-confirm-order-button');
+        const url = btn?.dataset.url;
+        if (!btn || !url) return;
+
+        const originalHtml = btn.innerHTML;
+        btn.disabled = true;
+        btn.innerHTML = `<svg class="animate-spin size-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg> Mengkonfirmasi...`;
+
+        fetch(url, {
+            method: 'PATCH',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content || '{{ csrf_token() }}',
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        })
+        .then(async res => {
+            const data = await res.json().catch(() => ({}));
+            if (!res.ok || !data.success) {
+                throw new Error(data.message || 'Gagal mengkonfirmasi pesanan.');
+            }
+            return data;
+        })
+        .then(() => {
+            closeRestaurantOrderDetail();
+            showToast('Pesanan berhasil dikonfirmasi!', 'success');
+            setTimeout(() => window.location.reload(), 400);
+        })
+        .catch(err => {
+            console.error('Confirm order from detail error:', err);
+            btn.disabled = false;
+            btn.innerHTML = originalHtml;
+            if (window.lucide) window.lucide.createIcons();
+            showToast(err.message || 'Terjadi kesalahan saat memproses pesanan.', 'error');
+        });
     }
 
     // ── Unconfirmed Orders Modal ──────────────────────────────────────────────

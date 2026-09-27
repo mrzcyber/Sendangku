@@ -34,7 +34,7 @@ class RestaurantOrderController extends Controller
     {
         $key = 'restaurant-pay:' . $request->ip();
 
-        if (RateLimiter::tooManyAttempts($key, 2)) {
+        if (RateLimiter::tooManyAttempts($key, 5)) {
             return response()->json([
                 'message' => 'Terlalu banyak percobaan, silakan coba lagi nanti.',
             ], 429);

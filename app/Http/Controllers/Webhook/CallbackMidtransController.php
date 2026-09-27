@@ -24,7 +24,7 @@ class CallbackMidtransController
         $orderId = $notif['order_id'];
         $status = $notif['transaction_status'];
         $order = Order::with('orderItems')->where('order_code', $orderId)->first();
-        $restaurantOrder = $order ? null : RestaurantOrder::where('order_code', $orderId)->first();
+        $restaurantOrder = RestaurantOrder::where('order_code', $orderId)->first();
 
 
         if (!$order && !$restaurantOrder) {
@@ -44,17 +44,24 @@ class CallbackMidtransController
                 $order->update(['qr_path'=>$path]);
                 Mail::to($order->buyer_email)->queue(new OrderConfirmationMail($order));
             } else {
-                $restaurantOrder->update(['status' => 'success']);
+                $restaurantOrder->update(['pay_status' => 'success']);
             }
 
         }elseif (in_array($status, ['expire','cancel','deny'])) {
-            ($order ?: $restaurantOrder)->delete();
+            if($order){
+                $order->update([
+                    'pay_status' => 'failed',
+                ]);
+            }
+            else{
+                $restaurantOrder->update(['pay_status' => 'failed']);
+            }
         }
         
       
 
          return response()->json([
-            'message' => 'ok',
+            'message' => 'status pesanan berhasil diperbarui',
 
          ]);
 

@@ -24,7 +24,7 @@ class UpdateRestaurantOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'status' => ['required'],
+            'pay_status' => ['required', Rule::in(['pending', 'success', 'failed'])],
         ];
     }
 }

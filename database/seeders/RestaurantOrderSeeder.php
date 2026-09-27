@@ -25,7 +25,7 @@ class RestaurantOrderSeeder extends Seeder
             'table_id' => $table->id,
             'note' => 'Tidak pedas.',
             'total_price' => 20000, // Sesuaikan dengan total item restoran.
-            'status' => 'pending',
+            'pay_status' => 'pending',
             'payment' => 'online',
         ]);
     }

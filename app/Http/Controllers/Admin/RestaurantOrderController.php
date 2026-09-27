@@ -15,7 +15,8 @@ class RestaurantOrderController extends Controller
     public function index(Request $request)
     {
         $range = $request->query('range', 'all');
-        $statusFilter = $request->query('status', 'all');
+        $confirmationFilter = $request->query('confirmed', '0');
+        $confirmationFilter = in_array($confirmationFilter, ['all', '0', '1'], true) ? $confirmationFilter : 'all';
 
         $applyDateFilter = function ($query, string $column = 'created_at') use ($range) {
             if ($range === 'today') {
@@ -30,12 +31,12 @@ class RestaurantOrderController extends Controller
 
         // 1. Total Pendapatan: hanya pesanan dengan status 'success' (pending tidak dihitung revenue)
         $revenueQuery = RestaurantOrder::query()
-            ->where('status', 'success');
+            ->where('pay_status', 'success');
         $applyDateFilter($revenueQuery);
         $totalRevenue = $revenueQuery->sum('total_price');
 
-        // 2. Total Pembelian (Jumlah seluruh transaksi)
-        $ordersCountQuery = RestaurantOrder::query();
+        // 2. Total Pembelian (hanya transaksi yang pembayarannya sukses)
+        $ordersCountQuery = RestaurantOrder::query()->where('pay_status', 'success');
         $applyDateFilter($ordersCountQuery);
         $totalOrders = $ordersCountQuery->count();
 
@@ -43,7 +44,7 @@ class RestaurantOrderController extends Controller
         $itemsQuery = RestaurantOrderItem::query()
             ->join('restaurant_orders', 'restaurant_orders.id', '=', 'restaurant_order_items.restaurant_order_id')
             ->join('restaurant_menus', 'restaurant_menus.id', '=', 'restaurant_order_items.restaurant_menu_id')
-            ->where('restaurant_orders.status', 'success');
+            ->where('restaurant_orders.pay_status', 'success');
         $applyDateFilter($itemsQuery, 'restaurant_orders.created_at');
 
         $foodCount = (clone $itemsQuery)->where('restaurant_menus.category', 'makanan')->sum('restaurant_order_items.qty');
@@ -56,20 +57,20 @@ class RestaurantOrderController extends Controller
 
         // 4. Query transaksi untuk tabel (dengan pagination)
         $listQuery = RestaurantOrder::query()
+            ->where('pay_status', 'success')
             ->with(['table', 'restaurantOrderItems.restaurantMenu']);
         $applyDateFilter($listQuery);
-
-        if ($statusFilter && $statusFilter !== 'all') {
-            $listQuery->where('status', $statusFilter);
+        if ($confirmationFilter !== 'all') {
+            $listQuery->where('confirmed', $confirmationFilter === '1');
         }
 
         $orders = $listQuery->latest()->paginate(10)->withQueryString();
 
-        // 5. Pesanan yang belum dikonfirmasi (confirmed = false, status = success)
+        // 5. Pesanan yang belum dikonfirmasi dan pembayarannya sukses
         $unconfirmedOrders = RestaurantOrder::query()
             ->with(['table', 'restaurantOrderItems.restaurantMenu'])
             ->where('confirmed', false)
-            ->where('status', 'success')
+            ->where('pay_status', 'success')
             ->latest()
             ->get();
 
@@ -92,7 +93,7 @@ class RestaurantOrderController extends Controller
             'packageCount',
             'orders',
             'range',
-            'statusFilter',
+            'confirmationFilter',
             'dateRangeLabel',
             'unconfirmedOrders',
             'unconfirmedCount'
