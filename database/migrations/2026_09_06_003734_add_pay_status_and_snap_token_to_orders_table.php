@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->enum('pay_status',['pending','paid'])->default('pending')->after('status');
+            $table->enum('pay_status',['pending','paid','failed'])->default('pending')->after('status');
             $table->string('snap_token')->nullable()->after('pay_status');
         });
     }

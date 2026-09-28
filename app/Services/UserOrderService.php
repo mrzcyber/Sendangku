@@ -15,9 +15,6 @@ class UserOrderService
     public function __construct( protected MidtransService $midtrans) {}
     public function createOrder(array $data)
     {
-        Order::where('buyer_email', $data['buyer_email'])
-            ->where('pay_status', 'pending')
-            ->delete();
         
         $totalPrice = 0 ;
         $orderItems = [];
@@ -77,8 +74,9 @@ class UserOrderService
                 ];
             })->toArray(),
             'expiry' => [
-                'unit' => 'minute',
-                'duration' => 15,
+                'start_time' => now('Asia/Jakarta')->format('Y-m-d H:i:s O'),
+                'unit' => 'minutes',
+                'duration' => 60,
             ],
         ];
 

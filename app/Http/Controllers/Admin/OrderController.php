@@ -34,10 +34,8 @@ class OrderController extends Controller
         };
 
         // 1. Total Pendapatan: hanya pesanan tiket yang valid/terbayar
-        $revenueQuery = Order::query()->where(function ($q) {
-            $q->where('pay_status', 'paid')
-              ->orWhere('purchase', 'offline');
-        });
+        $revenueQuery = Order::query()->where('pay_status', 'paid');
+
         $applyDateFilter($revenueQuery, 'created_at');
         $totalRevenue = $revenueQuery->sum('total_price');
 
@@ -160,6 +158,7 @@ class OrderController extends Controller
             $order->update([
                 'order_code'=>$orderCode,
                 'total_price'=>$totalPrice,
+                'pay_status'=>'paid',
                 'scanned_at'=> now(),
                 'scanned_by' => Auth::id(),
                 'status'=>'used'

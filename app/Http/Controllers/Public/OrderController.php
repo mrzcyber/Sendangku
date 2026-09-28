@@ -37,7 +37,7 @@ class OrderController extends Controller
     {
         $key = 'pay'. $request->ip();
         
-        if(RateLimiter::tooManyAttempts($key, 2)){
+        if(RateLimiter::tooManyAttempts($key, 5)){
             $seconds = RateLimiter::availableIn($key);
             return response()->json([
                 'message'=>'terlalu banyak percobaan, silahkan coba lagi dalam '.$seconds.' detik'

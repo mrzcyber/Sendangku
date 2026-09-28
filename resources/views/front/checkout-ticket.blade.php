@@ -15,7 +15,7 @@
     class="max-w-3xl w-full mx-auto"
     x-data="{
         tickets: @js($tickets),
-
+        error:'',
         purchase: 'online',
         buyer_name: '',
         buyer_email: '',
@@ -26,7 +26,7 @@
         },
 
         async pay() {
-        console.log('paying...');
+
             const data = {
                 purchase: this.purchase,
                 buyer_name: this.buyer_name,
@@ -38,7 +38,7 @@
                 qty: t.qty,
             }));
             if (items.length === 0) {
-                alert('Pilih tiket terlebih dahulu');
+                this.error = 'Pilih tiket terlebih dahulu';
                 return;
             }
             data.items = items;
@@ -55,22 +55,32 @@
 
             if(response.status === 429){
                 const res = await response.json();
-                alert(res.message);
+                this.error = res.message || 'Terlalu banyak percobaan, silakan coba lagi nanti.';
                 return;
             }
             const res = await response.json();
+
+                if (!response.ok) {
+                    this.error = res.message || Object.values(result.errors || {}).flat()[0] || 'Pesanan tidak dapat diproses.';
+                    return;
+                }
+                if (!window.snap) {
+                    this.error = 'Layanan pembayaran belum siap. Silakan muat ulang halaman.';
+                    return;
+                }
+
             window.snap.pay(res.snap_token, {
                 onSuccess: function(result) {
                     window.location.href = '{{ route('checkout.ticket.success') }}';
                 },
-                onPending: function(result) {
-                    alert('wating your payment!'); console.log(result);
+                onPending: (result) => {
+                    this.error = 'Pembayaran masih menunggu konfirmasi.';
                 },
-                onError: function(result) {
-                    alert('payment failed!'); console.log(result);
+                onError: () => {
+                    this.error = 'Pembayaran gagal. Silakan coba lagi.';
                 },
-                onClose: function() {
-                    alert('you closed the popup without finishing the payment');
+                onClose: () => {
+                    this.error = 'Pembayaran dibatalkan sebelum selesai.';
                 }
             });
         }
@@ -350,6 +360,7 @@
 
 
     </form>
+    <x-error-popup :message="$errors->first()" />
 
 </div>
 

@@ -49,9 +49,7 @@ class CallbackMidtransController
 
         }elseif (in_array($status, ['expire','cancel','deny'])) {
             if($order){
-                $order->update([
-                    'pay_status' => 'failed',
-                ]);
+                $order->update(['pay_status' => 'failed']);
             }
             else{
                 $restaurantOrder->update(['pay_status' => 'failed']);
