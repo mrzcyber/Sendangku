@@ -55,13 +55,30 @@
             </div>
         </div>
 
-        <div class="hidden grid-cols-4 gap-3 lg:grid">
-            @foreach ($galleryImages->take(5) as $index => $gallery)
-                <a href="{{ $gallery->image_url }}" class="glightbox overflow-hidden {{ $index === 0 ? 'col-span-2 row-span-2' : '' }}" data-gallery="service-gallery">
-                    <img src="{{ $gallery->image_url }}" alt="Galeri {{ $service->name }}" class="h-full min-h-44 w-full object-cover transition-transform duration-300 hover:scale-105" onerror="this.src='/img/sendang.avif'">
-                </a>
-            @endforeach
-        </div>
+<div
+    class="hidden lg:grid grid-cols-4 gap-3 overflow-hidden"
+    style="
+        height: 500px;
+        grid-template-rows: repeat(2, minmax(0, 1fr));
+    "
+>
+    @foreach ($galleryImages->take(5) as $index => $gallery)
+        <a
+            href="{{ $gallery->image_url }}"
+            class="glightbox overflow-hidden min-h-0 min-w-0 {{ $index === 0 ? 'col-span-2 row-span-2' : '' }}"
+            data-gallery="service-gallery"
+        >
+            <img
+                src="{{ $gallery->image_url }}"
+                alt="Galeri {{ $service->name }}"
+                class="block w-full h-full min-h-0 min-w-0 object-cover"
+                onerror="this.src='/img/sendang.avif'"
+            >
+        </a>
+    @endforeach
+</div>
+
+
     </div>
 </section>
 
