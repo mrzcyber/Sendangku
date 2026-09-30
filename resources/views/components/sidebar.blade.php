@@ -17,19 +17,23 @@
       <div class="flex flex-col gap-1">
         <h3 class="font-medium text-sm text-secondary">Overview</h3>
         <div class="flex flex-col ">
-          <a href="{{ route('admin.dashboard.index') }}" class="group {{ request()->routeIs('admin.dashboard.index') ? 'active' : '' }} cursor-pointer">
+          <a
+ 
+          href="{{ route('admin.dashboard.index') }}" class="group {{ request()->routeIs('admin.dashboard.*') ? 'active' : '' }} {{ auth()->user()->role !== 'admin' ? 'hidden' : '' }}  cursor-pointer">
             <div class="flex items-center rounded-xl p-4 gap-3 bg-white group-[.active]:bg-muted group-hover:bg-muted transition-all duration-300">
               <i data-lucide="layout-dashboard" class="size-6 text-secondary group-[.active]:text-foreground group-hover:text-foreground transition-all duration-300"></i>
               <span class="font-medium text-secondary group-[.active]:font-semibold group-[.active]:text-foreground group-hover:text-foreground transition-all duration-300">Dashboard</span>
             </div>
           </a>
-          <a href="{{ route('admin.restaurant-order.index') }}" class="group {{ request()->routeIs('admin.restaurant-order.index') ? 'active' : '' }}  cursor-pointer">
+          <a
+          href="{{ route('admin.restaurant-order.index') }}" class="group cursor-pointer {{  request()->routeIs('admin.restaurant-order.*') ? 'active' : ''  }} {{ !in_array(auth()->user()->role,['admin','kasir']) ? 'hidden' : '' }}">
             <div class="flex items-center rounded-xl p-4 gap-3 bg-white group-[.active]:bg-muted group-hover:bg-muted transition-all duration-300">
               <i data-lucide="pie-chart" class="size-6 text-secondary group-[.active]:text-foreground group-hover:text-foreground transition-all duration-300"></i>
               <span class="font-medium text-secondary group-[.active]:font-semibold group-[.active]:text-foreground group-hover:text-foreground transition-all duration-300">Restaurant</span>
             </div>
           </a>
-          <a href="{{ route('admin.order-ticket.index') }}" class="group  {{ request()->routeIs('admin.order-ticket.index') ? 'active' : '' }}  cursor-pointer">
+          <a
+          href="{{ route('admin.order-ticket.index') }}" class="group  {{ request()->routeIs('admin.order-ticket.*') ? 'active' : '' }} {{ !in_array(auth()->user()->role,['admin','tiket']) ? 'hidden' : '' }}  cursor-pointer">
             <div class="flex items-center rounded-xl p-4 gap-3 bg-white group-[.active]:bg-muted group-hover:bg-muted transition-all duration-300">
               <i data-lucide="tickets" class="size-6 text-secondary group-[.active]:text-foreground group-hover:text-foreground transition-all duration-300"></i>
               <span class="font-medium text-secondary group-[.active]:font-semibold group-[.active]:text-foreground group-hover:text-foreground transition-all duration-300">Ticket</span>
@@ -38,7 +42,11 @@
         </div>
       </div>
       
-      <div class="flex flex-col gap-1">
+      <div
+      @class([
+            'hidden'=> auth()->user()->role !== 'admin'
+      ])
+      class="flex flex-col gap-1">
         <h3 class="font-medium text-sm text-secondary">Settings</h3>
         <div class="flex flex-col ">
           <a href="{{ route('admin.user.index') }}" class="group {{ request()->routeIs('admin.user.index') ? 'active' : '' }} cursor-pointer">
@@ -62,7 +70,11 @@
         </div>
       </div>
 
-      <div class="flex flex-col gap-1">
+      <div
+      @class([
+            'hidden'=> !in_array(auth()->user()->role,['admin','tiket'])
+          ])
+      class="flex flex-col gap-1">
         <h3 class="font-medium text-sm text-secondary">Ticket</h3>
         <div class="flex flex-col ">
           <a href="{{ route('admin.ticket-type.index') }}" class="group cursor-pointer {{ request()->routeIs('admin.ticket-type.index') ? 'active' : '' }}">
@@ -73,7 +85,11 @@
           </a>
         </div>
       </div>
-      <div class="flex flex-col gap-1 ">
+      <div
+      @class([
+      'hidden'=> !in_array(auth()->user()->role,['admin','kasir'])
+      ])      
+      class="flex flex-col gap-1 ">
         <h3 class="font-medium text-sm text-secondary">Restaurant</h3>
         <div class="flex flex-col ">
           <a href="{{ route('admin.restaurant-menu.index') }}" class="group cursor-pointer {{ request()->routeIs('admin.restaurant-menu.index') ? 'active' : '' }}">
