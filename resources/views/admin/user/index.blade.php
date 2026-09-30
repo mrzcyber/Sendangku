@@ -12,7 +12,7 @@
         <button onclick="toggleSidebar()" aria-label="Open menu" class="lg:hidden size-11 flex items-center justify-center rounded-xl ring-1 ring-border hover:ring-primary transition-all duration-300 cursor-pointer">
           <i data-lucide="menu" class="size-6 text-foreground"></i>
         </button>
-        <h2 class="font-bold text-xl md:text-2xl text-foreground">Manajemen User</h2>
+        <h2 class="font-bold text-xl md:text-2xl text-foreground">Karyawan</h2>
       </div>
 
       <div class="flex items-center gap-3">
@@ -23,7 +23,7 @@
     <div class="flex-1 overflow-y-auto p-5 md:p-8">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
         <div>
-          <h1 class="text-foreground text-2xl font-bold mb-1">Data Anggota</h1>
+          <h1 class="text-foreground text-2xl font-bold mb-1">Kelola Karyawan</h1>
           <p class="text-secondary text-sm">Pantau jumlah anggota, kasir, dan petugas tiket.</p>
         </div>
       </div>

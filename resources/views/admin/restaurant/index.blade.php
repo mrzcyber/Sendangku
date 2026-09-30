@@ -21,7 +21,7 @@
     <div class="flex-1 overflow-y-auto p-5 md:p-8">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 class="text-foreground text-2xl font-bold mb-1">Daftar Menu Restaurant</h1>
+          <h1 class="text-foreground text-2xl font-bold mb-1">Kelola Menu Restourant</h1>
           <p class="text-secondary text-sm">Kelola menu makanan, minuman, dan item lainnya.</p>
         </div>
 

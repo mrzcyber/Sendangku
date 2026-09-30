@@ -12,7 +12,7 @@
         <button onclick="toggleSidebar()" aria-label="Open menu" class="lg:hidden size-11 flex items-center justify-center rounded-xl ring-1 ring-border hover:ring-primary transition-all duration-300 cursor-pointer">
           <i data-lucide="menu" class="size-6 text-foreground"></i>
         </button>
-        <h2 class="font-bold text-xl md:text-2xl text-foreground">Manajemen Ticket</h2>
+        <h2 class="font-bold text-xl md:text-2xl text-foreground">Ticket</h2>
       </div>
 
       <div class="flex items-center gap-3">
@@ -23,7 +23,7 @@
     <div class="flex-1 overflow-y-auto p-5 md:p-8">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 md:px-8">
         <div>
-          <h1 class="text-foreground text-2xl font-bold mb-1">Data Ticket</h1>
+          <h1 class="text-foreground text-2xl font-bold mb-1">Kelola Ticket</h1>
           <p class="text-secondary text-sm">Daftar tipe tiket yang tersedia untuk pengunjung.</p>
         </div>
         <a href="{{ route('admin.order-ticket.scan') }}" class="flex items-center justify-center gap-2 px-8 py-3 bg-primary text-white rounded-full font-bold hover:bg-primary-hover transition-all duration-300 cursor-pointer w-full md:w-auto shadow-sm">

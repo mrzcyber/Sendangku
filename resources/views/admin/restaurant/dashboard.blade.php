@@ -44,7 +44,7 @@
         <button onclick="toggleSidebar()" aria-label="Open menu" class="lg:hidden size-11 flex items-center justify-center rounded-xl ring-1 ring-border hover:ring-primary transition-all duration-300 cursor-pointer">
           <i data-lucide="menu" class="size-6 text-foreground"></i>
         </button>
-        <h2 class="font-bold text-xl md:text-2xl text-foreground">Laporan Keuangan</h2>
+        <h2 class="font-bold text-xl md:text-2xl text-foreground">Laporan Restourant</h2>
       </div>
       
       <div class="flex items-center gap-3">
@@ -71,7 +71,7 @@
       <!-- Page Header & Actions -->
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 class="text-foreground text-2xl font-bold mb-1">Laporan Restaurant</h1>
+          <h1 class="text-foreground text-2xl font-bold mb-1">Kelola Restaurant</h1>
           <p class="text-secondary text-sm">Lacak dan kelola pendapatan restaurant, pengeluaran, and dana.</p>
         </div>
                 <div class="grid grid-cols-2 gap-2 w-full md:w-auto md:flex md:items-center md:gap-3">

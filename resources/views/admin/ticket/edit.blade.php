@@ -12,7 +12,7 @@
         <button onclick="toggleSidebar()" aria-label="Open menu" class="lg:hidden size-11 flex items-center justify-center rounded-xl ring-1 ring-border hover:ring-primary transition-all duration-300 cursor-pointer">
           <i data-lucide="menu" class="size-6 text-foreground"></i>
         </button>
-        <h2 class="font-bold text-xl md:text-2xl text-foreground">Manajemen Ticket</h2>
+        <h2 class="font-bold text-xl md:text-2xl text-foreground">Ticket</h2>
       </div>
 
     </div>
