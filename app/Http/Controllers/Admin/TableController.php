@@ -37,7 +37,7 @@ class TableController extends Controller
 
         Table::create($validatedData);
 
-        return redirect()->route('admin.table.index')->with('success', 'Table created successfully.');
+        return redirect()->back()->with('success', 'Table created successfully.');
     }
 
     /**

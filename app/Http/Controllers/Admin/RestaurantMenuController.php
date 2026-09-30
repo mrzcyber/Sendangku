@@ -59,7 +59,7 @@ class RestaurantMenuController extends Controller
 
         RestaurantMenu::create($validatedData);
 
-        return redirect()->route('admin.restaurant-menu.index')->with('success', 'Menu item created successfully.');
+        return redirect()->back()->with('success', 'Menu item created successfully.');
 
     }
 

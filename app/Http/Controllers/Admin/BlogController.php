@@ -51,7 +51,7 @@ class BlogController extends Controller
 
         Blog::create($validatedData);
 
-        return redirect()->route('admin.blog.index')->with('success', 'Blog post created successfully.');
+        return redirect()->back()->with('success', 'Blog post created successfully.');
     }
 
     /**

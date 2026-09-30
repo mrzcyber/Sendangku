@@ -36,7 +36,7 @@ class TicketTypeController extends Controller
     {
         $validatedData = $request->validated();
         TicketType::create($validatedData);
-        return redirect()->route('admin.ticket-type.index');
+        return redirect()->back()->with('success', 'Ticket created successfully.');
     }
 
     /**
