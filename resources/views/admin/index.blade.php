@@ -21,10 +21,7 @@
       </button>
       <h2 class="hidden lg:block font-bold text-2xl text-foreground">Dashboard Sendangku</h2>
       <div class="flex items-center gap-3">
-        {{-- <button onclick="openNotificationModal()" class="size-11 flex items-center justify-center rounded-xl ring-1 ring-border hover:ring-primary transition-all duration-300 cursor-pointer relative" aria-label="Notifications">
-          <i data-lucide="bell" class="size-6 text-secondary"></i>
-          <span class="absolute -top-1 -right-1 h-5 px-1.5 rounded-full bg-error text-white text-xs font-medium flex items-center justify-center">2</span>
-        </button> --}}
+
       </div>
     </div>
 
@@ -43,10 +40,7 @@
             <span id="dateRangeLabel">{{ $dateRangeLabel }}</span>
             <i data-lucide="chevron-down" class="w-4 h-4 text-secondary ml-1"></i>
           </button>
-          {{-- <button onclick="openExportModal()" class="flex items-center justify-center gap-2 px-4 md:px-6 py-3 bg-primary text-white rounded-full font-bold hover:bg-primary-hover transition-all duration-300 cursor-pointer shadow-lg shadow-primary/20">
-            <i data-lucide="download" class="w-5 h-5"></i>
-            <span>Export Report</span>
-          </button> --}}
+
         </div>
       </div>
 
@@ -62,9 +56,7 @@
           </div>
           <div class="flex items-center gap-3">
             <p class="font-bold text-[28px] leading-10">Rp {{ number_format($totalRevenue, 0, ',', '.') }}</p>
-            {{-- <span class="flex items-center gap-1 text-success text-sm font-semibold bg-success/10 px-2 py-0.5 rounded-full">
-              <i data-lucide="trending-up" class="w-3 h-3"></i> 12%
-            </span> --}}
+
           </div>
         </div>
 
@@ -78,9 +70,7 @@
           </div>
           <div class="flex items-center gap-3">
             <p class="font-bold text-[28px] leading-10">{{ number_format($totalVisitors, 0, ',', '.') }}</p>
-            {{-- <span class="flex items-center gap-1 text-success text-sm font-semibold bg-success/10 px-2 py-0.5 rounded-full">
-              <i data-lucide="trending-up" class="w-3 h-3"></i> 8.5%
-            </span> --}}
+   
           </div>
         </div>
 
@@ -120,11 +110,7 @@
               <h3 class="font-bold text-lg text-foreground">Trafik pengunjung</h3>
               <p class="text-sm text-secondary">Trafik Pengunjung wisata mingguan</p>
             </div>
-            {{-- <div class="flex items-center bg-muted rounded-xl p-1">
-              <button class="px-3 py-1.5 bg-white shadow-sm rounded-lg text-xs font-semibold text-foreground transition-all">Daily</button>
-              <button class="px-3 py-1.5 text-xs font-medium text-secondary hover:text-foreground transition-all">Weekly</button>
-              <button class="px-3 py-1.5 text-xs font-medium text-secondary hover:text-foreground transition-all">Monthly</button>
-            </div> --}}
+
           </div>
           <div class="w-full relative h-[300px]">
             <canvas id="trafficChart" data-labels='@json($trafficLabels)' data-values='@json($trafficValues)'></canvas>
@@ -160,120 +146,12 @@
               </div>
               <span class="font-semibold text-foreground">{{ $offlinePercentage }}%</span>
             </div>
-            {{-- <div class="flex items-center justify-between text-sm">
-              <div class="flex items-center gap-2">
-                <span class="w-3 h-3 rounded-full bg-gray-200"></span>
-                <span class="text-secondary">Tablet</span>
-              </div>
-              <span class="font-semibold text-foreground">15%</span>
-            </div> --}}
+
           </div>
         </div>
       </div>
 
-      {{-- Row 2: Bar Chart & Reports (Diabaikan sementara sesuai permintaan) --}}
-      {{--
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <!-- Bar Chart (Acquisition) -->
-        <div class="flex flex-col rounded-2xl border border-border p-6 gap-6 bg-white">
-          <div class="flex items-center justify-between">
-            <h3 class="font-bold text-lg text-foreground">User Acquisition</h3>
-            <button class="p-2 hover:bg-muted rounded-xl transition-colors">
-              <i data-lucide="more-horizontal" class="w-5 h-5 text-secondary"></i>
-            </button>
-          </div>
-          <div class="w-full h-[250px]">
-            <canvas id="acquisitionChart"></canvas>
-          </div>
-        </div>
-
-        <!-- Exportable Reports Section -->
-        <div class="flex flex-col rounded-2xl border border-border p-6 gap-4 bg-white">
-          <div class="flex items-center justify-between mb-2">
-            <div>
-              <h3 class="font-bold text-lg text-foreground">Recent Reports</h3>
-              <p class="text-sm text-secondary">Generated analytics reports</p>
-            </div>
-            <a href="#" class="text-sm text-primary font-semibold hover:underline cursor-pointer">View All</a>
-          </div>
-
-          <!-- Report List -->
-          <div class="flex flex-col gap-3">
-            <!-- Item 1 -->
-            <div class="flex items-center gap-4 p-3 rounded-xl border border-border hover:border-primary/50 hover:bg-muted/30 transition-all group">
-              <div class="size-10 bg-error/10 rounded-lg flex items-center justify-center shrink-0">
-                <i data-lucide="file-text" class="size-5 text-error"></i>
-              </div>
-              <div class="flex-1 min-w-0">
-                <h4 class="font-semibold text-sm text-foreground truncate">Q3_Financial_Overview.pdf</h4>
-                <div class="flex items-center gap-2 text-xs text-secondary mt-0.5">
-                  <span>2.4 MB</span>
-                  <span class="w-1 h-1 rounded-full bg-gray-300"></span>
-                  <span>Generated 2 hrs ago</span>
-                </div>
-              </div>
-              <button onclick="showToast('Downloading report...', 'success')" class="p-2 text-secondary hover:text-primary hover:bg-primary/10 rounded-lg transition-colors cursor-pointer" title="Download">
-                <i data-lucide="download" class="size-5"></i>
-              </button>
-            </div>
-
-            <!-- Item 2 -->
-            <div class="flex items-center gap-4 p-3 rounded-xl border border-border hover:border-primary/50 hover:bg-muted/30 transition-all group">
-              <div class="size-10 bg-success/10 rounded-lg flex items-center justify-center shrink-0">
-                <i data-lucide="file-spreadsheet" class="size-5 text-success"></i>
-              </div>
-              <div class="flex-1 min-w-0">
-                <h4 class="font-semibold text-sm text-foreground truncate">User_Data_Export_Nov.xlsx</h4>
-                <div class="flex items-center gap-2 text-xs text-secondary mt-0.5">
-                  <span>1.8 MB</span>
-                  <span class="w-1 h-1 rounded-full bg-gray-300"></span>
-                  <span>Generated yesterday</span>
-                </div>
-              </div>
-              <button onclick="showToast('Downloading report...', 'success')" class="p-2 text-secondary hover:text-primary hover:bg-primary/10 rounded-lg transition-colors cursor-pointer" title="Download">
-                <i data-lucide="download" class="size-5"></i>
-              </button>
-            </div>
-
-            <!-- Item 3 -->
-            <div class="flex items-center gap-4 p-3 rounded-xl border border-border hover:border-primary/50 hover:bg-muted/30 transition-all group">
-              <div class="size-10 bg-warning/10 rounded-lg flex items-center justify-center shrink-0">
-                <i data-lucide="file-pie-chart" class="size-5 text-warning-dark"></i>
-              </div>
-              <div class="flex-1 min-w-0">
-                <h4 class="font-semibold text-sm text-foreground truncate">Marketing_Campaign_Results.csv</h4>
-                <div class="flex items-center gap-2 text-xs text-secondary mt-0.5">
-                  <span>540 KB</span>
-                  <span class="w-1 h-1 rounded-full bg-gray-300"></span>
-                  <span>Generated 3 days ago</span>
-                </div>
-              </div>
-              <button onclick="showToast('Downloading report...', 'success')" class="p-2 text-secondary hover:text-primary hover:bg-primary/10 rounded-lg transition-colors cursor-pointer" title="Download">
-                <i data-lucide="download" class="size-5"></i>
-              </button>
-            </div>
-            
-            <!-- Item 4 -->
-             <div class="flex items-center gap-4 p-3 rounded-xl border border-border hover:border-primary/50 hover:bg-muted/30 transition-all group">
-              <div class="size-10 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
-                <i data-lucide="presentation" class="size-5 text-primary"></i>
-              </div>
-              <div class="flex-1 min-w-0">
-                <h4 class="font-semibold text-sm text-foreground truncate">Annual_Strategy_Deck.pptx</h4>
-                <div class="flex items-center gap-2 text-xs text-secondary mt-0.5">
-                  <span>12.5 MB</span>
-                  <span class="w-1 h-1 rounded-full bg-gray-300"></span>
-                  <span>Generated last week</span>
-                </div>
-              </div>
-              <button onclick="showToast('Downloading report...', 'success')" class="p-2 text-secondary hover:text-primary hover:bg-primary/10 rounded-lg transition-colors cursor-pointer" title="Download">
-                <i data-lucide="download" class="size-5"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      --}}
+ 
       
     </div>
   </main>

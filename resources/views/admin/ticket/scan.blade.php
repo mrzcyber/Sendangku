@@ -47,7 +47,7 @@
     x-data="scanner()"
     class="min-h-screen flex flex-col items-center justify-center bg-muted">
 
-    <div class=" relative flex justify-between py-10 items-center flex-col inset-0 w-full h-screen bg-black "> 
+    <div class=" relative flex justify-between lg:py-10 py-20 items-center flex-col inset-0 w-full h-screen bg-black "> 
         <div class=" text-white w-96 text-center z-10 text-xl font-semibold">
             Arahkan Tiket ke kamera
         </div>
