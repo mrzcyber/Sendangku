@@ -9,6 +9,7 @@ use App\Models\OrderItem;
 use App\Models\TicketType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class OrderController extends Controller
@@ -55,8 +56,7 @@ class OrderController extends Controller
             ->join('orders', 'orders.id', '=', 'order_items.order_id')
             ->where('orders.status', 'active')
             ->where(function ($q) {
-                $q->where('orders.pay_status', 'paid')
-                  ->orWhere('orders.purchase', 'offline');
+                $q->where('orders.pay_status', 'paid');
             });
         $applyDateFilter($unscannedItemsQuery, 'orders.created_at');
         $unscannedTicketsCount = (clone $unscannedItemsQuery)->sum('order_items.qty');
@@ -74,13 +74,11 @@ class OrderController extends Controller
             });
         $applyDateFilter($ticketItemsQuery, 'orders.created_at');
 
-        $normalCount = (clone $ticketItemsQuery)
-            ->where('ticket_types.name', 'like', '%normal%')
-            ->sum('order_items.qty');
-
-        $terusanCount = (clone $ticketItemsQuery)
-            ->where('ticket_types.name', 'like', '%terusan%')
-            ->sum('order_items.qty');
+        $ticketCounts = (clone $ticketItemsQuery)
+        ->select('ticket_types.id', 'ticket_types.name', DB::raw('SUM(order_items.qty) as total_qty'))
+        ->groupBy('ticket_types.id', 'ticket_types.name')
+        ->orderBy('ticket_types.name')
+        ->get();
 
         // 6. Query transaksi untuk tabel
         $listQuery = Order::query()
@@ -97,6 +95,9 @@ class OrderController extends Controller
 
         $orders = $listQuery->latest()->paginate(10)->withQueryString();
 
+        // 7. tiket type
+        $ticketTypes = TicketType::orderBy('id')->get();
+
         $rangeLabels = [
             'today' => 'Hari Ini',
             'week' => 'Minggu Ini',
@@ -110,13 +111,13 @@ class OrderController extends Controller
             'scannedTicketsCount',
             'unscannedTicketsCount',
             'totalVisitors',
-            'normalCount',
-            'terusanCount',
+            'ticketCounts',
             'orders',
             'range',
             'statusFilter',
             'methodFilter',
-            'dateRangeLabel'
+            'dateRangeLabel',
+            'ticketTypes'
         ));
     }
 

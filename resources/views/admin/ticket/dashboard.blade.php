@@ -68,48 +68,6 @@
         </div>
       </div>
 
-      <!-- Stats Grid 1: Main Financials -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-4 md:mb-6">
-        <!-- Income -->
-        <div class="flex flex-col rounded-2xl border border-border p-6 gap-3 bg-white shadow-sm">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-[6px]">
-              <div class="size-11 bg-success/10 rounded-xl flex items-center justify-center shrink-0">
-                <i data-lucide="wallet" class="size-6 text-success"></i>
-              </div>
-              <p class="font-medium text-secondary">Total Pendapatan</p>
-            </div>
-          </div>
-          <p class="font-bold text-[28px] leading-10 text-foreground">Rp {{ number_format($totalRevenue, 0, ',', '.') }}</p>
-        </div>
-
-        <!-- Scanned Tickets -->
-        <div class="flex flex-col rounded-2xl border border-border p-6 gap-3 bg-white shadow-sm">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-[6px]">
-              <div class="size-11 bg-error/10 rounded-xl flex items-center justify-center shrink-0">
-                <i data-lucide="user-check" class="size-6 text-error"></i>
-              </div>
-              <p class="font-medium text-secondary">Tiket Terscan</p>
-            </div>
-          </div>
-          <p class="font-bold text-[28px] leading-10 text-foreground">{{ number_format($scannedTicketsCount, 0, ',', '.') }} <span class="text-base font-medium text-secondary">Tiket</span></p>
-        </div>
-
-        <!-- Terusan Ticket -->
-        <div class="flex flex-col rounded-2xl border border-border p-6 gap-3 bg-white shadow-sm">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-[6px]">
-              <div class="size-11 bg-primary/10 rounded-xl flex items-center justify-center shrink-0">
-                <i data-lucide="tickets" class="size-6 text-primary"></i>
-              </div>
-              <p class="font-medium text-secondary">Ticket Terusan</p>
-            </div>
-          </div>
-          <p class="font-bold text-[28px] leading-10 text-foreground">{{ number_format($terusanCount, 0, ',', '.') }} <span class="text-base font-medium text-secondary">Tiket</span></p>
-        </div>
-      </div>
-
       <!-- Stats Grid 2: Fund Types -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-8">
         <!-- Visitors -->
@@ -124,7 +82,7 @@
           </div>
           <p class="font-bold text-[28px] leading-10 text-foreground">{{ number_format($totalVisitors, 0, ',', '.') }} <span class="text-base font-medium text-secondary">Orang</span></p>
         </div>
-
+  
         <!-- Unscanned Tickets -->
         <div class="flex flex-col rounded-2xl border border-border p-6 gap-3 bg-white shadow-sm">
           <div class="flex items-center justify-between">
@@ -137,20 +95,54 @@
           </div>
           <p class="font-bold text-[28px] leading-10 text-foreground">{{ number_format($unscannedTicketsCount, 0, ',', '.') }} <span class="text-base font-medium text-secondary">Tiket</span></p>
         </div>
+  
+        <!-- Scanned Tickets -->
+        <div class="flex flex-col rounded-2xl border border-border p-6 gap-3 bg-white shadow-sm">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-[6px]">
+              <div class="size-11 bg-error/10 rounded-xl flex items-center justify-center shrink-0">
+                <i data-lucide="user-check" class="size-6 text-error"></i>
+              </div>
+              <p class="font-medium text-secondary">Tiket Terscan</p>
+            </div>
+          </div>
+          <p class="font-bold text-[28px] leading-10 text-foreground">{{ number_format($scannedTicketsCount, 0, ',', '.') }} <span class="text-base font-medium text-secondary">Tiket</span></p>
+        </div>
+  
+      </div>
 
-        <!-- Normal Ticket -->
+      <!-- Stats Grid 1: Main Financials -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-4 md:mb-6">
+        <!-- Income -->
         <div class="flex flex-col rounded-2xl border border-border p-6 gap-3 bg-white shadow-sm">
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-[6px]">
               <div class="size-11 bg-success/10 rounded-xl flex items-center justify-center shrink-0">
-                <i data-lucide="ticket" class="size-6 text-success-dark"></i>
+                <i data-lucide="wallet" class="size-6 text-success"></i>
               </div>
-              <p class="font-medium text-secondary">Ticket Normal</p>
+              <p class="font-medium text-secondary">Total Pendapatan</p>
             </div>
           </div>
-          <p class="font-bold text-[28px] leading-10 text-foreground">{{ number_format($normalCount, 0, ',', '.') }} <span class="text-base font-medium text-secondary">Tiket</span></p>
+          <p class="font-bold text-[28px] leading-10 text-foreground">Rp {{ number_format($totalRevenue, 0, ',', '.') }}</p>
         </div>
+        
+        @foreach ($ticketCounts as $ticketCount)
+          <div class="flex flex-col rounded-2xl border border-border p-6 gap-3 bg-white shadow-sm">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-[6px]">
+                <div class="size-11 bg-primary/10 rounded-xl flex items-center justify-center shrink-0">
+                  <i data-lucide="ticket" class="size-6 text-primary"></i>
+                </div>
+                <p class="font-medium text-secondary">{{ $ticketCount->name }}</p>
+              </div>
+            </div>
+            <p class="font-bold text-[28px] leading-10 text-foreground">{{ number_format($ticketCount->total_qty, 0, ',', '.') }} <span class="text-base font-medium text-secondary">Tiket</span></p>
+          </div>
+        @endforeach
+
+
       </div>
+
 
       <!-- Transactions Section -->
       <div class="flex flex-col rounded-3xl border border-border bg-white shadow-sm overflow-hidden">
@@ -186,8 +178,9 @@
             <thead>
               <tr class="bg-muted/50 border-b border-border">
                 <th class="px-6 py-4 text-xs font-semibold text-secondary uppercase tracking-wider w-[12%]">Code</th>
-                <th class="px-6 py-4 text-xs font-semibold text-secondary uppercase tracking-wider w-[14%]">Ticket Normal</th>
-                <th class="px-6 py-4 text-xs font-semibold text-secondary uppercase tracking-wider w-[14%]">Ticket Terusan</th>
+                @foreach ($ticketTypes as $ticketType)
+                  <th class="px-6 py-4 text-xs font-semibold text-secondary uppercase tracking-wider w-[14%]">{{ $ticketType->name }}</th>
+                @endforeach
                 <th class="px-6 py-4 text-xs font-semibold text-secondary uppercase tracking-wider w-[14%]">Price</th>
                 <th class="px-6 py-4 text-xs font-semibold text-secondary uppercase tracking-wider w-[12%]">Method</th>
                 <th class="px-6 py-4 text-xs font-semibold text-secondary uppercase tracking-wider w-[14%]">Date</th>
@@ -197,36 +190,31 @@
             </thead>
             <tbody class="divide-y divide-border">
               @forelse ($orders as $order)
-                @php
-                  $normalItem = $order->orderItems->first(fn($item) => str_contains(strtolower($item->ticketType?->name ?? ''), 'normal'));
-                  $terusanItem = $order->orderItems->first(fn($item) => str_contains(strtolower($item->ticketType?->name ?? ''), 'terusan'));
-                  $normalQty = $normalItem ? $normalItem->qty : 0;
-                  $terusanQty = $terusanItem ? $terusanItem->qty : 0;
-                @endphp
-                <tr class="hover:bg-muted/30 transition-colors group">
-                  <td class="px-6 py-4">
-                    <span class="font-semibold text-sm text-foreground font-mono">{{ $order->order_code ?? 'TKT-' . str_pad($order->id, 8, '0', STR_PAD_LEFT) }}</span>
-                  </td>
-
-                  <td class="px-6 py-4">
-                    @if ($normalQty > 0)
-                      <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-success/15 text-success-dark">
-                        {{ $normalQty }} Tiket
-                      </span>
-                    @else
-                      <span class="text-xs text-secondary font-medium">-</span>
-                    @endif
-                  </td>
-
-                  <td class="px-6 py-4">
-                    @if ($terusanQty > 0)
-                      <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-primary/15 text-primary">
-                        {{ $terusanQty }} Tiket
-                      </span>
-                    @else
-                      <span class="text-xs text-secondary font-medium">-</span>
-                    @endif
-                  </td>
+                  @php
+                    $qtyByType = $order->orderItems->groupBy('ticket_type_id')->map->sum('qty');
+                  @endphp
+                                  <tr class="hover:bg-muted/30 transition-colors group">
+                                    <td class="px-6 py-4">
+                                      <span class="font-semibold text-sm text-foreground font-mono">{{ $order->order_code ?? 'TKT-' . str_pad($order->id, 8, '0', STR_PAD_LEFT) }}</span>
+                                    </td>
+                                  
+                  @foreach ($ticketTypes as $type)
+                    @php
+                      $qty = $qtyByType[$type->id] ?? 0;
+                      $badge = $loop->first
+                        ? 'bg-success/15 text-success-dark'
+                        : 'bg-primary/15 text-primary';
+                    @endphp
+                    <td class="px-6 py-4">
+                      @if ($qty > 0)
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold {{ $badge }}">
+                          {{ $qty }} Tiket
+                        </span>
+                      @else
+                        <span class="text-xs text-secondary font-medium">-</span>
+                      @endif
+                    </td>
+                  @endforeach
 
                   <td class="px-6 py-4">
                     <span class="text-sm font-bold text-foreground">
@@ -296,7 +284,7 @@
                 </tr>
               @empty
                 <tr>
-                  <td colspan="8" class="px-6 py-12 text-center text-secondary">
+                  <td colspan="{{ 6 + $ticketTypes->count() }}" class="px-6 py-12 text-center text-secondary">
                     <div class="mx-auto mb-3 size-12 rounded-2xl bg-muted flex items-center justify-center">
                       <i data-lucide="receipt" class="size-6 text-secondary"></i>
                     </div>
