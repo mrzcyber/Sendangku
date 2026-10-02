@@ -88,7 +88,11 @@ function closeDateModal() {
 }
 
 // Used by date preset buttons in admin/index.blade.php.
-function selectDatePreset(button, text) {
+function selectDatePreset(button, range) {
+    if (Object.prototype.hasOwnProperty.call(window, 'selectedDashboardRange')) {
+        window.selectedDashboardRange = range;
+    }
+
     document.querySelectorAll('.date-preset').forEach((preset) => {
         preset.className = 'date-preset px-4 py-2 rounded-xl bg-white text-secondary font-medium text-sm border border-border hover:border-primary hover:text-primary transition-all cursor-pointer';
     });
@@ -99,15 +103,21 @@ function selectDatePreset(button, text) {
 
 // Used by apply date range button in admin/index.blade.php.
 function applyDateRange() {
-    const activePreset = document.querySelector('.date-preset[class*="bg-primary/10"]');
-    const dateRangeLabel = document.getElementById('dateRangeLabel');
-
-    if (dateRangeLabel) {
-        dateRangeLabel.textContent = activePreset ? activePreset.textContent : 'Custom Range';
+    if (!Object.prototype.hasOwnProperty.call(window, 'selectedDashboardRange')) {
+        return;
     }
 
-    closeDateModal();
-    showToast('Date range updated', 'success');
+    const url = new URL(window.location.href);
+    const range = window.selectedDashboardRange;
+
+    if (range && range !== 'all') {
+        url.searchParams.set('range', range);
+    } else {
+        url.searchParams.delete('range');
+    }
+
+    url.searchParams.delete('page');
+    window.location.href = url.toString();
 }
 
 // Used by export format modal in admin/index.blade.php.

@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
-@section('title', 'Analytics Dashboard - AppName')
+@section('title', 'Analytics Dashboard -'. config('app.name'))
 @section('meta_description', 'Comprehensive analytics dashboard with traffic trends, device usage, and exportable reports.')
 @section('body_class', 'font-sans bg-white min-h-screen overflow-x-hidden')
 
@@ -170,10 +170,10 @@
       
       <!-- Presets (Hari Ini, Minggu Ini, Bulan Ini, Semua Waktu) -->
       <div class="flex flex-wrap gap-2.5">
-        <button type="button" onclick="selectDatePreset(this, 'Hari Ini'); window.selectedDashboardRange = 'today';" class="date-preset px-4 py-2.5 rounded-xl {{ $range === 'today' ? 'bg-primary/10 text-primary font-semibold border-primary/20' : 'bg-white text-secondary font-medium border-border hover:border-primary hover:text-primary' }} text-sm border transition-all cursor-pointer">Hari Ini</button>
-        <button type="button" onclick="selectDatePreset(this, 'Minggu Ini'); window.selectedDashboardRange = 'week';" class="date-preset px-4 py-2.5 rounded-xl {{ $range === 'week' ? 'bg-primary/10 text-primary font-semibold border-primary/20' : 'bg-white text-secondary font-medium border-border hover:border-primary hover:text-primary' }} text-sm border transition-all cursor-pointer">Minggu Ini</button>
-        <button type="button" onclick="selectDatePreset(this, 'Bulan Ini'); window.selectedDashboardRange = 'month';" class="date-preset px-4 py-2.5 rounded-xl {{ $range === 'month' ? 'bg-primary/10 text-primary font-semibold border-primary/20' : 'bg-white text-secondary font-medium border-border hover:border-primary hover:text-primary' }} text-sm border transition-all cursor-pointer">Bulan Ini</button>
-        <button type="button" onclick="selectDatePreset(this, 'Semua Waktu'); window.selectedDashboardRange = 'all';" class="date-preset px-4 py-2.5 rounded-xl {{ $range === 'all' || !$range ? 'bg-primary/10 text-primary font-semibold border-primary/20' : 'bg-white text-secondary font-medium border-border hover:border-primary hover:text-primary' }} text-sm border transition-all cursor-pointer">Semua Waktu</button>
+        <button type="button" onclick="selectDatePreset(this, 'today')" class="date-preset px-4 py-2.5 rounded-xl {{ $range === 'today' ? 'bg-primary/10 text-primary font-semibold border-primary/20' : 'bg-white text-secondary font-medium border-border hover:border-primary hover:text-primary' }} text-sm border transition-all cursor-pointer">Hari Ini</button>
+        <button type="button" onclick="selectDatePreset(this, 'week')" class="date-preset px-4 py-2.5 rounded-xl {{ $range === 'week' ? 'bg-primary/10 text-primary font-semibold border-primary/20' : 'bg-white text-secondary font-medium border-border hover:border-primary hover:text-primary' }} text-sm border transition-all cursor-pointer">Minggu Ini</button>
+        <button type="button" onclick="selectDatePreset(this, 'month')" class="date-preset px-4 py-2.5 rounded-xl {{ $range === 'month' ? 'bg-primary/10 text-primary font-semibold border-primary/20' : 'bg-white text-secondary font-medium border-border hover:border-primary hover:text-primary' }} text-sm border transition-all cursor-pointer">Bulan Ini</button>
+        <button type="button" onclick="selectDatePreset(this, 'all')" class="date-preset px-4 py-2.5 rounded-xl {{ $range === 'all' || !$range ? 'bg-primary/10 text-primary font-semibold border-primary/20' : 'bg-white text-secondary font-medium border-border hover:border-primary hover:text-primary' }} text-sm border transition-all cursor-pointer">Semua Waktu</button>
       </div>
     </div>
     <div class="p-6 bg-gray-50 flex justify-end gap-3">
@@ -243,9 +243,10 @@
 
 @push('scripts')
 <script>
-    window.selectedDashboardRange = '{{ $range }}';
+    window.selectedDashboardRange = @js($range);
 
-    function selectDatePreset(button, preset) {
+    function selectDatePreset(button, range) {
+        window.selectedDashboardRange = range;
         document.querySelectorAll('.date-preset').forEach(btn => {
             btn.className = 'date-preset px-4 py-2.5 rounded-xl bg-white text-secondary font-medium text-sm border border-border hover:border-primary hover:text-primary transition-all cursor-pointer';
         });
