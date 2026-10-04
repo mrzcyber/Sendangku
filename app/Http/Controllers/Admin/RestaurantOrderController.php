@@ -15,7 +15,7 @@ class RestaurantOrderController extends Controller
     public function index(Request $request)
     {
         $range = $request->query('range', 'all');
-        $confirmationFilter = $request->query('confirmed', '0');
+        $confirmationFilter = $request->query('confirmed', 'all');
         $confirmationFilter = in_array($confirmationFilter, ['all', '0', '1'], true) ? $confirmationFilter : 'all';
 
         $applyDateFilter = function ($query, string $column = 'created_at') use ($range) {
@@ -50,10 +50,7 @@ class RestaurantOrderController extends Controller
         $foodCount = (clone $itemsQuery)->where('restaurant_menus.category', 'makanan')->sum('restaurant_order_items.qty');
         $drinkCount = (clone $itemsQuery)->where('restaurant_menus.category', 'minuman')->sum('restaurant_order_items.qty');
         $otherCount = (clone $itemsQuery)->where('restaurant_menus.category', 'lainnya')->sum('restaurant_order_items.qty');
-        $packageCount = (clone $itemsQuery)->where(function ($q) {
-            $q->where('restaurant_menus.category', 'paket')
-                ->orWhere('restaurant_menus.name', 'like', '%paket%');
-        })->sum('restaurant_order_items.qty');
+        $packageCount = (clone $itemsQuery)->where('restaurant_menus.category', 'paket')->sum('restaurant_order_items.qty');
 
         // 4. Query transaksi untuk tabel (dengan pagination)
         $listQuery = RestaurantOrder::query()
@@ -67,14 +64,9 @@ class RestaurantOrderController extends Controller
         $orders = $listQuery->latest()->paginate(10)->withQueryString();
 
         // 5. Pesanan yang belum dikonfirmasi dan pembayarannya sukses
-        $unconfirmedOrders = RestaurantOrder::query()
-            ->with(['table', 'restaurantOrderItems.restaurantMenu'])
-            ->where('confirmed', false)
-            ->where('pay_status', 'success')
-            ->latest()
-            ->get();
-
-        $unconfirmedCount = $unconfirmedOrders->count();
+        $unconfirmedCount = RestaurantOrder::where('pay_status', 'success')
+        ->where('confirmed', false)
+        ->count();
 
         $rangeLabels = [
             'today' => 'Hari Ini',
@@ -95,19 +87,24 @@ class RestaurantOrderController extends Controller
             'range',
             'confirmationFilter',
             'dateRangeLabel',
-            'unconfirmedOrders',
             'unconfirmedCount'
         ));
     }
 
-    /**
-     * Konfirmasi pesanan sudah dibuat/disiapkan.
-     */
+
     public function confirm($id)
     {
-        $order = RestaurantOrder::findOrFail($id);
-        $order->confirmed = true;
-        $order->save();
+        $updated = RestaurantOrder::whereKey($id)
+            ->where('pay_status', 'success')
+            ->where('confirmed', false)
+            ->update(['confirmed' => true]);
+
+        if (! $updated) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Pesanan sudah dikonfirmasi atau belum dibayar.',
+            ], 409);
+        }
 
         return response()->json(['success' => true, 'message' => 'Pesanan berhasil dikonfirmasi.']);
     }
@@ -115,6 +112,56 @@ class RestaurantOrderController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+
+    public function kasir(){
+        return view('admin.restaurant.confirm', [
+        'orders' => $this->unconfirmedPayload(),
+    ]);
+    }
+
+    private function unconfirmedPayload()
+    {
+        return RestaurantOrder::with(['table', 'restaurantOrderItems.restaurantMenu'])
+            ->where('pay_status', 'success')
+            ->where('confirmed', false)
+            ->oldest()
+            ->get()
+            ->map(fn ($o) => [
+                'id'          => $o->id,
+                'order_code'  => $o->order_code,
+                'name'        => $o->name,
+                'table'       => $o->table ? $o->table->number : ' - ',
+                'note'        => $o->note ?: '-',
+                'total_price' => 'Rp ' . number_format($o->total_price, 0, ',', '.'),
+                'status'      => ucfirst($o->pay_status),
+                'payment'     => ucfirst($o->payment),
+                'confirmed'   => $o->confirmed,
+                'confirm_url' => route('admin.restaurant-order.confirm', $o),
+                'time'        => $o->created_at ? $o->created_at->translatedFormat('d M Y, H:i') : '-',
+                'items'       => $o->restaurantOrderItems->map(fn ($item) => [
+                    'name'     => $item->restaurantMenu?->name ?? 'Menu',
+                    'qty'      => $item->qty,
+                    'price'    => 'Rp ' . number_format($item->price, 0, ',', '.'),
+                    'subtotal' => 'Rp ' . number_format($item->subtotal, 0, ',', '.'),
+                ])->values(),
+            ])
+            ->values();
+        }
+
+    public function waitingIds()
+    {
+        return response()->json(
+            RestaurantOrder::where('pay_status', 'success')
+                ->where('confirmed', false)
+                ->pluck('id')
+        );
+    }
+
+    public function unconfirmed()
+    {
+        return response()->json($this->unconfirmedPayload());
+    }
+
     public function create()
     {
         //

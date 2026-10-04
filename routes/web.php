@@ -53,6 +53,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::middleware('role:admin,kasir')->group(function(){
     Route::resource('/restaurant-menu',RestaurantMenuController::class);
     Route::resource('/restaurant-order',RestaurantOrderController::class);
+    Route::get('restaurant-orders/kasir', [RestaurantOrderController::class, 'kasir'])->name('restaurant.kasir');
+    Route::get('restaurant-orders/waiting-ids', [RestaurantOrderController::class, 'waitingIds'])->name('restaurant.orders.waiting');
+    Route::get('restaurant-orders/unconfirmed', [RestaurantOrderController::class, 'unconfirmed'])->name('restaurant.orders.unconfirmed');
     Route::patch('/restaurant-order/{id}/confirm', [RestaurantOrderController::class, 'confirm'])->name('restaurant-order.confirm');
     Route::resource('/table',TableController::class);
     });

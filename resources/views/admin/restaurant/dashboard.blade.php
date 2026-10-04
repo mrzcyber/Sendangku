@@ -49,8 +49,8 @@
       
       <div class="flex items-center gap-3">
         <!-- Notifikasi Pesanan Belum Dikonfirmasi -->
-        <button
-          onclick="openUnconfirmedModal()"
+        <a
+          href="{{ route('admin.restaurant.kasir') }}"
           class="size-11 flex items-center justify-center rounded-xl ring-1 ring-border hover:ring-primary transition-all duration-300 cursor-pointer relative"
           aria-label="Pesanan belum dikonfirmasi"
           title="Pesanan belum dikonfirmasi"
@@ -61,7 +61,7 @@
               {{ $unconfirmedCount }}
             </span>
           @endif
-        </button>
+          </a>
       </div>
     </div>
 
@@ -342,67 +342,7 @@
   </div>
 </div>
 
-<!-- Modal Pesanan Belum Dikonfirmasi -->
-<div id="unconfirmed-orders-modal" class="fixed inset-0 bg-black/50 z-[100] hidden items-center justify-center p-4">
-  <div class="bg-white rounded-3xl w-full max-w-lg shadow-2xl overflow-hidden">
-    <div class="p-6 border-b border-border flex items-center justify-between">
-      <div>
-        <h3 class="text-xl font-bold text-foreground">Pesanan Belum Dikonfirmasi</h3>
-        <p class="text-xs text-secondary mt-0.5">Konfirmasi pesanan yang sudah masuk</p>
-      </div>
-      <button type="button" onclick="closeUnconfirmedModal()" class="p-2 hover:bg-muted rounded-full transition-colors cursor-pointer">
-        <i data-lucide="x" class="size-5 text-secondary"></i>
-      </button>
-    </div>
 
-    <div class="max-h-[65vh] overflow-y-auto divide-y divide-border">
-      @forelse ($unconfirmedOrders as $uOrder)
-        <div class="flex items-center justify-between p-4 gap-4 hover:bg-muted/30 transition-colors" id="unconfirmed-row-{{ $uOrder->id }}">
-          <div class="flex items-center gap-3 min-w-0">
-            <div class="size-10 rounded-xl bg-warning/10 flex items-center justify-center shrink-0">
-              <i data-lucide="utensils" class="size-5 text-warning-dark"></i>
-            </div>
-            <div class="min-w-0">
-              <p class="font-semibold text-sm text-foreground truncate">{{ $uOrder->name }}</p>
-              <p class="text-xs text-secondary font-mono">{{ $uOrder->order_code }}</p>
-              <p class="text-xs text-secondary mt-0.5">
-                Meja <span class="font-bold text-foreground">{{ $uOrder->table ? $uOrder->table->number : ($uOrder->table_id ?? '-') }}</span>
-                &bull;
-                {{ $uOrder->created_at?->translatedFormat('d M Y, H:i') }}
-              </p>
-              <p class="text-xs font-bold text-primary mt-0.5">Rp {{ number_format($uOrder->total_price, 0, ',', '.') }}</p>
-            </div>
-          </div>
-
-          <!-- Toggle Konfirmasi -->
-          <button
-            type="button"
-            onclick="confirmOrder({{ $uOrder->id }}, '{{ url('admin/restaurant-order/' . $uOrder->id . '/confirm') }}')"
-            id="confirm-btn-{{ $uOrder->id }}"
-            class="shrink-0 flex items-center gap-2 px-4 py-2 rounded-full bg-success/10 text-success-dark text-xs font-bold hover:bg-success/20 transition-all duration-300 cursor-pointer"
-          >
-            <i data-lucide="check-circle" class="size-4"></i>
-            Konfirmasi
-          </button>
-        </div>
-      @empty
-        <div class="p-10 flex flex-col items-center justify-center text-center">
-          <div class="size-14 bg-success/10 rounded-2xl flex items-center justify-center mb-3">
-            <i data-lucide="check-circle-2" class="size-7 text-success"></i>
-          </div>
-          <p class="font-semibold text-foreground">Semua Pesanan Sudah Dikonfirmasi</p>
-          <p class="text-xs text-secondary mt-1">Tidak ada pesanan yang menunggu konfirmasi.</p>
-        </div>
-      @endforelse
-    </div>
-
-    <div class="p-4 bg-gray-50 border-t border-border flex justify-end">
-      <button type="button" onclick="closeUnconfirmedModal()" class="px-6 py-2.5 rounded-full border border-border bg-white text-foreground font-semibold hover:bg-gray-100 transition-all cursor-pointer">
-        Tutup
-      </button>
-    </div>
-  </div>
-</div>
 
 <!-- Modal Detail Transaksi Restoran -->
 <div id="restaurant-order-detail-modal" class="fixed inset-0 bg-black/50 z-[100] hidden items-center justify-center p-4">
@@ -458,15 +398,6 @@
     </div>
 
     <div class="flex justify-end gap-3 border-t border-border bg-gray-50 p-4">
-      <button
-        id="modal-confirm-order-button"
-        type="button"
-        onclick="confirmRestaurantOrderFromDetail()"
-        class="hidden items-center gap-2 rounded-full bg-success px-6 py-2.5 font-semibold text-white transition-all hover:bg-success-dark disabled:cursor-not-allowed disabled:opacity-60"
-      >
-        <i data-lucide="check-circle" class="size-4"></i>
-        Konfirmasi
-      </button>
       <button type="button" onclick="closeRestaurantOrderDetail()" class="px-6 py-2.5 rounded-full border border-border bg-white text-foreground font-semibold hover:bg-gray-100 transition-all cursor-pointer">
         Tutup
       </button>
@@ -507,12 +438,6 @@
         const statusBadge = document.getElementById('modal-status-badge');
         statusBadge.innerHTML = `<span class="inline-flex items-center gap-1.5">${data.status} • ${data.payment}</span>`;
 
-        const confirmButton = document.getElementById('modal-confirm-order-button');
-        if (confirmButton) {
-            confirmButton.dataset.url = data.confirm_url || '';
-            confirmButton.classList.toggle('hidden', Boolean(data.confirmed));
-            confirmButton.classList.toggle('inline-flex', !data.confirmed);
-        }
 
         const container = document.getElementById('modal-items-container');
         container.innerHTML = '';
@@ -547,132 +472,6 @@
         }
     }
 
-    function confirmRestaurantOrderFromDetail() {
-        const btn = document.getElementById('modal-confirm-order-button');
-        const url = btn?.dataset.url;
-        if (!btn || !url) return;
 
-        const originalHtml = btn.innerHTML;
-        btn.disabled = true;
-        btn.innerHTML = `<svg class="animate-spin size-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg> Mengkonfirmasi...`;
-
-        fetch(url, {
-            method: 'PATCH',
-            headers: {
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content || '{{ csrf_token() }}',
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-        })
-        .then(async res => {
-            const data = await res.json().catch(() => ({}));
-            if (!res.ok || !data.success) {
-                throw new Error(data.message || 'Gagal mengkonfirmasi pesanan.');
-            }
-            return data;
-        })
-        .then(() => {
-            closeRestaurantOrderDetail();
-            showToast('Pesanan berhasil dikonfirmasi!', 'success');
-            setTimeout(() => window.location.reload(), 400);
-        })
-        .catch(err => {
-            console.error('Confirm order from detail error:', err);
-            btn.disabled = false;
-            btn.innerHTML = originalHtml;
-            if (window.lucide) window.lucide.createIcons();
-            showToast(err.message || 'Terjadi kesalahan saat memproses pesanan.', 'error');
-        });
-    }
-
-    // ── Unconfirmed Orders Modal ──────────────────────────────────────────────
-    function openUnconfirmedModal() {
-        const modal = document.getElementById('unconfirmed-orders-modal');
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-        if (window.lucide) window.lucide.createIcons();
-    }
-
-    function closeUnconfirmedModal() {
-        const modal = document.getElementById('unconfirmed-orders-modal');
-        if (modal) {
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-        }
-    }
-
-    function confirmOrder(orderId, url) {
-        const btn = document.getElementById('confirm-btn-' + orderId);
-        if (!btn) return;
-
-        const originalHtml = btn.innerHTML;
-        btn.disabled = true;
-        btn.innerHTML = `<svg class="animate-spin size-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg> Mengkonfirmasi...`;
-
-        const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content || '{{ csrf_token() }}';
-
-        fetch(url, {
-            method: 'PATCH',
-            headers: {
-                'X-CSRF-TOKEN': csrfToken,
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-        })
-        .then(async res => {
-            const data = await res.json().catch(() => ({}));
-            if (!res.ok || !data.success) {
-                throw new Error(data.message || 'Gagal mengkonfirmasi pesanan.');
-            }
-            return data;
-        })
-        .then(data => {
-            // Hapus baris dari modal notifikasi
-            const row = document.getElementById('unconfirmed-row-' + orderId);
-            if (row) {
-                row.remove();
-            }
-
-            // Update badge count di bell icon
-            const badge = document.querySelector('[aria-label="Pesanan belum dikonfirmasi"] span');
-            if (badge) {
-                const current = parseInt(badge.textContent.trim()) || 0;
-                if (current - 1 <= 0) {
-                    badge.remove();
-                } else {
-                    badge.textContent = current - 1;
-                }
-            }
-
-            // Tampilkan toast sukses lalu reload
-            showToast('Pesanan berhasil dikonfirmasi!', 'success');
-            setTimeout(() => window.location.reload(), 400);
-        })
-        .catch(err => {
-            console.error('Confirm order error:', err);
-            btn.disabled = false;
-            btn.innerHTML = originalHtml;
-            showToast(err.message || 'Terjadi kesalahan saat memproses pesanan.', 'error');
-        });
-    }
-
-    function showToast(message, type = 'success') {
-        const container = document.getElementById('toast-container');
-        if (!container) return;
-        const colors = type === 'success'
-            ? 'bg-success text-white'
-            : 'bg-error text-white';
-        const toast = document.createElement('div');
-        toast.className = `pointer-events-auto flex items-center gap-3 px-5 py-3.5 rounded-2xl shadow-lg text-sm font-semibold ${colors} transition-all duration-300 opacity-0 translate-y-2`;
-        toast.textContent = message;
-        container.appendChild(toast);
-        requestAnimationFrame(() => {
-            toast.classList.remove('opacity-0', 'translate-y-2');
-        });
-        setTimeout(() => {
-            toast.classList.add('opacity-0', 'translate-y-2');
-            setTimeout(() => toast.remove(), 300);
-        }, 3000);
-    }
 </script>
 @endpush
