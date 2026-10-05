@@ -74,5 +74,4 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 
     Route::resource('/restaurant-menu', PublicRestaurantMenuController::class);
     Route::resource('/restaurant-order', PublicRestaurantOrderController::class);
-    Route::resource('/service', PublicServiceController::class);
     Route::get('/',[HomeController::class, 'index'])->name('home');
