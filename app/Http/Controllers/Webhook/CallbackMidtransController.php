@@ -62,7 +62,7 @@ class CallbackMidtransController
                         QrCode::format('png')->size(300)->generate($order->qr_token));
                     $order->update(['qr_path' => $path]);
 
-                    Mail::to($order->buyer_email)->queue(new OrderConfirmationMail($order));
+                    Mail::to($order->buyer_email)->send(new OrderConfirmationMail($order));
                 }
             } elseif ($isFailed) {
                 Order::whereKey($order->id)
