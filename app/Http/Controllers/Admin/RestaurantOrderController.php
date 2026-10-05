@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\RestaurantMenu;
 use App\Models\RestaurantOrder;
 use App\Models\RestaurantOrderItem;
+use App\Models\Table;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RestaurantOrderController extends Controller
 {
@@ -164,7 +167,16 @@ class RestaurantOrderController extends Controller
 
     public function create()
     {
-        //
+        $data = RestaurantMenu::query()
+            ->where('status', true)
+            ->orderBy('category')
+            ->orderBy('name')
+            ->get();
+        $tables = Table::orderBy('number', 'asc')->get();
+        $orders =RestaurantOrder::where('pay_status', 'success')
+                ->where('confirmed', false)->pluck('id');
+
+        return view('admin.restaurant.orders', compact('data', 'tables', 'orders'));
     }
 
     /**
@@ -172,7 +184,54 @@ class RestaurantOrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+        'note'                       => 'nullable|string|max:1000',
+        'items'                      => 'required|array|min:1',
+        'items.*.restaurant_menu_id' => 'required|integer|exists:restaurant_menus,id',
+        'items.*.qty'                => 'required|integer|min:1|max:99',
+    ]);
+
+    $order = DB::transaction(function () use ($data) {
+    $menus = RestaurantMenu::whereIn('id', collect($data['items'])->pluck('restaurant_menu_id'))
+        ->get()
+        ->keyBy('id');
+
+        $total = 0;
+        $rows  = [];
+    foreach ($data['items'] as $item) {
+        $price    = $menus[$item['restaurant_menu_id']]->price;
+        $subtotal = $price * $item['qty'];
+        $total   += $subtotal;
+
+        $rows[] = [
+            'restaurant_menu_id' => $item['restaurant_menu_id'],
+            'qty'                => $item['qty'],
+            'price'              => $price,
+            'subtotal'           => $subtotal,
+        ];
+    }
+
+        $order = RestaurantOrder::create([
+            'order_code' => 'RST-' . now()->format('YmdHis') . strtoupper(str()->random(4)),
+            'name'        => 'Kasir',
+            'table_id'    => 1,
+            'note'        => $data['note'] ?? null,
+            'total_price' => $total,
+            'pay_status'  => 'success',
+            'payment'     => 'offline',
+            'confirmed'   => true,
+        ]);
+
+        $order->restaurantOrderItems()->createMany($rows);
+
+        return $order;
+    });
+
+    return response()->json([
+        'success'     => true,
+        'order_code'  => $order->order_code,
+        'total_price' => $order->total_price,
+    ], 201);
     }
 
     /**

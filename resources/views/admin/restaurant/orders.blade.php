@@ -1,42 +1,68 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
-@section('title', 'Pesan Menu Restoran - Sendangku')
-
-@push('scripts')
-    <script src="https://app.sandbox.midtrans.com/snap/snap.js"
-            data-client-key="{{ config('services.midtrans.client_key') }}"></script>
-@endpush
+@section('title', 'Buat Pesanan (Kasir) - Sendangku')
 
 @section('content')
-<section class="min-h-screen bg-stone-50 px-4 pb-28 pt-28 sm:px-6 lg:px-10 xl:pb-16">
+<section class="min-h-screen bg-stone-50 w-full pb-28 pt-8  xl:pb-16">
+     <div
+     x-data="pooling(@js($orders), @js(route('admin.restaurant.orders.waiting')))" x-init="init()"
+     class="flex h-[90px] w-full shrink-0 items-center justify-between border-b border-border bg-white px-5 md:px-8">
+      <div class="flex items-center gap-4">
+        <button onclick="toggleSidebar()" aria-label="Open menu" class="flex size-11 items-center justify-center rounded-xl ring-1 ring-border transition-all duration-300 hover:ring-primary lg:hidden">
+          <i data-lucide="menu" class="size-6 text-foreground"></i>
+        </button>
+        <h2 class="text-xl font-bold text-foreground md:text-2xl">Konfirmasi Pesanan</h2>
+      </div>
+      <div class="flex items-center gap-3">
+
+        <button type="button" x-show="!soundOn" x-cloak @click="enableSound()"
+        class="cursor-pointer rounded-lg bg-amber-500 px-4 py-2 text-sm font-bold text-white transition-all hover:bg-amber-600">
+        Aktifkan suara notifikasi
+      </button>
+      <span x-show="soundOn" x-cloak class="rounded-lg bg-success-light px-4 py-2 text-sm font-bold text-success-dark">
+        Notifikasi aktif
+      </span>
+
+            <a href="{{ route('admin.restaurant.kasir') }}"
+                       class="inline-flex cursor-pointer items-center justify-center rounded-full bg-success px-6 py-2.5 font-semibold text-white transition-all hover:bg-success-dark">
+                        Kembali konfirmasi
+            </a>
+      <!-- Notifikasi Pesanan Belum Dikonfirmasi -->
+      <button
+        class="size-11 flex items-center justify-center rounded-xl ring-1 ring-border hover:ring-primary transition-all duration-300 cursor-pointer relative"
+        aria-label="Pesanan belum dikonfirmasi"
+        title="Pesanan belum dikonfirmasi"
+      >
+        <i data-lucide="bell" class="size-6 text-secondary"></i>
+
+          <span x-show="notificationCount > 0" x-cloak
+                class="absolute -top-1 -right-1 flex h-5 min-w-[20px] items-center justify-center rounded-full border-2 border-white bg-error px-[5px] text-xs font-bold text-white"
+                x-text="notificationCount"></span>
+
+      </button>
+
+      </div>
+    </div>
     <div
-        class="mx-auto max-w-7xl"
-        x-data="restoMenu(@js([
+        class="w-full"
+        x-data="kasirCheckout(@js([
             'menus'    => $data,
-            'tables'   => $tables,
-            'storeUrl' => route('restaurant.order.store'),
-            'old'      => [
-                'name'     => old('name'),
-                'table_id' => old('table_id'),
-                'note'     => old('note'),
-            ],
+            'storeUrl' => route('admin.restaurant-order.store'),
         ]))"
     >
-        <div class="mb-8 border-b border-stone-200 pb-6">
-            <p class="text-sm font-medium text-amber-600">Restoran Sendangku</p>
-            <h1 class="mt-1 font-poppins text-2xl font-semibold text-stone-900 sm:text-3xl">Pilih menu favorit Anda</h1>
-            <p class="mt-2 text-sm text-stone-500">Tambahkan menu ke keranjang, lalu lengkapi detail pesanan.</p>
-        </div>
 
-        @if (session('success'))
-            <div class="mb-6 flex items-start gap-3 border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800" role="status">
-                <svg class="mt-0.5 h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>
-                {{ session('success') }}
+
+    <div class="mx-auto max-w-7xl px-5 pt-8 md:px-8">   
+
+            <div class="mb-8 border-b border-stone-200 pb-6 ">
+                <p class="text-sm font-medium text-amber-600">Mode Kasir</p>
+                <h1 class="mt-1 font-poppins text-2xl font-semibold text-stone-900 sm:text-3xl">Buat pesanan langsung</h1>
+                <p class="mt-2 text-sm text-stone-500">Pesanan langsung tercatat lunas (offline) dan terkonfirmasi.</p>
             </div>
-        @endif
 
-        <form method="POST" action="{{ route('restaurant.order.store') }}" @submit.prevent="pay()" class="grid grid-cols-1 gap-8 xl:grid-cols-[minmax(0,1fr)_360px] xl:items-start">
-            @csrf
+
+
+        <form @submit.prevent="checkout()" class="grid grid-cols-1 gap-8 xl:grid-cols-[minmax(0,1fr)_360px] xl:items-start">
 
             {{-- Daftar menu --}}
             <section aria-labelledby="menu-heading">
@@ -89,7 +115,7 @@
                 </div>
             </section>
 
-            {{-- Keranjang & form --}}
+            {{-- Keranjang --}}
             <aside x-ref="cart" class="scroll-mt-24 border border-stone-200 bg-white shadow-sm xl:sticky xl:top-24" aria-labelledby="cart-heading">
                 <div class="border-b border-stone-100 px-5 py-4">
                     <div class="flex items-center justify-between">
@@ -139,37 +165,9 @@
                     </div>
 
                     <div>
-                        <label for="customer-name" class="mb-1.5 block text-sm font-medium text-stone-700">Nama pemesan</label>
-                        <input
-                            id="customer-name"
-                            name="name"
-                            x-model="customerName"
-                            required
-                            maxlength="255"
-                            placeholder="Masukkan nama Anda"
-                            class="w-full border border-stone-300 px-3 py-2.5 text-sm outline-none transition-colors focus:border-amber-600 focus:ring-2 focus:ring-amber-100">
-                    </div>
-
-                    <div>
-                        <label for="table-id" class="mb-1.5 block text-sm font-medium text-stone-700">Pilih meja</label>
-                        <select
-                            id="table-id"
-                            name="table_id"
-                            x-model="tableId"
-                            required
-                            class="w-full border border-stone-300 bg-white px-3 py-2.5 text-sm outline-none transition-colors focus:border-amber-600 focus:ring-2 focus:ring-amber-100">
-                            <option value="">Pilih nomor meja</option>
-                            @foreach ($tables as $table)
-                                <option value="{{ $table->id }}">Meja {{ $table->number }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div>
                         <label for="order-note" class="mb-1.5 block text-sm font-medium text-stone-700">Catatan pesanan <span class="font-normal text-stone-400">(opsional)</span></label>
                         <textarea
                             id="order-note"
-                            name="note"
                             x-model="note"
                             rows="3"
                             maxlength="1000"
@@ -177,7 +175,6 @@
                             class="w-full resize-y border border-stone-300 px-3 py-2.5 text-sm outline-none transition-colors focus:border-amber-600 focus:ring-2 focus:ring-amber-100"></textarea>
                     </div>
 
-                    {{-- Pesan error (sebelumnya state `error` tidak pernah ditampilkan) --}}
                     <p x-show="error" x-text="error" role="alert" style="display: none;"
                        class="border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700"></p>
 
@@ -185,14 +182,11 @@
                         type="submit"
                         class="flex w-full items-center justify-center gap-2 bg-amber-600 px-4 py-3 font-poppins text-sm font-semibold text-white transition-colors hover:bg-amber-700 disabled:cursor-not-allowed disabled:bg-stone-300"
                         :disabled="cart.length === 0 || loading">
-                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3-3H3.106V5.272m4.394 8.978h9.75l2.25-9H5.106M7.5 14.25 5.106 5.272M7.5 14.25l-1.125 3h11.25M16.5 16.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm-9 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" /></svg>
-                        <span x-text="loading ? 'Memproses pembayaran...' : 'Bayar & pesan menu'"></span>
+                        <span x-text="loading ? 'Menyimpan pesanan...' : 'Checkout'"></span>
                     </button>
                 </div>
             </aside>
         </form>
-
-        <x-error-popup :message="$errors->first()" />
 
         {{-- Tombol keranjang (mobile) --}}
         <button
@@ -200,100 +194,115 @@
             @click="$refs.cart.scrollIntoView({ behavior: 'smooth', block: 'start' })"
             class="fixed inset-x-4 bottom-4 z-40 flex items-center justify-between bg-stone-900 px-4 py-3 text-left text-white shadow-lg xl:hidden"
             aria-label="Lihat keranjang pesanan">
-            <span class="flex items-center gap-3">
-                <span class="grid h-9 w-9 place-items-center bg-amber-600">
-                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3-3H3.106V5.272m4.394 8.978h9.75l2.25-9H5.106M7.5 14.25 5.106 5.272M7.5 14.25l-1.125 3h11.25" /></svg>
-                </span>
-                <span>
-                    <span class="block text-sm font-semibold">Lihat keranjang</span>
-                    <span class="block text-xs text-stone-300" x-text="itemCount + ' item dipilih'"></span>
-                </span>
+            <span>
+                <span class="block text-sm font-semibold">Lihat keranjang</span>
+                <span class="block text-xs text-stone-300" x-text="itemCount + ' item dipilih'"></span>
             </span>
             <span class="font-poppins text-sm font-semibold" x-text="formatPrice(total)"></span>
         </button>
 
-        {{-- Modal pembayaran berhasil --}}
-        <div
-            x-show="showSuccessModal"
-            style="display: none;"
-            class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="success-modal-title">
-
-            <div
-                x-show="showSuccessModal"
-                x-transition:enter="ease-out duration-300"
-                x-transition:enter-start="opacity-0"
-                x-transition:enter-end="opacity-100"
-                x-transition:leave="ease-in duration-200"
-                x-transition:leave-start="opacity-100"
-                x-transition:leave-end="opacity-0"
-                class="fixed inset-0 bg-stone-900/60 backdrop-blur-sm"
-                @click="showSuccessModal = false"></div>
-
-            <div
-                x-show="showSuccessModal"
-                x-transition:enter="ease-out duration-300"
-                x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
-                x-transition:leave="ease-in duration-200"
-                x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-                x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                class="relative w-full max-w-md border border-stone-200 bg-white p-6 text-center shadow-2xl sm:p-8">
-
-                <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 ring-8 ring-emerald-50">
-                    <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-                    </svg>
+        {{-- Modal pesanan berhasil --}}
+        <div x-show="toast" x-cloak x-transition.opacity
+             @keydown.escape.window="toast = null" @click.self="toast = null"
+             class="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 p-4">
+            <div class="w-full max-w-lg overflow-hidden rounded-3xl bg-white shadow-2xl">
+                <div class="flex items-center justify-between border-b border-border p-6">
+                    <h3 class="text-xl font-bold text-foreground">Pesanan berhasil</h3>
+                    <button type="button" @click="toast = null" aria-label="Tutup notifikasi"
+                            class="cursor-pointer rounded-full p-2 transition-colors hover:bg-muted">
+                        <i data-lucide="x" class="size-5 text-secondary"></i>
+                    </button>
                 </div>
 
-                <h3 id="success-modal-title" class="mt-5 font-poppins text-xl font-bold text-stone-900 sm:text-2xl">Pembayaran Berhasil!</h3>
-
-                <p class="mt-2 font-dm text-sm leading-relaxed text-stone-600">
-                    Terima kasih! Pembayaran pesanan Anda telah berhasil diterima. Pesanan sedang diproses oleh pihak dapur dan akan segera disajikan ke meja Anda.
-                </p>
-
-                <div class="mt-5 space-y-2.5 rounded-lg border border-stone-200 bg-stone-50 p-4 text-left text-sm">
-                    <div class="flex items-center justify-between text-stone-600" x-show="successOrderCode">
-                        <span class="text-xs font-medium uppercase tracking-wider text-stone-400">Kode Pesanan</span>
-                        <span class="font-mono font-semibold text-stone-800" x-text="successOrderCode"></span>
-                    </div>
-                    <div class="flex items-center justify-between text-stone-600" x-show="tableId">
-                        <span class="text-xs font-medium uppercase tracking-wider text-stone-400">Nomor Meja</span>
-                        <span class="font-medium text-stone-800" x-text="tableLabel"></span>
-                    </div>
-                    <div class="flex items-center justify-between border-t border-stone-200/80 pt-2 text-stone-600">
-                        <span class="text-xs font-medium uppercase tracking-wider text-stone-400">Status</span>
-                        <span class="inline-flex items-center gap-1.5 font-semibold text-emerald-600">
-                            <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
-                            Lunas
-                        </span>
-                    </div>
+                <div class="p-6">
+                    <p class="text-sm text-secondary" x-text="toast"></p>
                 </div>
 
-                <div class="mt-6 flex flex-col gap-2.5">
-                    <button type="button" @click="finishAndReset()"
-                            class="w-full bg-amber-600 px-4 py-3 font-poppins text-sm font-semibold text-white transition-colors hover:bg-amber-700">
-                        Selesai & Pesan Lagi
+                <div class="flex flex-col-reverse gap-3 border-t border-border bg-gray-50 p-4 sm:flex-row sm:justify-end">
+                    <button type="button" @click="toast = null"
+                            class="cursor-pointer rounded-full border border-border bg-white px-6 py-2.5 font-semibold text-foreground transition-all hover:bg-gray-100">
+                        Pesan lagi
                     </button>
-                    <button type="button" @click="showSuccessModal = false"
-                            class="w-full border border-stone-200 bg-white px-4 py-2.5 font-poppins text-sm font-medium text-stone-600 transition-colors hover:bg-stone-50">
-                        Tutup
-                    </button>
+                    {{-- Isi href dengan route halaman konfirmasi yang diinginkan. --}}
+                    <a href="{{ route('admin.restaurant.kasir') }}" 
+                       class="inline-flex cursor-pointer items-center justify-center rounded-full bg-success px-6 py-2.5 font-semibold text-white transition-all hover:bg-success-dark">
+                        Kembali konfirmasi
+                    </a>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </section>
 @endsection
 
 @push('scripts')
 <script>
+
+    function pooling(initialIds, waitingUrl) {
+        return {
+            knownIds: initialIds.map(Number),
+            notificationCount: initialIds.length,
+            waitingUrl,
+            soundReady: false,
+            soundOn: false,
+            pollTimer: null,
+            audio: new Audio('/sounds/order.mp3'),
+
+            init() {
+                // Browser hanya mengizinkan audio setelah interaksi pengguna.
+                const enableSound = () => {
+                    this.audio.play()
+                        .then(() => {
+                            this.audio.pause();
+                            this.audio.currentTime = 0;
+                            this.soundReady = true;
+                            this.soundOn = true;
+                        })
+                        .catch(() => {});
+                };
+
+                ['click', 'keydown', 'touchstart'].forEach(event =>
+                    document.addEventListener(event, enableSound, { once: true, capture: true })
+                );
+
+                this.pollTimer = setInterval(() => this.checkNotifications(), 5000);
+                document.addEventListener('visibilitychange', () => {
+                    if (!document.hidden) this.checkNotifications();
+                });
+            },
+
+            async checkNotifications() {
+                try {
+                    const response = await fetch(this.waitingUrl, {
+                        headers: { 'Accept': 'application/json' },
+                    });
+
+                    if (response.status === 401 || response.status === 419) {
+                        window.location.reload();
+                        return;
+                    }
+                    if (!response.ok) return;
+
+                    const ids = (await response.json()).map(Number);
+                    const hasNewOrder = ids.some(id => !this.knownIds.includes(id));
+
+                    this.knownIds = ids;
+                    this.notificationCount = ids.length;
+
+                    if (hasNewOrder && this.soundReady) {
+                        this.audio.currentTime = 0;
+                        this.audio.play().catch(() => {});
+                    }
+                } catch (error) {
+                    // Gangguan koneksi sementara akan dicoba kembali pada polling berikutnya.
+                }
+            },
+        };
+    }
+
     const FALLBACK_IMAGE = '/img/food2.avif';
     const MAX_QTY = 99;
-
-    // ---------- Helper murni (tanpa Alpine) ----------
 
     function formatRupiah(price) {
         return 'Rp' + Number(price).toLocaleString('id-ID');
@@ -309,13 +318,10 @@
         return document.querySelector('meta[name="csrf-token"]')?.content || '';
     }
 
-    // ---------- Komponen Alpine ----------
-
-    function restoMenu(config) {
+    function kasirCheckout(config) {
         return {
             // data
             menus: config.menus.map(menu => ({ ...menu, image: resolveImage(menu.thumbnail) })),
-            tables: config.tables,
             categories: [
                 { value: 'semua',   label: 'Semua' },
                 { value: 'makanan', label: 'Makanan' },
@@ -323,18 +329,13 @@
                 { value: 'lainnya', label: 'Lainnya' },
             ],
             cart: [],
-
-            // form
-            customerName: config.old.name || '',
-            tableId: config.old.table_id || '',
-            note: config.old.note || '',
+            note: '',
 
             // state tampilan
             activeCategory: 'semua',
             loading: false,
             error: '',
-            showSuccessModal: false,
-            successOrderCode: '',
+            toast: null,
 
             // ----- turunan data -----
 
@@ -353,11 +354,6 @@
                 return this.cart.reduce((sum, item) => sum + item.qty, 0);
             },
 
-            get tableLabel() {
-                const table = this.tables.find(t => t.id == this.tableId);
-                return 'Meja ' + (table?.number || this.tableId);
-            },
-
             // ----- tampilan -----
 
             formatPrice(price) {
@@ -366,6 +362,10 @@
 
             onImageError(event) {
                 event.target.src = FALLBACK_IMAGE;
+            },
+
+            showToast() {
+                this.toast = 'Pesanan berhasil disimpan.';
             },
 
             // ----- keranjang -----
@@ -399,42 +399,16 @@
 
             // ----- checkout -----
 
-            validate() {
-                if (this.cart.length === 0) {
-                    this.error = 'Pilih minimal satu menu sebelum memesan.';
-                    return false;
-                }
-                if (!this.customerName.trim()) {
-                    this.error = 'Nama pemesan wajib diisi.';
-                    document.getElementById('customer-name')?.focus();
-                    return false;
-                }
-                if (!this.tableId) {
-                    this.error = 'Silakan pilih nomor meja.';
-                    document.getElementById('table-id')?.focus();
-                    return false;
-                }
-                return true;
-            },
-
-            buildPayload() {
-                return {
-                    name: this.customerName.trim(),
-                    table_id: this.tableId,
-                    note: this.note,
-                    items: this.cart.map(item => ({
-                        restaurant_menu_id: item.id,
-                        qty: item.qty,
-                    })),
-                };
-            },
-
-            async pay() {
+            async checkout() {
                 this.error = '';
-                if (!this.validate()) return;
+
+                if (this.cart.length === 0) {
+                    this.error = 'Pilih minimal satu menu sebelum checkout.';
+                    return;
+                }
+                if (this.loading) return;
 
                 this.loading = true;
-
                 try {
                     const response = await fetch(config.storeUrl, {
                         method: 'POST',
@@ -443,56 +417,38 @@
                             'Accept': 'application/json',
                             'X-CSRF-TOKEN': csrfToken(),
                         },
-                        body: JSON.stringify(this.buildPayload()),
+                        body: JSON.stringify({
+                            note: this.note,
+                            items: this.cart.map(item => ({
+                                restaurant_menu_id: item.id,
+                                qty: item.qty,
+                            })),
+                        }),
                     });
 
                     const result = await response.json().catch(() => ({}));
+                    console.log(response.status, result);
 
-                    if (!response.ok) {
-                        const fallback = response.status === 429
-                            ? 'Terlalu banyak percobaan, silakan coba lagi nanti.'
-                            : 'Pesanan tidak dapat diproses.';
-                        this.error = result.message
-                            || Object.values(result.errors || {}).flat()[0]
-                            || fallback;
+                    if (response.status === 401 || response.status === 419) {
+                        this.error = 'Sesi habis. Muat ulang halaman lalu login kembali.';
                         return;
                     }
 
-                    this.openSnap(result);
+                    if (!response.ok) {
+                        this.error = result.message
+                            || Object.values(result.errors || {}).flat()[0]
+                            || 'Pesanan tidak dapat disimpan.';
+                        return;
+                    }
+
+                    this.showToast();
+                    this.cart = [];
+                    this.note = '';
                 } catch (err) {
-                    this.error = 'Terjadi kesalahan koneksi saat memproses pesanan.';
+                    this.error = 'Terjadi kesalahan koneksi saat menyimpan pesanan.';
                 } finally {
                     this.loading = false;
                 }
-            },
-
-            openSnap(result) {
-                if (!window.snap) {
-                    this.error = 'Layanan pembayaran belum siap. Silakan muat ulang halaman.';
-                    return;
-                }
-
-                window.snap.pay(result.snap_token, {
-                    onSuccess: (midtransResult) => this.handlePaid(result, midtransResult),
-                    onPending: () => { this.error = 'Pembayaran masih menunggu konfirmasi.'; },
-                    onError:   () => { this.error = 'Pembayaran gagal. Silakan coba lagi.'; },
-                    onClose:   () => { this.error = 'Pembayaran dibatalkan sebelum selesai.'; },
-                });
-            },
-
-            handlePaid(result, midtransResult) {
-                this.successOrderCode = result.order_code || midtransResult?.order_id || '';
-                this.cart = [];
-                this.note = '';
-                this.error = '';
-                this.showSuccessModal = true;
-            },
-
-            finishAndReset() {
-                this.showSuccessModal = false;
-                this.customerName = '';
-                this.tableId = '';
-                this.note = '';
             },
         };
     }

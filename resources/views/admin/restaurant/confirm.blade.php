@@ -28,7 +28,6 @@
       </span>
       <!-- Notifikasi Pesanan Belum Dikonfirmasi -->
       <button
-        onclick="openUnconfirmedModal()"
         class="size-11 flex items-center justify-center rounded-xl ring-1 ring-border hover:ring-primary transition-all duration-300 cursor-pointer relative"
         aria-label="Pesanan belum dikonfirmasi"
         title="Pesanan belum dikonfirmasi"
@@ -43,13 +42,23 @@
     </div>
 
     <div class="flex-1 overflow-y-auto p-5 md:p-8">
-      <div class="mb-8">
-        <h1 class="mb-1 text-2xl font-bold text-foreground">
-          Pesanan Belum Dikonfirmasi
-          <span class="ml-2 rounded-full bg-amber-100 px-3 py-0.5 text-base text-amber-900" x-text="orders.length"></span>
+
+      <div class="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
+
+        <div class="mb-8">
+          <h1 class="mb-1 text-2xl font-bold text-foreground">
+            Pesanan Belum Dikonfirmasi
+            <span class="ml-2 rounded-full bg-amber-100 px-3 py-0.5 text-base text-amber-900" x-text="orders.length"></span>
         </h1>
         <p class="text-sm text-secondary">Tinjau detail dan konfirmasi pesanan restaurant yang sudah dibayar.</p>
       </div>
+
+            <a href="{{ route('admin.restaurant-order.create') }}"
+                       class="inline-flex cursor-pointer items-center justify-center rounded-full bg-success px-6 py-2.5 font-semibold text-white transition-all hover:bg-success-dark">
+                        Buat Pesanan Baru
+            </a>
+
+        </div>
 
       <div class="flex flex-col overflow-hidden rounded-3xl border border-border bg-white shadow-sm">
         <div class="border-b border-border p-6">

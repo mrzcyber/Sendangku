@@ -1,4 +1,4 @@
-  <aside id="sidebar" class="flex flex-col w-[280px] shrink-0 h-screen fixed inset-y-0 left-0 z-50 bg-white border-r border-border transform -translate-x-full lg:translate-x-0 transition-transform duration-300 overflow-hidden">
+  <aside id="sidebar" class="flex flex-col w-[280px] shrink-0 h-screen fixed inset-y-0 left-0 z-50 bg-white border-r border-border transform -translate-x-full lg:translate-x-0 transition-transform duration-300 overflow-hidden {{ request()->routeIs('admin.restaurant-order.create') ? 'hidden' : '' }} ">
     <!-- Top Bar -->
     <div class="flex items-center justify-between border-b border-border h-[90px] px-5 gap-3">
       <div class="flex items-center gap-3">
