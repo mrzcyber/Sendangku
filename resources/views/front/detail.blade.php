@@ -47,7 +47,7 @@
                 <div class="swiper-wrapper">
                     @foreach ($galleryImages as $gallery)
                         <div class="swiper-slide">
-                            <img src="{{ 'storage/' . $gallery->image_url }}" alt="Galeri {{ $service->name }}" class="aspect-[4/3] w-full object-cover" draggable="false" onerror="this.src='/img/sendang.avif'">
+                            <img src="{{ $gallery->image_url }}" alt="Galeri {{ $service->name }}" class="aspect-[4/3] w-full object-cover" draggable="false" onerror="this.src='/img/sendang.avif'">
                         </div>
                     @endforeach
                 </div>

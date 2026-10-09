@@ -45,7 +45,7 @@ class="w-full md:pb-36 pb-20 pt-10  relative flex md:pt-40 justify-center bg-[#F
     </div >
 
 
-<div class="relative z-10 mx-auto flex w-full max-w-7xl flex-col-reverse items-center gap-12 px-5 sm:px-8 md:flex-row md:items-center md:gap-10 lg:gap-12 xl:gap-20">
+<div class="relative z-10 mx-auto flex w-full max-w-7xl flex-col-reverse items-center gap-12 px-5 sm:px-8 md:flex-row justify-center md:gap-10 lg:gap-12">
 
 
 <div
@@ -54,8 +54,8 @@ class="w-full md:pb-36 pb-20 pt-10  relative flex md:pt-40 justify-center bg-[#F
      data-aos-delay="200"
      data-aos-duration="1000"
      data-aos-offset="0"
-class="relative w-[280px] shrink-0 sm:w-[320px] md:w-[320px] lg:w-[440px] xl:w-[520px]">
-<div class="h-[250px] w-full rotate-[4deg] border-[6px] border-white shadow-md shadow-black sm:h-[310px] md:h-[320px] lg:h-[390px] xl:h-[430px] xl:border-[10px]">
+class="relative w-[300px] shrink-0 sm:w-[300px] md:w-[300px] lg:w-[440px] ">
+<div class="h-[300px] w-full rotate-[4deg] border-[6px] border-white shadow-md shadow-black sm:h-[310px] md:h-[360px] lg:h-[400px]  xl:border-[10px]">
     <img src="img/sendang.avif" alt="Icon 1" class="w-full h-full object-cover bg-center bg-no-repeat">
 </div>
 
@@ -65,7 +65,7 @@ class="relative w-[280px] shrink-0 sm:w-[320px] md:w-[320px] lg:w-[440px] xl:w-[
      data-aos-delay="1000"
      data-aos-duration="1500"
      data-aos-offset="0"
-class="absolute -top-7 -right-4 h-24 w-24 -rotate-[4deg] overflow-hidden border-4 border-white shadow-md shadow-black sm:-top-10 sm:-right-7 sm:h-28 sm:w-28 md:-top-10 md:-right-7 md:h-28 md:w-28  xl:-top-12 xl:-right-8 lg:w-40 lg:h-40 xl:border-8">
+class="absolute -top-7 -right-4 h-28 w-28 -rotate-[4deg] overflow-hidden border-4 border-white shadow-md shadow-black sm:-top-10 sm:-right-7 sm:h-28 sm:w-28 md:-top-10 md:-right-7 md:h-28 md:w-28  xl:-top-12 xl:-right-8 lg:w-40 lg:h-40 xl:border-8">
  <img src="img/sendang4.webp" alt="Icon 1" class="w-full h-full object-cover bg-center bg-no-repeat">
 </div>    
 
@@ -75,7 +75,7 @@ class="absolute -top-7 -right-4 h-24 w-24 -rotate-[4deg] overflow-hidden border-
      data-aos-delay="1000"
      data-aos-duration="1500"
      data-aos-offset="0"
-class="absolute -bottom-7 -left-4 h-24 w-24 -rotate-[4deg] overflow-hidden border-4 border-white shadow-md shadow-black sm:-bottom-10 sm:-left-8 sm:h-28 sm:w-28 md:-bottom-10 md:-left-8 md:h-28 md:w-28  xl:-bottom-12 xl:-left-18 lg:w-40 lg:h-40 xl:border-8">
+class="absolute -bottom-7 -left-4 h-28 w-28 -rotate-[4deg] overflow-hidden border-4 border-white shadow-md shadow-black sm:-bottom-10 sm:-left-8 sm:h-28 sm:w-28 md:-bottom-10 md:-left-8 md:h-28 md:w-28  xl:-bottom-12 xl:-left-18 lg:w-40 lg:h-40 xl:border-8">
  <img src="img/sendangkun3.webp" alt="Icon 1" class="w-full h-full object-cover bg-center bg-no-repeat">
 </div>    
 
@@ -287,7 +287,7 @@ class="w-full relative overflow-hidden bg-[#FFF8E1]/80 py-10 md:py-16 xl:px-20 m
         <div class="absolute top-0 py-24 bg-gradient-to-b w-full from-amber-500/40 to-transparent -mt-24"></div>
     </div>
 
-    <div class="relative z-10 max-w-6xl mx-auto flex flex-col md:flex-row gap-8 xl:gap-14 items-center justify-center">
+    <div class="relative z-10 max-w-6xl mx-auto flex flex-col md:flex-row gap-8 md:gap-14 items-center justify-center">
         <div
         data-aos="fade-right"
         data-aos-easing="ease-in-out"
@@ -328,8 +328,11 @@ class="w-full relative overflow-hidden bg-[#FFF8E1]/80 py-10 md:py-16 xl:px-20 m
         data-aos-easing="ease-in-out"
         data-aos-delay="200"
         data-aos-duration="1000"
-        class="relative w-full md:w-1/2 max-w-[460px] mx-auto md:block hidden">
-            <div class="w-full h-[330px] xl:h-[360px] -rotate-[3deg] border-[10px] shadow-md shadow-black border-white overflow-hidden bg-white">
+        
+        class="relative w-full md:w-1/2 max-w-[460px] mx-auto flex items-center justify-center my-8 md:my-0">
+            <div 
+  
+            class=" w-[290px] h-[290px] md:w-full md:h-[330px] xl:h-[360px] -rotate-[3deg] border-8 shadow-md shadow-black border-white overflow-hidden bg-white">
                 <img src="img/menu1.avif" alt="Menu Resto Sendang Kun Gerit" class="w-full h-full object-cover object-center">
             </div>
 
@@ -338,7 +341,7 @@ class="w-full relative overflow-hidden bg-[#FFF8E1]/80 py-10 md:py-16 xl:px-20 m
             data-aos-easing="ease-in-out"
             data-aos-delay="800"
             data-aos-duration="1200"
-            class="xl:w-52 w-40 rotate-[5deg] xl:h-40 h-36 absolute -top-10 -right-6 overflow-hidden border-8 border-white shadow-md shadow-black bg-white">
+            class="xl:w-52 w-28 h-28 md:w-40 rotate-[5deg] xl:h-40 md:h-36 absolute -top-10 right-0 md:-right-6 overflow-hidden border-6 border-white shadow-md shadow-black bg-white">
                 <img src="img/menu3.avif" alt="Hidangan Resto Sendang Kun Gerit" class="w-full h-full object-cover object-center">
             </div>
 
@@ -347,27 +350,11 @@ class="w-full relative overflow-hidden bg-[#FFF8E1]/80 py-10 md:py-16 xl:px-20 m
             data-aos-easing="ease-in-out"
             data-aos-delay="900"
             data-aos-duration="1200"
-            class="xl:w-52 w-40 rotate-[4deg] xl:h-40 h-36 absolute -bottom-12 -left-8 overflow-hidden border-8 border-white shadow-md shadow-black bg-white">
+            class="xl:w-52 w-28 h-28 md:w-40 rotate-[4deg] xl:h-40 md:h-36 absolute -bottom-12 left-0 md:-left-8 overflow-hidden border-6 border-white shadow-md shadow-black bg-white">
                 <img src="img/menu2.avif" alt="Galeri Makanan Sendang Kun Gerit" class="w-full h-full object-cover object-right">
             </div>
         </div>
-
-        <div
-        data-aos="fade-up"
-        data-aos-easing="ease-in-out"
-        data-aos-delay="200"
-        data-aos-duration="1000"
-        class="md:hidden grid grid-cols-2 gap-3">
-            <div class="col-span-2 h-56 overflow-hidden border-8 border-white shadow-md shadow-black bg-white">
-                <img src="img/menu1.avif" alt="Menu Resto Sendang Kun Gerit" class="w-full h-full object-cover object-center">
-            </div>
-            <div class="h-36 overflow-hidden border-8 border-white shadow-md shadow-black bg-white">
-                <img src="img/menu3.avif" alt="Hidangan Resto Sendang Kun Gerit" class="w-full h-full object-cover object-center">
-            </div>
-            <div class="h-36 overflow-hidden border-8 border-white shadow-md shadow-black bg-white">
-                <img src="img/menu2.avif" alt="Galeri Makanan Sendang Kun Gerit" class="w-full h-full object-cover object-right">
-            </div>
-        </div>
+        
     </div>
 </section>
 
@@ -580,7 +567,7 @@ class="flex flex-col items-center">
      data-aos-easing="linear"
      data-aos-duration="1000"
      data-aos-offset="0"
-class="w-full max-w-6xl grid z-10 justify-center lg:gap-8 gap-5 grid-rows-1 md:grid-cols-3 items-stretch ">
+class="w-full max-w-6xl grid z-10 justify-center lg:gap-8 gap-5 grid-rows-1  md:grid-cols-3 items-stretch ">
 
     @foreach ($blogs as $blog)
     <div
@@ -589,7 +576,7 @@ class="w-full max-w-6xl grid z-10 justify-center lg:gap-8 gap-5 grid-rows-1 md:g
      data-aos-delay="500"
      data-aos-duration="1000"
      data-aos-offset="0"
-     class="group flex flex-col overflow-hidden rounded-lg bg-transparent lg:w-full w-80 md:w-auto shrink-0">
+     class="group flex flex-col overflow-hidden rounded-lg bg-transparent lg:w-full w-80 md:w-auto shrink-0 {{ $loop->iteration > 2 ? 'hidden md:flex' : '' }}">
         <div class="w-full h-56 overflow-hidden">
             <img src="{{ $blog['image'] }}" alt="{{ $blog['name'] }}" class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105" onerror="this.src='/img/sendang.avif'">
         </div>
