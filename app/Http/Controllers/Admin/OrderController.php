@@ -44,10 +44,7 @@ class OrderController extends Controller
         $scannedItemsQuery = OrderItem::query()
             ->join('orders', 'orders.id', '=', 'order_items.order_id')
             ->where('orders.status', 'used')
-            ->where(function ($q) {
-                $q->where('orders.pay_status', 'paid')
-                  ->orWhere('orders.purchase', 'offline');
-            });
+            ->where('pay_status', 'paid');
         $applyDateFilter($scannedItemsQuery, 'orders.created_at');
         $scannedTicketsCount = (clone $scannedItemsQuery)->sum('order_items.qty');
 
@@ -55,9 +52,7 @@ class OrderController extends Controller
         $unscannedItemsQuery = OrderItem::query()
             ->join('orders', 'orders.id', '=', 'order_items.order_id')
             ->where('orders.status', 'active')
-            ->where(function ($q) {
-                $q->where('orders.pay_status', 'paid');
-            });
+            ->where('pay_status', 'paid');
         $applyDateFilter($unscannedItemsQuery, 'orders.created_at');
         $unscannedTicketsCount = (clone $unscannedItemsQuery)->sum('order_items.qty');
 
@@ -68,10 +63,7 @@ class OrderController extends Controller
         $ticketItemsQuery = OrderItem::query()
             ->join('orders', 'orders.id', '=', 'order_items.order_id')
             ->join('ticket_types', 'ticket_types.id', '=', 'order_items.ticket_type_id')
-            ->where(function ($q) {
-                $q->where('orders.pay_status', 'paid')
-                  ->orWhere('orders.purchase', 'offline');
-            });
+            ->where('pay_status', 'paid');
         $applyDateFilter($ticketItemsQuery, 'orders.created_at');
 
         $ticketCounts = (clone $ticketItemsQuery)
@@ -82,6 +74,7 @@ class OrderController extends Controller
 
         // 6. Query transaksi untuk tabel
         $listQuery = Order::query()
+            ->where('pay_status', 'paid')
             ->with(['orderItems.ticketType', 'user']);
         $applyDateFilter($listQuery, 'created_at');
 
