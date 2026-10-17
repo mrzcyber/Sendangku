@@ -285,17 +285,6 @@ Saat galeri layanan diperbarui dengan foto baru, seluruh galeri lama diganti.
 
 ## 🗄️ Skema Database
 
-```mermaid
-erDiagram
-    USERS ||--o{ ORDERS : "scan tiket"
-    TICKET_TYPES ||--o{ ORDER_ITEMS : "dipesan sebagai"
-    ORDERS ||--|{ ORDER_ITEMS : "berisi"
-    SERVICES ||--o{ SERVICE_GALLERIES : "punya galeri"
-    SERVICES ||--o{ SERVICE_PACKAGES : "punya paket"
-    TABLES ||--o{ RESTAURANT_ORDERS : "ditempati"
-    RESTAURANT_ORDERS ||--|{ RESTAURANT_ORDER_ITEMS : "berisi"
-    RESTAURANT_MENUS ||--o{ RESTAURANT_ORDER_ITEMS : "dipesan sebagai"
-```
 
 ```sql
 -- Akun staf
